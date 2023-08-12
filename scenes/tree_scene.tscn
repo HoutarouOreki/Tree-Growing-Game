@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dh6d87dv0g7pp"]
+[gd_scene load_steps=24 format=3 uid="uid://dh6d87dv0g7pp"]
 
 [ext_resource type="Texture2D" uid="uid://bt4u55hr2ii7c" path="res://assets/textures/textures/grass/Grass_001_COLOR.jpeg" id="1_21qpb"]
 [ext_resource type="Texture2D" uid="uid://blnbxl2t58xnl" path="res://assets/textures/textures/grass/Grass_001_OCC.jpeg" id="2_d7w43"]
@@ -6,8 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://bki2cilelceq6" path="res://assets/textures/textures/grass/Grass_001_NORM.jpeg" id="3_ixjmu"]
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="5_12l7o"]
 [ext_resource type="Script" path="res://scripts/first_person_camera.gd" id="6_awi6c"]
+[ext_resource type="Script" path="res://scripts/tree_plant.gd" id="6_op5lm"]
 [ext_resource type="PackedScene" uid="uid://bo6yl1eveca6x" path="res://scenes/fence.tscn" id="7_85r25"]
 [ext_resource type="PackedScene" uid="uid://cpkqf1kp6qqi2" path="res://scenes/tree_pine.tscn" id="8_48g4p"]
+[ext_resource type="PackedScene" uid="uid://bl164wuq3yodu" path="res://assets/models/trees/TreeStage0.glb" id="9_7lq3e"]
+[ext_resource type="PackedScene" uid="uid://c87hacl57tbpl" path="res://assets/models/trees/TreeStage1.glb" id="10_ojdc4"]
+[ext_resource type="PackedScene" uid="uid://dlb7ongaagxio" path="res://assets/models/trees/TreeStage2.glb" id="11_8w1ah"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xgat"]
 albedo_color = Color(0.392157, 0.509804, 0.435294, 1)
@@ -35,13 +39,23 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_f6fvt"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h4r3p"]
-points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l2ulm"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bqnbl"]
 auto_exposure_enabled = true
 auto_exposure_speed = 1.11
 auto_exposure_max_sensitivity = 500.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dalyk"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.270588)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xtr5c"]
+material = SubResource("StandardMaterial3D_dalyk")
+height = 0.3
+radial_segments = 32
+rings = 1
+cap_bottom = false
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_niqb3"]
 rayleigh_color = Color(0.282353, 0.384314, 0.572549, 1)
@@ -66,10 +80,11 @@ fog_sky_affect = 0.419
 [node name="Tree Scene" type="Node3D"]
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.892428, 2.65964e-07, -0.451189, -0.425236, 0.334267, 0.841094, 0.150818, 0.942478, -0.298309, -7.79659, 5.63228, -3.97896)
+transform = Transform3D(-0.645584, 0.719859, -0.254999, -0.242341, 0.123542, 0.962293, 0.724219, 0.683038, 0.0946943, -7.79659, 5.63228, -3.97896)
 shadow_enabled = true
 shadow_blur = 0.259
 directional_shadow_blend_splits = true
+directional_shadow_max_distance = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 0.025, 0, 0, 0, 50, 0, 0, 0)
@@ -85,11 +100,16 @@ shape = SubResource("ConcavePolygonShape3D_aylrb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10548, 0)
 script = ExtResource("5_12l7o")
 
+[node name="Node3D" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.10548, 0)
+script = ExtResource("6_op5lm")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+visible = false
 mesh = SubResource("CapsuleMesh_f6fvt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("ConvexPolygonShape3D_h4r3p")
+shape = SubResource("CapsuleShape3D_l2ulm")
 
 [node name="Neck" type="Node3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614361, 0)
@@ -97,8 +117,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614361, 0)
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck" node_paths=PackedStringArray("neck")]
 attributes = SubResource("CameraAttributesPractical_bqnbl")
 script = ExtResource("6_awi6c")
-sensitivity = 0.15
+sensitivity = 0.1
 neck = NodePath("..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.724878, 0)
+mesh = SubResource("CylinderMesh_xtr5c")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bca8c")
@@ -245,3 +269,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.1554, 1.90735e-06, -3.412
 
 [node name="treePine27" parent="Fences/fence20" instance=ExtResource("8_48g4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.1966, 1.90735e-06, 0.671996)
+
+[node name="TreeStage0" parent="." instance=ExtResource("9_7lq3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14662, 0.0125, -4.41852)
+
+[node name="TreeStage1" parent="." instance=ExtResource("10_ojdc4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.430227, 0.0124996, -6.32384)
+
+[node name="TreeStage2" parent="." instance=ExtResource("11_8w1ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37296, 0, -3.80522)
