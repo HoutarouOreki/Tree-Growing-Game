@@ -19,8 +19,11 @@ func _physics_process(delta):
 	var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	var new_velocity = velocity.move_toward(direction * SPEED if direction else Vector3.ZERO, ACCELERATION * delta)
-	#if direction:
-		#new_velocity = velocity.move_toward(, ACCELERATION * delta)
+	
+	if (new_velocity * Vector3(input_dir.x, 0, input_dir.y)).is_zero_approx():
+		FootstepsManager.stop_playing()
+	else:
+		FootstepsManager.start_playing(self)
 		
 	velocity.x = new_velocity.x
 	velocity.z = new_velocity.z

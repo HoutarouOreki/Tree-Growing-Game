@@ -29,3 +29,4 @@ func on_plant(position: Vector3):
 	var instance = scene_resource.instantiate() as Node3D
 	instance.position = position
 	get_tree().root.add_child(instance)
+	FadeInManager.add(instance)
