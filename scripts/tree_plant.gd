@@ -18,6 +18,7 @@ func _input(event):
 		var rayQuery = PhysicsRayQueryParameters3D.new()
 		rayQuery.from = camera.project_ray_origin(mousePos)
 		rayQuery.to = rayQuery.from + camera.project_ray_normal(mousePos) * rayLength
+		rayQuery.collision_mask = 4
 		var space = get_world_3d().direct_space_state
 		var result = space.intersect_ray(rayQuery)
 		print(result)
@@ -25,8 +26,15 @@ func _input(event):
 			on_plant(result["position"])
 
 func on_plant(position: Vector3):
-	var scene_resource = load("res://assets/models/trees/TreeStage0.glb")
+	var scene_resource = load("res://scenes/growing_tree.tscn")
 	var instance = scene_resource.instantiate() as Node3D
 	instance.position = position
 	get_tree().root.add_child(instance)
-	FadeInManager.add(instance)
+	PopUpManager.add(instance)
+	var timer = Timer.new()
+	timer.start(0.2)
+	timer.autostart = true
+	add_child(timer)
+	await timer.timeout
+	var grassScatter = get_tree().root.get_node("World Scene/GrassScatter")
+	grassScatter.rebuild()
