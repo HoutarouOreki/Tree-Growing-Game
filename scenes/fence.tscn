@@ -1,5 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bo6yl1eveca6x"]
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xskia"]
+points = PackedVector3Array(-0.507937, 0.087342, -0.477923, 0.460305, 0.404721, -0.335093, 0.460305, 0.404721, -0.46204, 0.460305, -0.00789611, -0.335093, -0.460305, 0.404721, -0.335093, -0.460305, -0.00789611, -0.335093, 0.460305, -0.00789611, -0.46204, -0.507937, 0.357102, -0.477923, 0.507937, 0.357102, -0.477923, -0.460305, -0.00789611, -0.46204, 0.507937, 0.087342, -0.477923, -0.460305, 0.404721, -0.46204, -0.507937, 0.357102, -0.446172, 0.507937, 0.087342, -0.446172, -0.507937, 0.087342, -0.446172, 0.507937, 0.357102, -0.446172)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ek7il"]
 resource_name = "woodDark"
 vertex_color_use_as_albedo = true
@@ -87,16 +90,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2fgj1")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xskia"]
-points = PackedVector3Array(-0.507937, 0.087342, -0.477923, 0.460305, 0.404721, -0.335093, 0.460305, 0.404721, -0.46204, 0.460305, -0.00789611, -0.335093, -0.460305, 0.404721, -0.335093, -0.460305, -0.00789611, -0.335093, 0.460305, -0.00789611, -0.46204, -0.507937, 0.357102, -0.477923, 0.507937, 0.357102, -0.477923, -0.460305, -0.00789611, -0.46204, 0.507937, 0.087342, -0.477923, -0.460305, 0.404721, -0.46204, -0.507937, 0.357102, -0.446172, 0.507937, 0.087342, -0.446172, -0.507937, 0.087342, -0.446172, 0.507937, 0.357102, -0.446172)
-
 [node name="fence" type="StaticBody3D"]
-
-[node name="fence2" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 1.24352)
-mesh = SubResource("ArrayMesh_jx0cv")
-skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 1.24352)
 shape = SubResource("ConvexPolygonShape3D_xskia")
+
+[node name="fence2" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("ArrayMesh_jx0cv")
+skeleton = NodePath("")

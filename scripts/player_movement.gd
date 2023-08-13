@@ -8,6 +8,7 @@ const ACCELERATION = 30.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var neck := $Neck
+@export var storage: Storage
 
 func _physics_process(delta):
 	# Add the gravity.

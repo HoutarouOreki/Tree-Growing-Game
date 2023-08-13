@@ -1,15 +1,6 @@
 extends Node3D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _input(event):
 	if Input.is_action_just_pressed("use_item"):
 		var camera = get_viewport().get_camera_3d()
@@ -32,9 +23,9 @@ func on_plant(position: Vector3):
 	get_tree().root.add_child(instance)
 	PopUpManager.add(instance)
 	var timer = Timer.new()
+	add_child(timer)
 	timer.start(0.2)
 	timer.autostart = true
-	add_child(timer)
 	await timer.timeout
 	var grassScatter = get_tree().root.get_node("World Scene/GrassScatter")
 	grassScatter.rebuild()

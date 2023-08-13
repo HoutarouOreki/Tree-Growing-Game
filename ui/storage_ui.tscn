@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2pjqpfsqd2xs"]
+
+[ext_resource type="Script" path="res://scripts/storage/storage_ui.gd" id="1_acwf8"]
+[ext_resource type="Script" path="res://scripts/storage/storage.gd" id="2_sm7en"]
+[ext_resource type="Script" path="res://scripts/storage/storage_item.gd" id="3_2buyp"]
+[ext_resource type="Texture2D" uid="uid://bki2cilelceq6" path="res://assets/textures/textures/grass/Grass_001_NORM.jpeg" id="4_482tf"]
+
+[sub_resource type="Resource" id="Resource_p3jvn"]
+script = ExtResource("3_2buyp")
+name = "Hhhhhh"
+texture = ExtResource("4_482tf")
+count = 0
+
+[node name="StorageUI" type="Control" node_paths=PackedStringArray("storage")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_acwf8")
+storage = NodePath("Storage")
+
+[node name="Storage" type="Node" parent="."]
+script = ExtResource("2_sm7en")
+starting_items = Array[ExtResource("3_2buyp")]([SubResource("Resource_p3jvn"), null, null, null, null, null, null, null, null, null])
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 10
