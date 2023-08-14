@@ -11,7 +11,7 @@ func _input(event):
 	# Receives mouse motion
 	if event is InputEventMouseMotion:
 		_mouse_position = event.relative
-		
+
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
@@ -28,10 +28,10 @@ func _update_mouselook():
 		var yaw = _mouse_position.x
 		var pitch = _mouse_position.y
 		_mouse_position = Vector2(0, 0)
-		
+
 		# Prevents looking up/down too far
 		pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
 		_total_pitch += pitch
-	
+
 		neck.rotate_y(deg_to_rad(-yaw))
 		rotate_object_local(Vector3(1,0,0), deg_to_rad(-pitch))

@@ -33,12 +33,12 @@ func play():
 func _process(delta):
 	if !playing:
 		return
-	
+
 	if since_last_play == 0:
 		play()
-			
+
 	since_last_play += delta
-	
+
 	if since_last_play > INTERVAL_S:
 		since_last_play = 0
-	
+

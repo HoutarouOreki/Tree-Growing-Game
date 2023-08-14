@@ -18,7 +18,7 @@ func _unhandled_input(event):
 		selectedSlotIndex += 1
 	if selectedSlotIndex >= storage.storage_size:
 		selectedSlotIndex = 0
-		
+
 	if event.is_action_pressed("hotbar_previous"):
 		selectedSlotIndex -= 1
 	if selectedSlotIndex < 0:
@@ -40,17 +40,17 @@ func _ready():
 func on_change():
 	if !storage:
 		return
-	
+
 	while gridContainer.get_child_count() > 0:
 		gridContainer.remove_child(gridContainer.get_child(0))
-		
+
 	generate_layout()
 
 
 func generate_layout():
 	for slot in storage.slots:
 		add_slot_visual(slot)
-		
+
 func add_slot_visual(slot: StorageSlot):
 	var itemContainer = Control.new()
 	gridContainer.add_child(itemContainer)
@@ -62,10 +62,10 @@ func add_slot_visual(slot: StorageSlot):
 		background.color = Color8(50, 50, 50)
 	background.size = Vector2(slot_size, slot_size)
 	itemContainer.add_child(background)
-	
+
 	if !slot.item:
 		return
-	
+
 	background.add_child(create_item_visual(slot.item))
 
 func create_item_visual(item: StorageItem) -> Control:

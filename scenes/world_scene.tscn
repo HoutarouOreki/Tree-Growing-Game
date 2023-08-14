@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://dh6d87dv0g7pp"]
+[gd_scene load_steps=82 format=3 uid="uid://dh6d87dv0g7pp"]
 
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_d8o67"]
 [ext_resource type="PackedScene" uid="uid://b2pjqpfsqd2xs" path="res://ui/storage_ui.tscn" id="1_uevcw"]
@@ -19,11 +19,7 @@
 [ext_resource type="Script" path="res://scripts/storage/storage_item.gd" id="18_2achq"]
 [ext_resource type="Script" path="res://scripts/first_person_camera.gd" id="18_m4q6a"]
 [ext_resource type="Texture2D" uid="uid://ci3h8ok2uyjls" path="res://assets/item_sprites/shovel.png" id="19_3a213"]
-[ext_resource type="PackedScene" uid="uid://bo6yl1eveca6x" path="res://scenes/fence.tscn" id="19_p12t4"]
-[ext_resource type="PackedScene" uid="uid://bl164wuq3yodu" path="res://assets/models/trees/TreeStage0.glb" id="20_bj1a2"]
 [ext_resource type="Texture2D" uid="uid://cjtttjdeoqfne" path="res://assets/item_sprites/tree.png" id="20_cccr7"]
-[ext_resource type="PackedScene" uid="uid://c87hacl57tbpl" path="res://assets/models/trees/TreeStage1.glb" id="21_vupt7"]
-[ext_resource type="PackedScene" uid="uid://dlb7ongaagxio" path="res://assets/models/trees/TreeStage2.glb" id="22_it4e4"]
 [ext_resource type="PackedScene" uid="uid://casj06vn52ogp" path="res://scenes/growing_tree.tscn" id="23_kqevk"]
 [ext_resource type="AudioStream" uid="uid://b8kax6jco8hyc" path="res://assets/sounds/ambient/Ambiance_Forest_Birds_Loop_Stereo.wav" id="24_gnapm"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_along_edge_even.gd" id="25_qnco4"]
@@ -32,7 +28,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="29_d53ip"]
 [ext_resource type="Script" path="res://scripts/storage/storage.gd" id="31_xjimm"]
 
-[sub_resource type="Resource" id="Resource_trfif"]
+[sub_resource type="Resource" id="Resource_c04et"]
 script = ExtResource("3_wnxm3")
 instance_count = 300
 align_to_path = false
@@ -43,7 +39,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_tmdmq"]
+[sub_resource type="Resource" id="Resource_wdi4t"]
 script = ExtResource("4_02y3w")
 position = Vector3(7, 0, 7)
 rotation = Vector3(0, 180, 0)
@@ -54,7 +50,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_fd1cw"]
+[sub_resource type="Resource" id="Resource_84yet"]
 script = ExtResource("5_dybx8")
 iterations = 3
 offset_step = 0.2
@@ -66,7 +62,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_j4ftd"]
+[sub_resource type="Resource" id="Resource_asgnr"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -82,15 +78,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_tkj7u"]
+[sub_resource type="Resource" id="Resource_jgeby"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_trfif"), SubResource("Resource_tmdmq"), SubResource("Resource_fd1cw"), SubResource("Resource_j4ftd")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_c04et"), SubResource("Resource_wdi4t"), SubResource("Resource_84yet"), SubResource("Resource_asgnr")])
 
 [sub_resource type="Resource" id="Resource_hm0gh"]
 script = ExtResource("9_5o6oo")
 size = Vector3(35, 0.1, 35)
 
-[sub_resource type="Resource" id="Resource_76j6o"]
+[sub_resource type="Resource" id="Resource_mnsra"]
 script = ExtResource("10_m17uf")
 amount = 100
 enabled = true
@@ -99,7 +95,7 @@ custom_seed = 60
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_p0xww"]
+[sub_resource type="Resource" id="Resource_y8211"]
 script = ExtResource("4_02y3w")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(0, 180, 0)
@@ -110,7 +106,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_2xpwn"]
+[sub_resource type="Resource" id="Resource_n0h24"]
 script = ExtResource("5_dybx8")
 iterations = 3
 offset_step = 0.2
@@ -122,7 +118,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_13s2c"]
+[sub_resource type="Resource" id="Resource_6rrns"]
 script = ExtResource("11_20pio")
 operation = 0
 position = Vector3(0, -0.05, 0)
@@ -132,7 +128,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_mefkt"]
+[sub_resource type="Resource" id="Resource_epxb5"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -148,9 +144,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_0imkf"]
+[sub_resource type="Resource" id="Resource_n5h7q"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_76j6o"), SubResource("Resource_p0xww"), SubResource("Resource_2xpwn"), SubResource("Resource_13s2c"), SubResource("Resource_mefkt")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_mnsra"), SubResource("Resource_y8211"), SubResource("Resource_n0h24"), SubResource("Resource_6rrns"), SubResource("Resource_epxb5")])
 
 [sub_resource type="Resource" id="Resource_witgl"]
 script = ExtResource("9_5o6oo")
@@ -222,7 +218,7 @@ volumetric_fog_length = 80.0
 volumetric_fog_detail_spread = 6.0
 volumetric_fog_sky_affect = 0.0
 
-[sub_resource type="Resource" id="Resource_jgk1x"]
+[sub_resource type="Resource" id="Resource_e22yy"]
 script = ExtResource("3_wnxm3")
 instance_count = 50
 align_to_path = false
@@ -233,7 +229,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_5qg76"]
+[sub_resource type="Resource" id="Resource_bocyd"]
 script = ExtResource("25_qnco4")
 spacing = 1.0
 offset = 4.0
@@ -245,7 +241,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_i0lb2"]
+[sub_resource type="Resource" id="Resource_av0ce"]
 script = ExtResource("4_02y3w")
 position = Vector3(5, 0, 5)
 rotation = Vector3(20, 360, 20)
@@ -256,7 +252,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_1hnvb"]
+[sub_resource type="Resource" id="Resource_4ky2m"]
 script = ExtResource("5_dybx8")
 iterations = 3
 offset_step = 0.2
@@ -268,7 +264,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_k0kee"]
+[sub_resource type="Resource" id="Resource_qptgf"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -284,15 +280,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_vxseo"]
+[sub_resource type="Resource" id="Resource_f28n1"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_jgk1x"), SubResource("Resource_5qg76"), SubResource("Resource_i0lb2"), SubResource("Resource_1hnvb"), SubResource("Resource_k0kee")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_e22yy"), SubResource("Resource_bocyd"), SubResource("Resource_av0ce"), SubResource("Resource_4ky2m"), SubResource("Resource_qptgf")])
 
 [sub_resource type="Resource" id="Resource_0iw54"]
 script = ExtResource("9_5o6oo")
 size = Vector3(60, 1, 60)
 
-[sub_resource type="Resource" id="Resource_2pdci"]
+[sub_resource type="Resource" id="Resource_vbj7u"]
 script = ExtResource("28_chro7")
 item_length = 3.5
 ignore_slopes = false
@@ -302,7 +298,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_mh4l4"]
+[sub_resource type="Resource" id="Resource_tjdip"]
 script = ExtResource("29_d53ip")
 operation = 0
 rotation = Vector3(0, -90, 0)
@@ -312,7 +308,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_lsbha"]
+[sub_resource type="Resource" id="Resource_d2i3c"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -328,15 +324,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_32nh8"]
+[sub_resource type="Resource" id="Resource_3w105"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_2pdci"), SubResource("Resource_mh4l4"), SubResource("Resource_lsbha")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_vbj7u"), SubResource("Resource_tjdip"), SubResource("Resource_d2i3c")])
 
 [sub_resource type="Resource" id="Resource_ge7ks"]
 script = ExtResource("9_5o6oo")
 size = Vector3(18, 1, 18)
 
-[sub_resource type="Resource" id="Resource_ejoo8"]
+[sub_resource type="Resource" id="Resource_q2wyu"]
 script = ExtResource("10_m17uf")
 amount = 2000
 enabled = true
@@ -345,7 +341,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_vptd3"]
+[sub_resource type="Resource" id="Resource_vmb3p"]
 script = ExtResource("4_02y3w")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(0, 360, 0)
@@ -356,7 +352,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_cy7dl"]
+[sub_resource type="Resource" id="Resource_sf6jh"]
 script = ExtResource("5_dybx8")
 iterations = 1
 offset_step = 0.2
@@ -368,7 +364,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_o05mx"]
+[sub_resource type="Resource" id="Resource_2uey1"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -384,9 +380,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_cc5wf"]
+[sub_resource type="Resource" id="Resource_78ly3"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ejoo8"), SubResource("Resource_vptd3"), SubResource("Resource_cy7dl"), SubResource("Resource_o05mx")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_q2wyu"), SubResource("Resource_vmb3p"), SubResource("Resource_sf6jh"), SubResource("Resource_2uey1")])
 
 [sub_resource type="Resource" id="Resource_ytm2n"]
 script = ExtResource("9_5o6oo")
@@ -428,7 +424,7 @@ points = PackedVector3Array(0.122173, 1.60635, 2.03175, -0.131696, -1.63175, -2.
 
 [node name="World Scene" type="Node3D"]
 
-[node name="StorageUi" parent="." node_paths=PackedStringArray("storage") instance=ExtResource("1_uevcw")]
+[node name="Hotbar" parent="." node_paths=PackedStringArray("storage") instance=ExtResource("1_uevcw")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -445,7 +441,7 @@ slot_padding = 2
 [node name="TreePineScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_tkj7u")
+modifier_stack = SubResource("Resource_jgeby")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -481,7 +477,7 @@ path = "res://assets/models/trees/treeLarge.glb"
 [node name="GrassScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_0imkf")
+modifier_stack = SubResource("Resource_n5h7q")
 Performance/use_chunks = false
 Performance/chunk_dimensions = Vector3(1, 1, 1)
 
@@ -560,109 +556,13 @@ starting_items = Array[ExtResource("18_2achq")]([SubResource("Resource_d3d8q"), 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bca8c")
 
-[node name="Fences" type="Node3D" parent="."]
-visible = false
-
-[node name="fence" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.44679)
-
-[node name="fence4" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39166, 0, 9.44679)
-
-[node name="fence5" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.98567, 0, 9.44679)
-
-[node name="fence2" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.34645, 0, 9.44679)
-
-[node name="fence3" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96896, 0, 9.44679)
-
-[node name="fence6" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0401302, 0, -9.42662)
-
-[node name="fence7" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.35153, 0, -9.42662)
-
-[node name="fence8" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.91977, 0, -9.42662)
-
-[node name="fence9" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.38658, 0, -9.42662)
-
-[node name="fence10" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.963, 0, -9.42662)
-
-[node name="fence11" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.97993, 0, -0.13025)
-
-[node name="fence12" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.97993, 0, 3.56155)
-
-[node name="fence13" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.97994, 0, 7.17385)
-
-[node name="fence14" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.97993, 0, -3.79314)
-
-[node name="fence15" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.97993, 0, -7.32551)
-
-[node name="fence16" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -9.02007, 0, -0.33175)
-
-[node name="fence17" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -9.02007, 0, -3.79821)
-
-[node name="fence18" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -9.02007, 0, -7.38347)
-
-[node name="fence19" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -9.02007, 0, 3.49919)
-
-[node name="fence20" parent="Fences" instance=ExtResource("19_p12t4")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -9.02007, 0, 7.26757)
-
-[node name="TreeStage0" parent="." instance=ExtResource("20_bj1a2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14662, 0.0125, -4.41852)
-
-[node name="TreeStage1" parent="." instance=ExtResource("21_vupt7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.430227, 0.0124996, -6.32384)
-
-[node name="TreeStage2" parent="." instance=ExtResource("22_it4e4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37296, 0, -3.80522)
-
 [node name="Tree" parent="." instance=ExtResource("23_kqevk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.584)
-stream = ExtResource("24_gnapm")
-unit_size = 2.0
-autoplay = true
-
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6885, 0, 0.462019)
-stream = ExtResource("24_gnapm")
-unit_size = 2.0
-autoplay = true
-
-[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88372, 0, -14.7003)
-stream = ExtResource("24_gnapm")
-unit_size = 2.0
-autoplay = true
-
-[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1083, 0, -0.913263)
-stream = ExtResource("24_gnapm")
-unit_size = 2.0
-autoplay = true
 
 [node name="RocksScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_vxseo")
+modifier_stack = SubResource("Resource_f28n1")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -698,7 +598,7 @@ script = ExtResource("1_d8o67")
 render_mode = 1
 keep_static_colliders = true
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_32nh8")
+modifier_stack = SubResource("Resource_3w105")
 Performance/use_chunks = false
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -717,7 +617,7 @@ shape = SubResource("Resource_ge7ks")
 [node name="OutsideGrassScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_cc5wf")
+modifier_stack = SubResource("Resource_78ly3")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -846,3 +746,29 @@ light_energy = 0.4
 light_indirect_energy = 16.0
 light_size = 0.1
 shadow_enabled = true
+
+[node name="BirdSounds" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="BirdSounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.584)
+stream = ExtResource("24_gnapm")
+unit_size = 2.0
+autoplay = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="BirdSounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6885, 0, 0.462019)
+stream = ExtResource("24_gnapm")
+unit_size = 2.0
+autoplay = true
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="BirdSounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88372, 0, -14.7003)
+stream = ExtResource("24_gnapm")
+unit_size = 2.0
+autoplay = true
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="BirdSounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1083, 0, -0.913263)
+stream = ExtResource("24_gnapm")
+unit_size = 2.0
+autoplay = true
