@@ -20,6 +20,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_acwf8")
 storage = NodePath("Storage")
+slot_size = 28
+slot_padding = 3
 
 [node name="Storage" type="Node" parent="."]
 script = ExtResource("2_sm7en")

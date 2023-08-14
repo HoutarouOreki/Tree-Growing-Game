@@ -14,7 +14,6 @@ func _ready():
 
 
 func generateSlots():
-	print(self.storage_size)
 	slots.clear()
 	for i in range(storage_size):
 		var storageSlot = StorageSlot.new()
@@ -23,12 +22,10 @@ func generateSlots():
 
 
 func _setStorageSize(value: int):
-	print(self.storage_size)
 	storage_size = value
 	_setStartingItems(starting_items)
 	generateSlots()
 	notify_property_list_changed()
-	print(self.storage_size)
 
 func _setStartingItems(value: Array[StorageItem]):
 	value.resize(storage_size)

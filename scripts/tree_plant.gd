@@ -12,7 +12,6 @@ func _input(event):
 		rayQuery.collision_mask = 4
 		var space = get_world_3d().direct_space_state
 		var result = space.intersect_ray(rayQuery)
-		print(result)
 		if !result.is_empty():
 			on_plant(result["position"])
 

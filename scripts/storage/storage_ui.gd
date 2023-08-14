@@ -3,11 +3,28 @@ class_name StorageUi extends Control
 
 @export var storage: Storage
 @export_range(0, 100000, 1) var slot_size: int = 32
+@export_range(0, 100000, 1) var slot_padding: int = 4
 @onready var gridContainer := $CenterContainer/GridContainer
+
+var selectedSlotIndex: int = 0
 
 func _get_configuration_warnings():
 	if !storage:
 		return ["Storage node is missing"]
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("hotbar_next"):
+		selectedSlotIndex += 1
+	if selectedSlotIndex >= storage.storage_size:
+		selectedSlotIndex = 0
+		
+	if event.is_action_pressed("hotbar_previous"):
+		selectedSlotIndex -= 1
+	if selectedSlotIndex < 0:
+		selectedSlotIndex = storage.storage_size - 1
+	notify_property_list_changed()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +35,6 @@ func _ready():
 	child_order_changed.connect(on_change)
 	storage.property_list_changed.connect(on_change)
 	property_list_changed.connect(on_change)
-	print("h4")
 
 
 func on_change():
@@ -33,28 +49,30 @@ func on_change():
 
 func generate_layout():
 	for slot in storage.slots:
-		print("h2")
 		add_slot_visual(slot)
 		
 func add_slot_visual(slot: StorageSlot):
 	var itemContainer = Control.new()
 	gridContainer.add_child(itemContainer)
 	itemContainer.custom_minimum_size = Vector2(slot_size, slot_size)
-	var label = TextureRect.new()
-	#label.texture = load("res://assets/textures/checker.png")
-	#label.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	#label.size = Vector2(slot_size, slot_size)
-	#itemContainer.add_child(label)
-	print(slot.item)
+	var background = ColorRect.new()
+	if slot == storage.slots[selectedSlotIndex]:
+		background.color = Color8(100, 100, 100)
+	else:
+		background.color = Color8(50, 50, 50)
+	background.size = Vector2(slot_size, slot_size)
+	itemContainer.add_child(background)
+	
 	if !slot.item:
 		return
 	
-	itemContainer.add_child(create_item_visual(slot.item))
+	background.add_child(create_item_visual(slot.item))
 
 func create_item_visual(item: StorageItem) -> Control:
 	var texture = TextureRect.new()
 	texture.texture = item.texture
 	texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	texture.stretch_mode = texture.STRETCH_KEEP_ASPECT_CENTERED
-	texture.size = Vector2(slot_size, slot_size)
+	texture.size = Vector2(slot_size - slot_padding * 2, slot_size - slot_padding * 2)
+	texture.position = Vector2(slot_padding, slot_padding)
 	return texture
