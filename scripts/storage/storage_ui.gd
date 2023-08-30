@@ -2,6 +2,7 @@
 class_name StorageUi extends Control
 
 @export var storage: Storage
+@export var player: CharacterBody3D
 @export_range(0, 100000, 1) var slot_size: int = 32
 @export_range(0, 100000, 1) var slot_padding: int = 4
 @onready var gridContainer := $CenterContainer/GridContainer
@@ -9,8 +10,12 @@ class_name StorageUi extends Control
 var selectedSlotIndex: int = 0
 
 func _get_configuration_warnings():
+	var array = []
 	if !storage:
-		return ["Storage node is missing"]
+		array.append("Storage node is missing")
+	if !player:
+		array.append("Player node is missing")
+	return array
 
 
 func _unhandled_input(event):
@@ -24,6 +29,12 @@ func _unhandled_input(event):
 	if selectedSlotIndex < 0:
 		selectedSlotIndex = storage.storage_size - 1
 	notify_property_list_changed()
+	if event.is_action_pressed("use_item"):
+		use_item(event)
+
+
+func use_item(event):
+	storage.slots[selectedSlotIndex].item.action(player, event)
 
 
 # Called when the node enters the scene tree for the first time.
