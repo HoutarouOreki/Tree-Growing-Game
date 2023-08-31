@@ -30,3 +30,8 @@ func _physics_process(delta):
 	velocity.z = new_velocity.z
 
 	move_and_slide()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+		$"../DayCycle".seek(6)
