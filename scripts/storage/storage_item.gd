@@ -1,3 +1,4 @@
+@tool
 class_name StorageItem extends Resource
 
 @export var name: String
@@ -13,3 +14,32 @@ func action(player: CharacterBody3D, event: InputEvent):
 	player.add_child(instance)
 	instance.call("action", player, event)
 	player.remove_child(instance)
+
+
+func process(player: CharacterBody3D):
+	if !actionScript:
+		return
+
+	var instance = player.find_child(name, false, false)
+	if !instance:
+		instance = actionScript.new()
+		player.add_child(instance)
+		instance.name = self.name
+
+	instance.call("process", player)
+
+
+func stop_process(player: CharacterBody3D):
+	if !actionScript:
+		return
+
+	var instance = player.find_child(name, false, false)
+	if !instance:
+		instance = actionScript.new()
+		player.add_child(instance)
+		instance.name = self.name
+
+	instance.call("stop_process", player)
+
+	player.remove_child(instance)
+	instance.queue_free()

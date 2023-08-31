@@ -94,14 +94,10 @@ hotbar_previous={
 [layer_names]
 
 3d_physics/layer_3="Ground"
+3d_physics/layer_4="PlantableGround"
+3d_physics/layer_5="UnpreparableGround"
 3d_physics/layer_9="Plants"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
-lights_and_shadows/directional_shadow/16_bits=false
-anti_aliasing/screen_space_roughness_limiter/enabled=false
-textures/light_projectors/filter=5
-anti_aliasing/quality/msaa_3d=1
-anti_aliasing/quality/use_taa=true
-anti_aliasing/quality/use_debanding=true

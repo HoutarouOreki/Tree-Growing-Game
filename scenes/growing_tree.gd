@@ -29,12 +29,14 @@ func next_stage():
 
 	var modelContainer = $ModelContainer
 
+	const fade_duration = 0.15
+
 	for child in modelContainer.get_children():
-		FadeManager.fade_out(child, 2, true)
+		FadeManager.fade_out(child, fade_duration, true)
 
 	var formatPath = "res://assets/models/trees/TreeStage{stage_number}.glb"
 	var path = formatPath.format({"stage_number": current_stage})
 	var newChild = load(path).instantiate()
-	FadeManager.fade_in(newChild, 2)
+	FadeManager.fade_in(newChild, fade_duration)
 
 	modelContainer.add_child(newChild)

@@ -1,25 +1,19 @@
-extends Node3D
+extends GenericItemPlacement
+
+const planted_tree_node_name = "tree"
+const preview_tree_node_name = "preview tree"
+const preview_transparency = 0.7
 
 
-func action(player: CharacterBody3D, event: InputEvent):
-	print("h")
-	var camera = get_viewport().get_camera_3d()
-	var mousePos = get_viewport().get_mouse_position()
-	var rayLength = 3
-	var rayQuery = PhysicsRayQueryParameters3D.new()
-	rayQuery.from = camera.project_ray_origin(mousePos)
-	rayQuery.to = rayQuery.from + camera.project_ray_normal(mousePos) * rayLength
-	rayQuery.collision_mask = 4
-	var space = get_world_3d().direct_space_state
-	var result = space.intersect_ray(rayQuery)
-	if !result.is_empty():
-		on_plant(result["position"])
+func _place(position: Vector3, collider: Node3D):
+	if !can_plant_here(collider):
+		return
 
-func on_plant(position: Vector3):
+	remove_preview(collider)
 	var scene_resource = load("res://scenes/growing_tree.tscn")
 	var instance = scene_resource.instantiate() as Node3D
-	instance.position = position
-	get_tree().root.add_child(instance)
+	collider.add_child(instance)
+	instance.name = planted_tree_node_name
 	PopUpManager.add(instance)
 	var timer = Timer.new()
 	add_child(timer)
@@ -28,3 +22,43 @@ func on_plant(position: Vector3):
 	await timer.timeout
 	var grassScatter = get_tree().root.get_node("World Scene/GrassScatter")
 	grassScatter.rebuild()
+
+
+func can_plant_here(collider: Node3D) -> bool:
+	return collider.find_child(planted_tree_node_name, false, false) == null
+
+
+func _getCollisionMask() -> int:
+	return pow(2, 3)
+
+
+func _preview(position: Vector3, collider: Node3D):
+	pass
+
+
+func _start_preview(position: Vector3, collider: Node3D):
+	var previewNode = collider.find_child(preview_tree_node_name, false, false)
+	if previewNode:
+		collider.remove_child(previewNode)
+		previewNode.queue_free()
+
+	if !can_plant_here(collider):
+		return
+
+	var preview_scene_resource = load("res://assets/models/trees/TreeStage1.glb")
+	var instance = preview_scene_resource.instantiate() as Node3D
+	FadeManager.set_transparency(instance, preview_transparency)
+	collider.add_child(instance)
+	instance.name = preview_tree_node_name
+
+
+func _stop_preview(collider: Node3D):
+	remove_preview(collider)
+
+
+func remove_preview(collider: Node3D):
+	var previewNode = collider.find_child(preview_tree_node_name, false, false)
+	if !previewNode:
+		return
+
+	FadeManager.fade_out(previewNode, 0.1, true, preview_transparency)

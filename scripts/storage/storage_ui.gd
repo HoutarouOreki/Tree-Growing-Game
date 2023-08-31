@@ -20,11 +20,13 @@ func _get_configuration_warnings():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("hotbar_next"):
+		stop_process()
 		selectedSlotIndex += 1
 	if selectedSlotIndex >= storage.storage_size:
 		selectedSlotIndex = 0
 
 	if event.is_action_pressed("hotbar_previous"):
+		stop_process()
 		selectedSlotIndex -= 1
 	if selectedSlotIndex < 0:
 		selectedSlotIndex = storage.storage_size - 1
@@ -34,7 +36,8 @@ func _unhandled_input(event):
 
 
 func use_item(event):
-	storage.slots[selectedSlotIndex].item.action(player, event)
+	if storage.slots[selectedSlotIndex].item:
+		storage.slots[selectedSlotIndex].item.action(player, event)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -46,6 +49,20 @@ func _ready():
 	child_order_changed.connect(on_change)
 	storage.property_list_changed.connect(on_change)
 	property_list_changed.connect(on_change)
+
+
+func _physics_process(delta: float) -> void:
+	if !storage.slots[selectedSlotIndex].item:
+		return
+
+	storage.slots[selectedSlotIndex].item.process(player)
+
+
+func stop_process():
+	if !storage.slots[selectedSlotIndex].item:
+		return
+
+	storage.slots[selectedSlotIndex].item.stop_process(player)
 
 
 func on_change():

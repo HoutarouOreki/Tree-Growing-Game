@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ip7pnw5mvgpd"]
+
+[ext_resource type="PackedScene" uid="uid://nf5n7rdv8foc" path="res://scenes/prepared_ground_mesh.tscn" id="1_iaqo4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rpn0j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w8f1k"]
+radius = 0.741627
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.211054, 0)
+
+[node name="prepared_ground" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="prepared_ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.211054, 0)
+shape = SubResource("SphereShape3D_rpn0j")
+
+[node name="prepared_ground" parent="prepared_ground" instance=ExtResource("1_iaqo4")]
+
+[node name="unplantable" type="StaticBody3D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="unplantable"]
+shape = SubResource("SphereShape3D_w8f1k")

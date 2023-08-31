@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 var infos: Array[FadeInfo] = []
@@ -9,9 +10,9 @@ func fade_in(node: Node3D, duration_s: float):
 	infos.append(FadeInfo.create(node, 1, 0, duration_s, false))
 
 
-func fade_out(node: Node3D, duration_s: float, remove_on_complete: bool):
+func fade_out(node: Node3D, duration_s: float, remove_on_complete: bool, start_transparency: float = 0):
 	set_transparency(node, 0)
-	infos.append(FadeInfo.create(node, 0, 1, duration_s, remove_on_complete))
+	infos.append(FadeInfo.create(node, start_transparency, 1, duration_s, remove_on_complete))
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,8 +22,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var index = 0
+	var index = -1
 	for info in infos:
+		index += 1
+		if !is_instance_valid(info.node):
+			infos_to_remove.append(index)
+			continue
 		var node = info.node as Node3D
 		info.progress_s += delta
 		if info.progress_s >= info.duration_s:
@@ -33,7 +38,6 @@ func _process(delta):
 		var value_range = info.to - info.from
 		var value = info.from + value_range * progress
 		set_transparency(node, value)
-		index += 1
 
 	remove_completed()
 
@@ -42,7 +46,7 @@ func remove_completed():
 	while infos_to_remove.size() > 0:
 		var index = infos_to_remove.pop_back() as int
 		var fadeInfo = infos.pop_at(index) as FadeInfo
-		if fadeInfo.remove_on_complete:
+		if fadeInfo.remove_on_complete && is_instance_valid(fadeInfo.node):
 			fadeInfo.node.queue_free()
 
 
@@ -51,7 +55,7 @@ func set_transparency(node: Node3D, transparency: float):
 	for child in children:
 		if child.get_child_count() > 0:
 			set_transparency(child, transparency)
-		var mesh = child as MeshInstance3D
+		var mesh = child as VisualInstance3D
 		if !mesh:
 			continue
 		mesh.transparency = transparency
