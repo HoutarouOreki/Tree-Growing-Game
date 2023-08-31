@@ -33,5 +33,22 @@ func _physics_process(delta):
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		interact()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
 		$"../DayCycle".seek(6)
+
+
+func interact():
+	var camera = get_viewport().get_camera_3d()
+	var mousePos = get_viewport().get_mouse_position()
+	var rayLength = 3
+	var rayQuery = PhysicsRayQueryParameters3D.new()
+	rayQuery.from = camera.project_ray_origin(mousePos)
+	rayQuery.to = rayQuery.from + camera.project_ray_normal(mousePos) * rayLength
+	var space = get_world_3d().direct_space_state
+	var result = space.intersect_ray(rayQuery)
+	if !result.is_empty():
+		var obj = result["collider"] as CollisionObject3D
+		if obj.has_method("interact"):
+			obj.interact()

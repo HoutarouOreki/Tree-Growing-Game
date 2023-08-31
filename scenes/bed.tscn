@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh5uubeceq4h4"]
+
+[ext_resource type="Script" path="res://scripts/objects/bed.gd" id="1_yyerq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tqq4i"]
+size = Vector3(1, 0.4, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6glaj"]
+points = PackedVector3Array(0.5, 0.2, 1, 0.5, -0.2, 1, 0.5, 0.2, -1, -0.5, 0.2, 1, -0.5, -0.2, 1, 0.5, -0.2, -1, -0.5, 0.2, -1, -0.5, -0.2, -1)
+
+[node name="bed" type="StaticBody3D"]
+script = ExtResource("1_yyerq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_tqq4i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("ConvexPolygonShape3D_6glaj")
