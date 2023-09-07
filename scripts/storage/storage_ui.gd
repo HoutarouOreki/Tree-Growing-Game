@@ -1,13 +1,17 @@
-@tool
 class_name StorageUi extends Control
 
-@export var storage: Storage
-@export var player: CharacterBody3D
+@onready var storage := $"../Storage"
+@onready var player := $".."
 @export_range(0, 100000, 1) var slot_size: int = 32
 @export_range(0, 100000, 1) var slot_padding: int = 4
 @onready var gridContainer := $CenterContainer/GridContainer
 
-var selectedSlotIndex: int = 0
+var selectedSlotIndex: int = 0:
+	get:
+		return selectedSlotIndex
+	set (value):
+		selectedSlotIndex = value
+		on_change()
 
 func _get_configuration_warnings():
 	var array = []
@@ -16,28 +20,6 @@ func _get_configuration_warnings():
 	if !player:
 		array.append("Player node is missing")
 	return array
-
-
-func _unhandled_input(event):
-	if event.is_action_pressed("hotbar_next"):
-		stop_process()
-		selectedSlotIndex += 1
-	if selectedSlotIndex >= storage.storage_size:
-		selectedSlotIndex = 0
-
-	if event.is_action_pressed("hotbar_previous"):
-		stop_process()
-		selectedSlotIndex -= 1
-	if selectedSlotIndex < 0:
-		selectedSlotIndex = storage.storage_size - 1
-	notify_property_list_changed()
-	if event.is_action_pressed("use_item"):
-		use_item(event)
-
-
-func use_item(event):
-	if storage.slots[selectedSlotIndex].item:
-		storage.slots[selectedSlotIndex].item.action(player, event)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -51,22 +33,8 @@ func _ready():
 	property_list_changed.connect(on_change)
 
 
-func _physics_process(delta: float) -> void:
-	if !storage.slots[selectedSlotIndex].item:
-		return
-
-	storage.slots[selectedSlotIndex].item.process(player)
-
-
-func stop_process():
-	if !storage.slots[selectedSlotIndex].item:
-		return
-
-	storage.slots[selectedSlotIndex].item.stop_process(player)
-
-
 func on_change():
-	if !storage:
+	if !is_instance_valid(gridContainer) || !is_instance_valid(storage):
 		return
 
 	while gridContainer.get_child_count() > 0:

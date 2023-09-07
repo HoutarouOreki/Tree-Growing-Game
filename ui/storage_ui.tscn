@@ -11,7 +11,7 @@ name = "Hhhhhh"
 texture = ExtResource("4_482tf")
 count = 0
 
-[node name="StorageUI" type="Control" node_paths=PackedStringArray("storage")]
+[node name="StorageUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_acwf8")
-storage = NodePath("Storage")
 slot_size = 28
 slot_padding = 3
 

@@ -2,48 +2,45 @@
 class_name GenericItemPlacement extends Node3D
 
 
-var collider: Node3D
+var last_collider: Node3D
 
 
-func process(player: CharacterBody3D):
-	var camera = get_viewport().get_camera_3d()
-	var mousePos = get_viewport().get_mouse_position()
-	var rayLength = 3
-	var rayQuery = PhysicsRayQueryParameters3D.new()
-	rayQuery.from = camera.project_ray_origin(mousePos)
-	rayQuery.to = rayQuery.from + camera.project_ray_normal(mousePos) * rayLength
-	rayQuery.collision_mask = _getCollisionMask() + _getAvoidanceMask()
-	var space = get_world_3d().direct_space_state
-	var result = space.intersect_ray(rayQuery)
+func get_collider_and_point(player: Player) -> ColliderAndPoint:
+	var collider = player.itemRay.get_collider() as CollisionObject3D
+	var position = player.itemRay.get_collision_point()
 
-	if result.is_empty() || (result["collider"] as CollisionObject3D).collision_layer & _getAvoidanceMask() != 0:
-		if collider:
-			_stop_preview(collider)
-			collider = null
+	if !collider:
+		return null
+
+	if collider.collision_layer & _getAvoidanceMask() != 0:
+		return null
+
+	return ColliderAndPoint.create(collider, position)
+
+
+func process(player: Player):
+	var info = get_collider_and_point(player)
+
+	if !info:
+		if last_collider:
+			_stop_preview(last_collider)
+			last_collider = null
 		return
 
-	if result["collider"] != collider:
-		if collider:
-			_stop_preview(collider)
-		collider = result["collider"]
-		_start_preview(result["position"], collider)
+	if info.collider != last_collider:
+		if last_collider:
+			_stop_preview(last_collider)
+		last_collider = info.collider
+		_start_preview(position, last_collider)
 
-	_preview(result["position"], result["collider"])
+	_preview(info.point, info.collider)
 
 
 func action(player: CharacterBody3D, event: InputEvent):
-	var camera = get_viewport().get_camera_3d()
-	var mousePos = get_viewport().get_mouse_position()
-	var rayLength = 3
-	var rayQuery = PhysicsRayQueryParameters3D.new()
-	rayQuery.from = camera.project_ray_origin(mousePos)
-	rayQuery.to = rayQuery.from + camera.project_ray_normal(mousePos) * rayLength
-	rayQuery.collision_mask = _getCollisionMask() + _getAvoidanceMask()
-	var space = get_world_3d().direct_space_state
-	var result = space.intersect_ray(rayQuery)
-	if !result.is_empty():
-		if (result["collider"] as CollisionObject3D).collision_layer & _getAvoidanceMask() == 0:
-			_place(result["position"], result["collider"])
+	var info = get_collider_and_point(player)
+
+	if info:
+		_place(info.point, info.collider)
 
 
 func _getCollisionMask() -> int:
@@ -70,9 +67,13 @@ func _stop_preview(collider: Node3D):
 	pass
 
 
+func start_process(player: Player):
+	player.itemRay.collision_mask = _getCollisionMask() | _getAvoidanceMask()
+
+
 func stop_process(player: CharacterBody3D):
-	if !collider:
+	if !last_collider:
 		return
 
-	_stop_preview(collider)
-	collider = null
+	_stop_preview(last_collider)
+	last_collider = null

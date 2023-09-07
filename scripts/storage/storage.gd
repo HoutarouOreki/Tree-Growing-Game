@@ -27,6 +27,7 @@ func _setStorageSize(value: int):
 	generateSlots()
 	notify_property_list_changed()
 
+
 func _setStartingItems(value: Array[StorageItem]):
 	value.resize(storage_size)
 	starting_items = value

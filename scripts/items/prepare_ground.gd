@@ -16,7 +16,7 @@ func _getCollisionMask() -> int:
 
 
 func _getAvoidanceMask() -> int:
-	return pow(2, 4)
+	return 0xFFFF & ~_getCollisionMask()
 
 
 func _start_preview(position: Vector3, collider: Node3D):

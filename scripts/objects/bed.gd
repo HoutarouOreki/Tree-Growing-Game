@@ -1,20 +1,22 @@
 extends Node3D
 
-@export var timeManager: AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func interact(player: Player):
+	var black = ColorRect.new()
+	player.disabled = true
+	black.color = Color8(0, 0, 0, 255)
+	black.set_anchors_preset(Control.PRESET_FULL_RECT)
+	FadeManager.fade_in(black, 1, func():
+		during_transition(player, black)
+	)
+	add_child(black)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func interact():
-	var time = timeManager.current_animation_position
+func during_transition(player: Player, black: ColorRect):
+	var time = player.dayCycle.current_animation_position
 	time += 8
 	if time >= 24:
 		time -= 24
-	timeManager.seek(time)
+	player.dayCycle.seek(time)
+	FadeManager.fade_out(black, 1, true, 0, func():
+		player.disabled = false
+	)

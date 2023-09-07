@@ -37,7 +37,7 @@ gdscript/warnings/unsafe_call_argument=1
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/vsync/vsync_mode=0
 
 [editor_plugins]

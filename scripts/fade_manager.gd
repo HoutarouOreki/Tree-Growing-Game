@@ -5,14 +5,14 @@ var infos: Array[FadeInfo] = []
 var infos_to_remove: Array[int] = []
 
 
-func fade_in(node: Node3D, duration_s: float):
+func fade_in(node: Node, duration_s: float, callback: Callable = Callable()):
 	set_transparency(node, 1)
-	infos.append(FadeInfo.create(node, 1, 0, duration_s, false))
+	infos.append(FadeInfo.create(node, 1, 0, duration_s, false, callback))
 
 
-func fade_out(node: Node3D, duration_s: float, remove_on_complete: bool, start_transparency: float = 0):
+func fade_out(node: Node, duration_s: float, remove_on_complete: bool, start_transparency: float = 0, callback: Callable = Callable()):
 	set_transparency(node, 0)
-	infos.append(FadeInfo.create(node, start_transparency, 1, duration_s, remove_on_complete))
+	infos.append(FadeInfo.create(node, start_transparency, 1, duration_s, remove_on_complete, callback))
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +28,7 @@ func _process(delta):
 		if !is_instance_valid(info.node):
 			infos_to_remove.append(index)
 			continue
-		var node = info.node as Node3D
+		var node = info.node as Node
 		info.progress_s += delta
 		if info.progress_s >= info.duration_s:
 			info.progress_s = info.duration_s
@@ -46,11 +46,20 @@ func remove_completed():
 	while infos_to_remove.size() > 0:
 		var index = infos_to_remove.pop_back() as int
 		var fadeInfo = infos.pop_at(index) as FadeInfo
+		if fadeInfo.callback:
+			fadeInfo.callback.call()
 		if fadeInfo.remove_on_complete && is_instance_valid(fadeInfo.node):
 			fadeInfo.node.queue_free()
 
 
-func set_transparency(node: Node3D, transparency: float):
+func set_transparency(node: Node, transparency: float):
+	if node is Node3D:
+		set_transparency_3d(node, transparency)
+	elif node is CanvasItem:
+		set_transparency_canvas(node, transparency)
+
+
+func set_transparency_3d(node: Node3D, transparency: float):
 	var children = node.get_children()
 	for child in children:
 		if child.get_child_count() > 0:
@@ -59,3 +68,7 @@ func set_transparency(node: Node3D, transparency: float):
 		if !mesh:
 			continue
 		mesh.transparency = transparency
+
+
+func set_transparency_canvas(node: CanvasItem, transparency: float):
+	node.modulate.a = 1.0 - transparency

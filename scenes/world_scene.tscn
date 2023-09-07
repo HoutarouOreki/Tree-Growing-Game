@@ -1,7 +1,6 @@
-[gd_scene load_steps=113 format=3 uid="uid://dh6d87dv0g7pp"]
+[gd_scene load_steps=90 format=3 uid="uid://dh6d87dv0g7pp"]
 
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_d8o67"]
-[ext_resource type="PackedScene" uid="uid://b2pjqpfsqd2xs" path="res://ui/storage_ui.tscn" id="1_uevcw"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_rhac4"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_along_edge_random.gd" id="3_wnxm3"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="4_02y3w"]
@@ -16,13 +15,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_position.gd" id="11_20pio"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="12_mqimr"]
 [ext_resource type="Material" uid="uid://cnin3i1u5hpgk" path="res://scenes/world_scene_ground.material" id="13_rgp5q"]
-[ext_resource type="Script" path="res://scripts/items/tree_plant.gd" id="15_ecp8i"]
-[ext_resource type="Script" path="res://scripts/player_movement.gd" id="16_4adgd"]
-[ext_resource type="Script" path="res://scripts/items/prepare_ground.gd" id="17_s8shp"]
-[ext_resource type="Script" path="res://scripts/storage/storage_item.gd" id="18_2achq"]
-[ext_resource type="Script" path="res://scripts/first_person_camera.gd" id="18_m4q6a"]
-[ext_resource type="Texture2D" uid="uid://ci3h8ok2uyjls" path="res://assets/item_sprites/shovel.png" id="19_3a213"]
-[ext_resource type="Texture2D" uid="uid://cjtttjdeoqfne" path="res://assets/item_sprites/tree.png" id="20_cccr7"]
+[ext_resource type="PackedScene" uid="uid://dmf4kqps53wio" path="res://scenes/player.tscn" id="16_2ednn"]
 [ext_resource type="PackedScene" uid="uid://casj06vn52ogp" path="res://scenes/growing_tree.tscn" id="23_kqevk"]
 [ext_resource type="AudioStream" uid="uid://b8kax6jco8hyc" path="res://assets/sounds/ambient/Ambiance_Forest_Birds_Loop_Stereo.wav" id="24_gnapm"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_along_edge_even.gd" id="25_qnco4"]
@@ -30,11 +23,9 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_along_edge_continuous.gd" id="28_chro7"]
 [ext_resource type="PackedScene" uid="uid://ip7pnw5mvgpd" path="res://scenes/prepared_ground.tscn" id="28_qyj1m"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="29_d53ip"]
-[ext_resource type="Script" path="res://scripts/time_info.gd" id="30_r4uh0"]
-[ext_resource type="Script" path="res://scripts/storage/storage.gd" id="31_xjimm"]
 [ext_resource type="PackedScene" uid="uid://dh5uubeceq4h4" path="res://scenes/bed.tscn" id="33_xsfau"]
 
-[sub_resource type="Resource" id="Resource_5v6ts"]
+[sub_resource type="Resource" id="Resource_ivfea"]
 script = ExtResource("3_wnxm3")
 instance_count = 300
 align_to_path = false
@@ -45,7 +36,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ra0i7"]
+[sub_resource type="Resource" id="Resource_jlpdd"]
 script = ExtResource("4_02y3w")
 position = Vector3(7, 0, 7)
 rotation = Vector3(0, 180, 0)
@@ -56,7 +47,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_ny5at"]
+[sub_resource type="Resource" id="Resource_qdwrr"]
 script = ExtResource("5_dybx8")
 iterations = 3
 offset_step = 0.2
@@ -68,7 +59,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_l2lbb"]
+[sub_resource type="Resource" id="Resource_xs28e"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -84,7 +75,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_85kg8"]
+[sub_resource type="Resource" id="Resource_q7lj4"]
 script = ExtResource("8_uogan")
 negative_shapes_only = true
 enabled = true
@@ -93,9 +84,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_42fp6"]
+[sub_resource type="Resource" id="Resource_frogt"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_5v6ts"), SubResource("Resource_ra0i7"), SubResource("Resource_ny5at"), SubResource("Resource_l2lbb"), SubResource("Resource_85kg8")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ivfea"), SubResource("Resource_jlpdd"), SubResource("Resource_qdwrr"), SubResource("Resource_xs28e"), SubResource("Resource_q7lj4")])
 
 [sub_resource type="Resource" id="Resource_hm0gh"]
 script = ExtResource("9_5o6oo")
@@ -111,10 +102,23 @@ point_count = 3
 [sub_resource type="Resource" id="Resource_2ydm1"]
 script = ExtResource("12_mqimr")
 closed = false
-thickness = 2.0
+thickness = 3.0
 curve = SubResource("Curve3D_fnisj")
 
-[sub_resource type="Resource" id="Resource_7di2d"]
+[sub_resource type="Curve3D" id="Curve3D_qkm8t"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.681954, 0, 15.9932, 0, 0, 0, 0, 0, 0, 0.448572, 0, 23.0442, 0, 0, 0, 0, 0, 0, -1.9287, 0, 30.7985, 0, 0, 0, 0, 0, 0, -4.39162, 0, 39.803),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_6ag6o"]
+script = ExtResource("12_mqimr")
+closed = true
+thickness = 0.0
+curve = SubResource("Curve3D_qkm8t")
+
+[sub_resource type="Resource" id="Resource_m6mk6"]
 script = ExtResource("10_m17uf")
 amount = 100
 enabled = true
@@ -123,7 +127,7 @@ custom_seed = 60
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_adcs5"]
+[sub_resource type="Resource" id="Resource_aqhr0"]
 script = ExtResource("4_02y3w")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(0, 180, 0)
@@ -134,7 +138,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_3wx50"]
+[sub_resource type="Resource" id="Resource_nljdd"]
 script = ExtResource("5_dybx8")
 iterations = 3
 offset_step = 0.2
@@ -146,7 +150,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_aeevc"]
+[sub_resource type="Resource" id="Resource_wncqw"]
 script = ExtResource("11_20pio")
 operation = 0
 position = Vector3(0, -0.05, 0)
@@ -156,7 +160,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_woglx"]
+[sub_resource type="Resource" id="Resource_sdjmp"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -172,9 +176,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_nqno4"]
+[sub_resource type="Resource" id="Resource_s2ere"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_7di2d"), SubResource("Resource_adcs5"), SubResource("Resource_3wx50"), SubResource("Resource_aeevc"), SubResource("Resource_woglx")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_m6mk6"), SubResource("Resource_aqhr0"), SubResource("Resource_nljdd"), SubResource("Resource_wncqw"), SubResource("Resource_sdjmp")])
 
 [sub_resource type="Resource" id="Resource_witgl"]
 script = ExtResource("9_5o6oo")
@@ -188,72 +192,7 @@ size = Vector3(80, 1, 80)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7bl4s"]
 data = PackedVector3Array(-40, 0.02, 40, 40, 0.02, 40, -40, -0.02, 40, 40, 0.02, 40, 40, -0.02, 40, -40, -0.02, 40, 40, 0.02, -40, -40, 0.02, -40, 40, -0.02, -40, -40, 0.02, -40, -40, -0.02, -40, 40, -0.02, -40, 40, 0.02, 40, 40, 0.02, -40, 40, -0.02, 40, 40, 0.02, -40, 40, -0.02, -40, 40, -0.02, 40, -40, 0.02, -40, -40, 0.02, 40, -40, -0.02, -40, -40, 0.02, 40, -40, -0.02, 40, -40, -0.02, -40, 40, 0.02, 40, -40, 0.02, 40, 40, 0.02, -40, -40, 0.02, 40, -40, 0.02, -40, 40, 0.02, -40, -40, -0.02, 40, 40, -0.02, 40, -40, -0.02, -40, 40, -0.02, 40, 40, -0.02, -40, -40, -0.02, -40)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_f6fvt"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l2ulm"]
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bqnbl"]
-exposure_multiplier = 4.0
-auto_exposure_enabled = true
-auto_exposure_min_sensitivity = 500.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dalyk"]
-transparency = 1
-albedo_color = Color(0, 0, 0, 0.270588)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xtr5c"]
-material = SubResource("StandardMaterial3D_dalyk")
-top_radius = 0.2
-bottom_radius = 0.1
-height = 0.2
-radial_segments = 32
-rings = 1
-cap_bottom = false
-
-[sub_resource type="Resource" id="Resource_d3d8q"]
-script = ExtResource("18_2achq")
-name = "Shovel"
-texture = ExtResource("19_3a213")
-count = 0
-actionScript = ExtResource("17_s8shp")
-
-[sub_resource type="Resource" id="Resource_4exrv"]
-script = ExtResource("18_2achq")
-name = "Tree"
-texture = ExtResource("20_cccr7")
-count = 0
-actionScript = ExtResource("15_ecp8i")
-
-[sub_resource type="Gradient" id="Gradient_16iu0"]
-colors = PackedColorArray(0, 0.00784314, 0.333333, 1, 0, 0.0156863, 0.121569, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bohnx"]
-gradient = SubResource("Gradient_16iu0")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(1, 0.701923)
-
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_mixbp"]
-night_sky = SubResource("GradientTexture2D_bohnx")
-
-[sub_resource type="Sky" id="Sky_7aeng"]
-sky_material = SubResource("PhysicalSkyMaterial_mixbp")
-
-[sub_resource type="Environment" id="Environment_bca8c"]
-background_mode = 2
-sky = SubResource("Sky_7aeng")
-ambient_light_energy = 0.0
-ssao_enabled = true
-ssao_intensity = 4.0
-glow_normalized = true
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.01
-volumetric_fog_albedo = Color(0.470588, 0.709804, 1, 1)
-volumetric_fog_emission = Color(0.4, 0.709804, 1, 1)
-volumetric_fog_length = 80.0
-volumetric_fog_detail_spread = 6.0
-volumetric_fog_sky_affect = 0.0
-
-[sub_resource type="Resource" id="Resource_thbn3"]
+[sub_resource type="Resource" id="Resource_w1mhh"]
 script = ExtResource("3_wnxm3")
 instance_count = 50
 align_to_path = false
@@ -264,7 +203,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_w6p5d"]
+[sub_resource type="Resource" id="Resource_4fsvo"]
 script = ExtResource("25_qnco4")
 spacing = 1.0
 offset = 4.0
@@ -276,7 +215,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_pgbq6"]
+[sub_resource type="Resource" id="Resource_uodvh"]
 script = ExtResource("4_02y3w")
 position = Vector3(5, 0, 5)
 rotation = Vector3(0, 0, 0)
@@ -287,7 +226,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_k2ix1"]
+[sub_resource type="Resource" id="Resource_2u886"]
 script = ExtResource("5_dybx8")
 iterations = 3
 offset_step = 0.2
@@ -299,7 +238,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_clkps"]
+[sub_resource type="Resource" id="Resource_lnkf5"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -315,7 +254,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_tkwfh"]
+[sub_resource type="Resource" id="Resource_ld6kk"]
 script = ExtResource("8_uogan")
 negative_shapes_only = true
 enabled = true
@@ -324,17 +263,17 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_pmvsv"]
+[sub_resource type="Resource" id="Resource_w2oxo"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_thbn3"), SubResource("Resource_w6p5d"), SubResource("Resource_pgbq6"), SubResource("Resource_k2ix1"), SubResource("Resource_clkps"), SubResource("Resource_tkwfh")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_w1mhh"), SubResource("Resource_4fsvo"), SubResource("Resource_uodvh"), SubResource("Resource_2u886"), SubResource("Resource_lnkf5"), SubResource("Resource_ld6kk")])
 
 [sub_resource type="Resource" id="Resource_0iw54"]
 script = ExtResource("9_5o6oo")
 size = Vector3(60, 1, 60)
 
-[sub_resource type="Curve3D" id="Curve3D_oo5bo"]
+[sub_resource type="Curve3D" id="Curve3D_atgvx"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.15529, 0, -20.403, 0, 0, 0, 0, 0, 0, 12.6145, 0, -54.5676, 0, 0, 0, 0, 0, 0, 12.1183, 0, -69.1315),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.15529, 0, -20.403, 0, 0, 0, 0, 0, 0, 12.4778, 0, -51.8936, 0, 0, 0, 0, 0, 0, 12.1183, 0, -69.1315),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -342,10 +281,10 @@ point_count = 3
 [sub_resource type="Resource" id="Resource_0teth"]
 script = ExtResource("12_mqimr")
 closed = false
-thickness = 6.0
-curve = SubResource("Curve3D_oo5bo")
+thickness = 10.0
+curve = SubResource("Curve3D_atgvx")
 
-[sub_resource type="Resource" id="Resource_2efv3"]
+[sub_resource type="Resource" id="Resource_ykhm1"]
 script = ExtResource("3_wnxm3")
 instance_count = 50
 align_to_path = false
@@ -356,7 +295,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_38uai"]
+[sub_resource type="Resource" id="Resource_2pffo"]
 script = ExtResource("25_qnco4")
 spacing = 1.0
 offset = 4.0
@@ -368,7 +307,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_vosvf"]
+[sub_resource type="Resource" id="Resource_7575t"]
 script = ExtResource("4_02y3w")
 position = Vector3(5, 0, 5)
 rotation = Vector3(0, 0, 0)
@@ -379,7 +318,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_v5jne"]
+[sub_resource type="Resource" id="Resource_8xd4p"]
 script = ExtResource("5_dybx8")
 iterations = 3
 offset_step = 0.2
@@ -391,7 +330,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_cvj34"]
+[sub_resource type="Resource" id="Resource_0ek0m"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -407,7 +346,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_yn5sp"]
+[sub_resource type="Resource" id="Resource_30d4l"]
 script = ExtResource("8_uogan")
 negative_shapes_only = true
 enabled = true
@@ -416,17 +355,17 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_4lthy"]
+[sub_resource type="Resource" id="Resource_j68vb"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_2efv3"), SubResource("Resource_38uai"), SubResource("Resource_vosvf"), SubResource("Resource_v5jne"), SubResource("Resource_cvj34"), SubResource("Resource_yn5sp")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ykhm1"), SubResource("Resource_2pffo"), SubResource("Resource_7575t"), SubResource("Resource_8xd4p"), SubResource("Resource_0ek0m"), SubResource("Resource_30d4l")])
 
 [sub_resource type="Resource" id="Resource_yf3w8"]
 script = ExtResource("9_5o6oo")
 size = Vector3(60, 1, 60)
 
-[sub_resource type="Curve3D" id="Curve3D_5iaqt"]
+[sub_resource type="Curve3D" id="Curve3D_vtojp"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.15529, 0, -20.403, 0, 0, 0, 0, 0, 0, 12.6145, 0, -54.5676, 0, 0, 0, 0, 0, 0, 12.1183, 0, -69.1315),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 4.93901, 0, -19.239, 0, 0, 0, 0, 0, 0, 12.6145, 0, -54.5676, 0, 0, 0, 0, 0, 0, 12.1183, 0, -69.1315),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -434,10 +373,10 @@ point_count = 3
 [sub_resource type="Resource" id="Resource_iosun"]
 script = ExtResource("12_mqimr")
 closed = false
-thickness = 6.0
-curve = SubResource("Curve3D_5iaqt")
+thickness = 10.0
+curve = SubResource("Curve3D_vtojp")
 
-[sub_resource type="Resource" id="Resource_m7qna"]
+[sub_resource type="Resource" id="Resource_x346g"]
 script = ExtResource("28_chro7")
 item_length = 3.5
 ignore_slopes = false
@@ -447,7 +386,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_rewx4"]
+[sub_resource type="Resource" id="Resource_1bg6b"]
 script = ExtResource("29_d53ip")
 operation = 0
 rotation = Vector3(0, -90, 0)
@@ -457,7 +396,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_dhq08"]
+[sub_resource type="Resource" id="Resource_0c5dw"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -473,7 +412,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_et2sx"]
+[sub_resource type="Resource" id="Resource_yo6am"]
 script = ExtResource("8_uogan")
 negative_shapes_only = true
 enabled = true
@@ -482,9 +421,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_70que"]
+[sub_resource type="Resource" id="Resource_vsc0p"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_m7qna"), SubResource("Resource_rewx4"), SubResource("Resource_dhq08"), SubResource("Resource_et2sx")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_x346g"), SubResource("Resource_1bg6b"), SubResource("Resource_0c5dw"), SubResource("Resource_yo6am")])
 
 [sub_resource type="Resource" id="Resource_ge7ks"]
 script = ExtResource("9_5o6oo")
@@ -503,7 +442,7 @@ closed = false
 thickness = 2.0
 curve = SubResource("Curve3D_477wx")
 
-[sub_resource type="Resource" id="Resource_82176"]
+[sub_resource type="Resource" id="Resource_rkvsm"]
 script = ExtResource("10_m17uf")
 amount = 2000
 enabled = true
@@ -512,7 +451,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_6e71j"]
+[sub_resource type="Resource" id="Resource_orcih"]
 script = ExtResource("4_02y3w")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(0, 360, 0)
@@ -523,7 +462,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_8705k"]
+[sub_resource type="Resource" id="Resource_knxra"]
 script = ExtResource("5_dybx8")
 iterations = 1
 offset_step = 0.2
@@ -535,7 +474,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_hnacy"]
+[sub_resource type="Resource" id="Resource_wvgou"]
 script = ExtResource("6_8nrac")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -551,9 +490,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_gr78f"]
+[sub_resource type="Resource" id="Resource_ujilu"]
 script = ExtResource("2_rhac4")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_82176"), SubResource("Resource_6e71j"), SubResource("Resource_8705k"), SubResource("Resource_hnacy")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_rkvsm"), SubResource("Resource_orcih"), SubResource("Resource_knxra"), SubResource("Resource_wvgou")])
 
 [sub_resource type="Resource" id="Resource_ytm2n"]
 script = ExtResource("9_5o6oo")
@@ -593,71 +532,12 @@ points = PackedVector3Array(0.122173, 1.60635, 2.03175, -0.131696, -1.63175, -2.
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mkskj"]
 points = PackedVector3Array(0.122173, 1.60635, 2.03175, -0.131696, -1.63175, -2.03175, 0.122173, -1.63175, -2.03175, -0.131696, -1.63175, 2.03175, -0.131696, 1.60635, -2.03175, 0.122173, 1.60635, -2.03175, 0.122173, -1.63175, 2.03175, -0.131696, 1.60635, 2.03175)
 
-[sub_resource type="Animation" id="Animation_o7bwb"]
-resource_name = "DayCycle"
-length = 24.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sun:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.0833333, 0.1, 0.116667, 0.133333, 0.15, 0.166667, 0.183333, 0.2, 0.216667, 0.233333, 0.25, 0.266667, 0.283333, 0.3, 0.316667, 0.333333, 0.35, 0.366667, 0.383333, 0.4, 0.416667, 0.433333, 0.45, 0.466667, 0.483333, 0.5, 0.516667, 0.533333, 0.55, 0.566667, 0.583333, 0.6, 0.616667, 0.633333, 0.65, 0.666667, 0.683333, 0.7, 0.716667, 0.733333, 0.75, 0.766667, 0.783333, 0.8, 0.816667, 0.833333, 0.85, 0.866667, 0.883333, 0.9, 0.916667, 0.933333, 0.95, 0.966667, 0.983333, 1, 1.01667, 1.03333, 1.05, 1.06667, 1.08333, 1.1, 1.11667, 1.13333, 1.15, 1.16667, 1.18333, 1.2, 1.21667, 1.23333, 1.25, 1.26667, 1.28333, 1.3, 1.31667, 1.33333, 1.35, 1.36667, 1.38333, 1.4, 1.41667, 1.43333, 1.45, 1.46667, 1.48333, 1.5, 1.51667, 1.53333, 1.55, 1.56667, 1.58333, 1.6, 1.61667, 1.63333, 1.65, 1.66667, 1.68333, 1.7, 1.71667, 1.73333, 1.75, 1.76667, 1.78333, 1.8, 1.81667, 1.83333, 1.85, 1.86667, 1.88333, 1.9, 1.91667, 1.93333, 1.95, 1.96667, 1.98333, 2, 2.01667, 2.03333, 2.05, 2.06667, 2.08333, 2.1, 2.11667, 2.13333, 2.15, 2.16667, 2.18333, 2.2, 2.21667, 2.23333, 2.25, 2.26667, 2.28333, 2.3, 2.31667, 2.33333, 2.35, 2.36667, 2.38333, 2.4, 2.41667, 2.43333, 2.45, 2.46667, 2.48333, 2.5, 2.51667, 2.53333, 2.55, 2.56667, 2.58333, 2.6, 2.61667, 2.63333, 2.65, 2.66667, 2.68333, 2.7, 2.71667, 2.73333, 2.75, 2.76667, 2.78333, 2.8, 2.81667, 2.83333, 2.85, 2.86667, 2.88333, 2.9, 2.91667, 2.93333, 2.95, 2.96667, 2.98333, 3, 3.01667, 3.03333, 3.05, 3.06667, 3.08333, 3.1, 3.11667, 3.13333, 3.15, 3.16667, 3.18333, 3.2, 3.21667, 3.23333, 3.25, 3.26667, 3.28333, 3.3, 3.31667, 3.33333, 3.35, 3.36667, 3.38333, 3.4, 3.41667, 3.43333, 3.45, 3.46667, 3.48333, 3.5, 3.51667, 3.53333, 3.55, 3.56667, 3.58333, 3.6, 3.61667, 3.63333, 3.65, 3.66667, 3.68333, 3.7, 3.71667, 3.73333, 3.75, 3.76667, 3.78333, 3.8, 3.81667, 3.83333, 3.85, 3.86667, 3.88333, 3.9, 3.91667, 3.93333, 3.95, 3.96667, 3.98333, 4, 4.01667, 4.03333, 4.05, 4.06667, 4.08333, 4.1, 4.11667, 4.13333, 4.15, 4.16667, 4.18333, 4.2, 4.21667, 4.23333, 4.25, 4.26667, 4.28333, 4.3, 4.31667, 4.33333, 4.35, 4.36667, 4.38333, 4.4, 4.41667, 4.43333, 4.45, 4.46667, 4.48333, 4.5, 4.51667, 4.53333, 4.55, 4.56667, 4.58333, 4.6, 4.61667, 4.63333, 4.65, 4.66667, 4.68333, 4.7, 4.71667, 4.73333, 4.75, 4.76667, 4.78333, 4.8, 4.81667, 4.83333, 4.85, 4.86667, 4.88333, 4.9, 4.91667, 4.93333, 4.95, 4.96667, 4.98333, 5, 5.01667, 5.03333, 5.05, 5.06667, 5.08333, 5.1, 5.11667, 5.13333, 5.15, 5.16667, 5.18333, 5.2, 5.21667, 5.23333, 5.25, 5.26667, 5.28333, 5.3, 5.31667, 5.33333, 5.35, 5.36667, 5.38333, 5.4, 5.41667, 5.43333, 5.45, 5.46667, 5.48333, 5.5, 5.51667, 5.53333, 5.55, 5.56667, 5.58333, 5.6, 5.61667, 5.63333, 5.65, 5.66667, 5.68333, 5.7, 5.71667, 5.73333, 5.75, 5.76667, 5.78333, 5.8, 5.81667, 5.83333, 5.85, 5.86667, 5.88333, 5.9, 5.91667, 5.93333, 5.95, 5.96667, 5.98333, 6, 6.01667, 6.03333, 6.05, 6.06667, 6.08333, 6.1, 6.11667, 6.13333, 6.15, 6.16667, 6.18333, 6.2, 6.21667, 6.23333, 6.25, 6.26667, 6.28333, 6.3, 6.31667, 6.33333, 6.35, 6.36667, 6.38333, 6.4, 6.41667, 6.43333, 6.45, 6.46667, 6.48333, 6.5, 6.51667, 6.53333, 6.55, 6.56667, 6.58333, 6.6, 6.61667, 6.63333, 6.65, 6.66667, 6.68333, 6.7, 6.71667, 6.73333, 6.75, 6.76667, 6.78333, 6.8, 6.81667, 6.83333, 6.85, 6.86667, 6.88333, 6.9, 6.91667, 6.93333, 6.95, 6.96667, 6.98333, 7, 7.01667, 7.03333, 7.05, 7.06667, 7.08333, 7.1, 7.11667, 7.13333, 7.15, 7.16667, 7.18333, 7.2, 7.21667, 7.23333, 7.25, 7.26667, 7.28333, 7.3, 7.31667, 7.33333, 7.35, 7.36667, 7.38333, 7.4, 7.41667, 7.43333, 7.45, 7.46667, 7.48333, 7.5, 7.51667, 7.53333, 7.55, 7.56667, 7.58333, 7.6, 7.61667, 7.63333, 7.65, 7.66667, 7.68333, 7.7, 7.71667, 7.73333, 7.75, 7.76667, 7.78333, 7.8, 7.81667, 7.83333, 7.85, 7.86667, 7.88333, 7.9, 7.91667, 7.93333, 7.95, 7.96667, 7.98333, 8, 8.01667, 8.03333, 8.05, 8.06667, 8.08333, 8.1, 8.11667, 8.13333, 8.15, 8.16667, 8.18333, 8.2, 8.21667, 8.23333, 8.25, 8.26667, 8.28333, 8.3, 8.31667, 8.33333, 8.35, 8.36667, 8.38333, 8.4, 8.41667, 8.43333, 8.45, 8.46667, 8.48333, 8.5, 8.51667, 8.53333, 8.55, 8.56667, 8.58333, 8.6, 8.61667, 8.63333, 8.65, 8.66667, 8.68333, 8.7, 8.71667, 8.73333, 8.75, 8.76667, 8.78333, 8.8, 8.81667, 8.83333, 8.85, 8.86667, 8.88333, 8.9, 8.91667, 8.93333, 8.95, 8.96667, 8.98333, 9, 9.01667, 9.03333, 9.05, 9.06667, 9.08333, 9.1, 9.11667, 9.13333, 9.15, 9.16667, 9.18333, 9.2, 9.21667, 9.23333, 9.25, 9.26667, 9.28333, 9.3, 9.31667, 9.33333, 9.35, 9.36667, 9.38333, 9.4, 9.41667, 9.43333, 9.45, 9.46667, 9.48333, 9.5, 9.51667, 9.53333, 9.55, 9.56667, 9.58333, 9.6, 9.61667, 9.63333, 9.65, 9.66667, 9.68333, 9.7, 9.71667, 9.73333, 9.75, 9.76667, 9.78333, 9.8, 9.81667, 9.83333, 9.85, 9.86667, 9.88333, 9.9, 9.91667, 9.93333, 9.95, 9.96667, 9.98333, 10, 10.0167, 10.0333, 10.05, 10.0667, 10.0833, 10.1, 10.1167, 10.1333, 10.15, 10.1667, 10.1833, 10.2, 10.2167, 10.2333, 10.25, 10.2667, 10.2833, 10.3, 10.3167, 10.3333, 10.35, 10.3667, 10.3833, 10.4, 10.4167, 10.4333, 10.45, 10.4667, 10.4833, 10.5, 10.5167, 10.5333, 10.55, 10.5667, 10.5833, 10.6, 10.6167, 10.6333, 10.65, 10.6667, 10.6833, 10.7, 10.7167, 10.7333, 10.75, 10.7667, 10.7833, 10.8, 10.8167, 10.8333, 10.85, 10.8667, 10.8833, 10.9, 10.9167, 10.9333, 10.95, 10.9667, 10.9833, 11, 11.0167, 11.0333, 11.05, 11.0667, 11.0833, 11.1, 11.1167, 11.1333, 11.15, 11.1667, 11.1833, 11.2, 11.2167, 11.2333, 11.25, 11.2667, 11.2833, 11.3, 11.3167, 11.3333, 11.35, 11.3667, 11.3833, 11.4, 11.4167, 11.4333, 11.45, 11.4667, 11.4833, 11.5, 11.5167, 11.5333, 11.55, 11.5667, 11.5833, 11.6, 11.6167, 11.6333, 11.65, 11.6667, 11.6833, 11.7, 11.7167, 11.7333, 11.75, 11.7667, 11.7833, 11.8, 11.8167, 11.8333, 11.85, 11.8667, 11.8833, 11.9, 11.9167, 11.9333, 11.95, 11.9667, 11.9833, 12, 12.0167, 12.0333, 12.05, 12.0667, 12.0833, 12.1, 12.1167, 12.1333, 12.15, 12.1667, 12.1833, 12.2, 12.2167, 12.2333, 12.25, 12.2667, 12.2833, 12.3, 12.3167, 12.3333, 12.35, 12.3667, 12.3833, 12.4, 12.4167, 12.4333, 12.45, 12.4667, 12.4833, 12.5, 12.5167, 12.5333, 12.55, 12.5667, 12.5833, 12.6, 12.6167, 12.6333, 12.65, 12.6667, 12.6833, 12.7, 12.7167, 12.7333, 12.75, 12.7667, 12.7833, 12.8, 12.8167, 12.8333, 12.85, 12.8667, 12.8833, 12.9, 12.9167, 12.9333, 12.95, 12.9667, 12.9833, 13, 13.0167, 13.0333, 13.05, 13.0667, 13.0833, 13.1, 13.1167, 13.1333, 13.15, 13.1667, 13.1833, 13.2, 13.2167, 13.2333, 13.25, 13.2667, 13.2833, 13.3, 13.3167, 13.3333, 13.35, 13.3667, 13.3833, 13.4, 13.4167, 13.4333, 13.45, 13.4667, 13.4833, 13.5, 13.5167, 13.5333, 13.55, 13.5667, 13.5833, 13.6, 13.6167, 13.6333, 13.65, 13.6667, 13.6833, 13.7, 13.7167, 13.7333, 13.75, 13.7667, 13.7833, 13.8, 13.8167, 13.8333, 13.85, 13.8667, 13.8833, 13.9, 13.9167, 13.9333, 13.95, 13.9667, 13.9833, 14, 14.0167, 14.0333, 14.05, 14.0667, 14.0833, 14.1, 14.1167, 14.1333, 14.15, 14.1667, 14.1833, 14.2, 14.2167, 14.2333, 14.25, 14.2667, 14.2833, 14.3, 14.3167, 14.3333, 14.35, 14.3667, 14.3833, 14.4, 14.4167, 14.4333, 14.45, 14.4667, 14.4833, 14.5, 14.5167, 14.5333, 14.55, 14.5667, 14.5833, 14.6, 14.6167, 14.6333, 14.65, 14.6667, 14.6833, 14.7, 14.7167, 14.7333, 14.75, 14.7667, 14.7833, 14.8, 14.8167, 14.8333, 14.85, 14.8667, 14.8833, 14.9, 14.9167, 14.9333, 14.95, 14.9667, 14.9833, 15, 15.0167, 15.0333, 15.05, 15.0667, 15.0833, 15.1, 15.1167, 15.1333, 15.15, 15.1667, 15.1833, 15.2, 15.2167, 15.2333, 15.25, 15.2667, 15.2833, 15.3, 15.3167, 15.3333, 15.35, 15.3667, 15.3833, 15.4, 15.4167, 15.4333, 15.45, 15.4667, 15.4833, 15.5, 15.5167, 15.5333, 15.55, 15.5667, 15.5833, 15.6, 15.6167, 15.6333, 15.65, 15.6667, 15.6833, 15.7, 15.7167, 15.7333, 15.75, 15.7667, 15.7833, 15.8, 15.8167, 15.8333, 15.85, 15.8667, 15.8833, 15.9, 15.9167, 15.9333, 15.95, 15.9667, 15.9833, 16, 16.0167, 16.0333, 16.05, 16.0667, 16.0833, 16.1, 16.1167, 16.1333, 16.15, 16.1667, 16.1833, 16.2, 16.2167, 16.2333, 16.25, 16.2667, 16.2833, 16.3, 16.3167, 16.3333, 16.35, 16.3667, 16.3833, 16.4, 16.4167, 16.4333, 16.45, 16.4667, 16.4833, 16.5, 16.5167, 16.5333, 16.55, 16.5667, 16.5833, 16.6, 16.6167, 16.6333, 16.65, 16.6667, 16.6833, 16.7, 16.7167, 16.7333, 16.75, 16.7667, 16.7833, 16.8, 16.8167, 16.8333, 16.85, 16.8667, 16.8833, 16.9, 16.9167, 16.9333, 16.95, 16.9667, 16.9833, 17, 17.0167, 17.0333, 17.05, 17.0667, 17.0833, 17.1, 17.1167, 17.1333, 17.15, 17.1667, 17.1833, 17.2, 17.2167, 17.2333, 17.25, 17.2667, 17.2833, 17.3, 17.3167, 17.3333, 17.35, 17.3667, 17.3833, 17.4, 17.4167, 17.4333, 17.45, 17.4667, 17.4833, 17.5, 17.5167, 17.5333, 17.55, 17.5667, 17.5833, 17.6, 17.6167, 17.6333, 17.65, 17.6667, 17.6833, 17.7, 17.7167, 17.7333, 17.75, 17.7667, 17.7833, 17.8, 17.8167, 17.8333, 17.85, 17.8667, 17.8833, 17.9, 17.9167, 17.9333, 17.95, 17.9667, 17.9833, 18, 18.0167, 18.0333, 18.05, 18.0667, 18.0833, 18.1, 18.1167, 18.1333, 18.15, 18.1667, 18.1833, 18.2, 18.2167, 18.2333, 18.25, 18.2667, 18.2833, 18.3, 18.3167, 18.3333, 18.35, 18.3667, 18.3833, 18.4, 18.4167, 18.4333, 18.45, 18.4667, 18.4833, 18.5, 18.5167, 18.5333, 18.55, 18.5667, 18.5833, 18.6, 18.6167, 18.6333, 18.65, 18.6667, 18.6833, 18.7, 18.7167, 18.7333, 18.75, 18.7667, 18.7833, 18.8, 18.8167, 18.8333, 18.85, 18.8667, 18.8833, 18.9, 18.9167, 18.9333, 18.95, 18.9667, 18.9833, 19, 19.0167, 19.0333, 19.05, 19.0667, 19.0833, 19.1, 19.1167, 19.1333, 19.15, 19.1667, 19.1833, 19.2, 19.2167, 19.2333, 19.25, 19.2667, 19.2833, 19.3, 19.3167, 19.3333, 19.35, 19.3667, 19.3833, 19.4, 19.4167, 19.4333, 19.45, 19.4667, 19.4833, 19.5, 19.5167, 19.5333, 19.55, 19.5667, 19.5833, 19.6, 19.6167, 19.6333, 19.65, 19.6667, 19.6833, 19.7, 19.7167, 19.7333, 19.75, 19.7667, 19.7833, 19.8, 19.8167, 19.8333, 19.85, 19.8667, 19.8833, 19.9, 19.9167, 19.9333, 19.95, 19.9667, 19.9833, 20, 20.0167, 20.0333, 20.05, 20.0667, 20.0833, 20.1, 20.1167, 20.1333, 20.15, 20.1667, 20.1833, 20.2, 20.2167, 20.2333, 20.25, 20.2667, 20.2833, 20.3, 20.3167, 20.3333, 20.35, 20.3667, 20.3833, 20.4, 20.4167, 20.4333, 20.45, 20.4667, 20.4833, 20.5, 20.5167, 20.5333, 20.55, 20.5667, 20.5833, 20.6, 20.6167, 20.6333, 20.65, 20.6667, 20.6833, 20.7, 20.7167, 20.7333, 20.75, 20.7667, 20.7833, 20.8, 20.8167, 20.8333, 20.85, 20.8667, 20.8833, 20.9, 20.9167, 20.9333, 20.95, 20.9667, 20.9833, 21, 21.0167, 21.0333, 21.05, 21.0667, 21.0833, 21.1, 21.1167, 21.1333, 21.15, 21.1667, 21.1833, 21.2, 21.2167, 21.2333, 21.25, 21.2667, 21.2833, 21.3, 21.3167, 21.3333, 21.35, 21.3667, 21.3833, 21.4, 21.4167, 21.4333, 21.45, 21.4667, 21.4833, 21.5, 21.5167, 21.5333, 21.55, 21.5667, 21.5833, 21.6, 21.6167, 21.6333, 21.65, 21.6667, 21.6833, 21.7, 21.7167, 21.7333, 21.75, 21.7667, 21.7833, 21.8, 21.8167, 21.8333, 21.85, 21.8667, 21.8833, 21.9, 21.9167, 21.9333, 21.95, 21.9667, 21.9833, 22, 22.0167, 22.0333, 22.05, 22.0667, 22.0833, 22.1, 22.1167, 22.1333, 22.15, 22.1667, 22.1833, 22.2, 22.2167, 22.2333, 22.25, 22.2667, 22.2833, 22.3, 22.3167, 22.3333, 22.35, 22.3667, 22.3833, 22.4, 22.4167, 22.4333, 22.45, 22.4667, 22.4833, 22.5, 22.5167, 22.5333, 22.55, 22.5667, 22.5833, 22.6, 22.6167, 22.6333, 22.65, 22.6667, 22.6833, 22.7, 22.7167, 22.7333, 22.75, 22.7667, 22.7833, 22.8, 22.8167, 22.8333, 22.85, 22.8667, 22.8833, 22.9, 22.9167, 22.9333, 22.95, 22.9667, 22.9833, 23, 23.0167, 23.0333, 23.05, 23.0667, 23.0833, 23.1, 23.1167, 23.1333, 23.15, 23.1667, 23.1833, 23.2, 23.2167, 23.2333, 23.25, 23.2667, 23.2833, 23.3, 23.3167, 23.3333, 23.35, 23.3667, 23.3833, 23.4, 23.4167, 23.4333, 23.45, 23.4667, 23.4833, 23.5, 23.5167, 23.5333, 23.55, 23.5667, 23.5833, 23.6, 23.6167, 23.6333, 23.65, 23.6667, 23.6833, 23.7, 23.7167, 23.7333, 23.75, 23.7667, 23.7833, 23.8, 23.8167, 23.8333, 23.85, 23.8667, 23.8833, 23.9, 23.9167, 23.9333, 23.95, 23.9667, 23.9833, 24),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1.5708, -0.692896, -1.65108), Vector3(1.57516, -0.692896, -1.65108), Vector3(1.57952, -0.692896, -1.65108), Vector3(1.58389, -0.692896, -1.65108), Vector3(1.58825, -0.692896, -1.65108), Vector3(1.59261, -0.692896, -1.65108), Vector3(1.59698, -0.692896, -1.65108), Vector3(1.60134, -0.692896, -1.65108), Vector3(1.6057, -0.692896, -1.65108), Vector3(1.61007, -0.692896, -1.65108), Vector3(1.61443, -0.692896, -1.65108), Vector3(1.61879, -0.692896, -1.65108), Vector3(1.62316, -0.692896, -1.65108), Vector3(1.62752, -0.692896, -1.65108), Vector3(1.63188, -0.692896, -1.65108), Vector3(1.63625, -0.692896, -1.65108), Vector3(1.64061, -0.692896, -1.65108), Vector3(1.64497, -0.692896, -1.65108), Vector3(1.64934, -0.692896, -1.65108), Vector3(1.6537, -0.692896, -1.65108), Vector3(1.65806, -0.692896, -1.65108), Vector3(1.66243, -0.692896, -1.65108), Vector3(1.66679, -0.692896, -1.65108), Vector3(1.67115, -0.692896, -1.65108), Vector3(1.67552, -0.692896, -1.65108), Vector3(1.67988, -0.692896, -1.65108), Vector3(1.68424, -0.692896, -1.65108), Vector3(1.68861, -0.692896, -1.65108), Vector3(1.69297, -0.692896, -1.65108), Vector3(1.69733, -0.692896, -1.65108), Vector3(1.7017, -0.692896, -1.65108), Vector3(1.70606, -0.692896, -1.65108), Vector3(1.71042, -0.692896, -1.65108), Vector3(1.71479, -0.692896, -1.65108), Vector3(1.71915, -0.692896, -1.65108), Vector3(1.72351, -0.692896, -1.65108), Vector3(1.72788, -0.692896, -1.65108), Vector3(1.73224, -0.692896, -1.65108), Vector3(1.7366, -0.692896, -1.65108), Vector3(1.74097, -0.692896, -1.65108), Vector3(1.74533, -0.692896, -1.65108), Vector3(1.74969, -0.692896, -1.65108), Vector3(1.75406, -0.692896, -1.65108), Vector3(1.75842, -0.692896, -1.65108), Vector3(1.76278, -0.692896, -1.65108), Vector3(1.76715, -0.692896, -1.65108), Vector3(1.77151, -0.692896, -1.65108), Vector3(1.77587, -0.692896, -1.65108), Vector3(1.78024, -0.692896, -1.65108), Vector3(1.7846, -0.692896, -1.65108), Vector3(1.78896, -0.692896, -1.65108), Vector3(1.79333, -0.692896, -1.65108), Vector3(1.79769, -0.692896, -1.65108), Vector3(1.80205, -0.692896, -1.65108), Vector3(1.80642, -0.692896, -1.65108), Vector3(1.81078, -0.692896, -1.65108), Vector3(1.81514, -0.692896, -1.65108), Vector3(1.81951, -0.692896, -1.65108), Vector3(1.82387, -0.692896, -1.65108), Vector3(1.82823, -0.692896, -1.65108), Vector3(1.8326, -0.692896, -1.65108), Vector3(1.83696, -0.692896, -1.65108), Vector3(1.84132, -0.692896, -1.65108), Vector3(1.84569, -0.692896, -1.65108), Vector3(1.85005, -0.692896, -1.65108), Vector3(1.85441, -0.692896, -1.65108), Vector3(1.85878, -0.692896, -1.65108), Vector3(1.86314, -0.692896, -1.65108), Vector3(1.8675, -0.692896, -1.65108), Vector3(1.87187, -0.692896, -1.65108), Vector3(1.87623, -0.692896, -1.65108), Vector3(1.88059, -0.692896, -1.65108), Vector3(1.88496, -0.692896, -1.65108), Vector3(1.88932, -0.692896, -1.65108), Vector3(1.89368, -0.692896, -1.65108), Vector3(1.89805, -0.692896, -1.65108), Vector3(1.90241, -0.692896, -1.65108), Vector3(1.90677, -0.692896, -1.65108), Vector3(1.91114, -0.692896, -1.65108), Vector3(1.9155, -0.692896, -1.65108), Vector3(1.91986, -0.692896, -1.65108), Vector3(1.92423, -0.692896, -1.65108), Vector3(1.92859, -0.692896, -1.65108), Vector3(1.93295, -0.692896, -1.65108), Vector3(1.93732, -0.692896, -1.65108), Vector3(1.94168, -0.692896, -1.65108), Vector3(1.94604, -0.692896, -1.65108), Vector3(1.95041, -0.692896, -1.65108), Vector3(1.95477, -0.692896, -1.65108), Vector3(1.95913, -0.692896, -1.65108), Vector3(1.9635, -0.692896, -1.65108), Vector3(1.96786, -0.692896, -1.65108), Vector3(1.97222, -0.692896, -1.65108), Vector3(1.97659, -0.692896, -1.65108), Vector3(1.98095, -0.692896, -1.65108), Vector3(1.98531, -0.692896, -1.65108), Vector3(1.98968, -0.692896, -1.65108), Vector3(1.99404, -0.692896, -1.65108), Vector3(1.9984, -0.692896, -1.65108), Vector3(2.00277, -0.692896, -1.65108), Vector3(2.00713, -0.692896, -1.65108), Vector3(2.01149, -0.692896, -1.65108), Vector3(2.01586, -0.692896, -1.65108), Vector3(2.02022, -0.692896, -1.65108), Vector3(2.02458, -0.692896, -1.65108), Vector3(2.02895, -0.692896, -1.65108), Vector3(2.03331, -0.692896, -1.65108), Vector3(2.03767, -0.692896, -1.65108), Vector3(2.04204, -0.692896, -1.65108), Vector3(2.0464, -0.692896, -1.65108), Vector3(2.05076, -0.692896, -1.65108), Vector3(2.05513, -0.692896, -1.65108), Vector3(2.05949, -0.692896, -1.65108), Vector3(2.06385, -0.692896, -1.65108), Vector3(2.06822, -0.692896, -1.65108), Vector3(2.07258, -0.692896, -1.65108), Vector3(2.07694, -0.692896, -1.65108), Vector3(2.08131, -0.692896, -1.65108), Vector3(2.08567, -0.692896, -1.65108), Vector3(2.09003, -0.692896, -1.65108), Vector3(2.0944, -0.692896, -1.65108), Vector3(2.09876, -0.692896, -1.65108), Vector3(2.10312, -0.692896, -1.65108), Vector3(2.10749, -0.692896, -1.65108), Vector3(2.11185, -0.692896, -1.65108), Vector3(2.11621, -0.692896, -1.65108), Vector3(2.12057, -0.692896, -1.65108), Vector3(2.12494, -0.692896, -1.65108), Vector3(2.1293, -0.692896, -1.65108), Vector3(2.13367, -0.692896, -1.65108), Vector3(2.13803, -0.692896, -1.65108), Vector3(2.14239, -0.692896, -1.65108), Vector3(2.14675, -0.692896, -1.65108), Vector3(2.15112, -0.692896, -1.65108), Vector3(2.15548, -0.692896, -1.65108), Vector3(2.15984, -0.692896, -1.65108), Vector3(2.16421, -0.692896, -1.65108), Vector3(2.16857, -0.692896, -1.65108), Vector3(2.17294, -0.692896, -1.65108), Vector3(2.1773, -0.692896, -1.65108), Vector3(2.18166, -0.692896, -1.65108), Vector3(2.18602, -0.692896, -1.65108), Vector3(2.19039, -0.692896, -1.65108), Vector3(2.19475, -0.692896, -1.65108), Vector3(2.19911, -0.692896, -1.65108), Vector3(2.20348, -0.692896, -1.65108), Vector3(2.20784, -0.692896, -1.65108), Vector3(2.2122, -0.692896, -1.65108), Vector3(2.21657, -0.692896, -1.65108), Vector3(2.22093, -0.692896, -1.65108), Vector3(2.22529, -0.692896, -1.65108), Vector3(2.22966, -0.692896, -1.65108), Vector3(2.23402, -0.692896, -1.65108), Vector3(2.23838, -0.692896, -1.65108), Vector3(2.24275, -0.692896, -1.65108), Vector3(2.24711, -0.692896, -1.65108), Vector3(2.25147, -0.692896, -1.65108), Vector3(2.25584, -0.692896, -1.65108), Vector3(2.2602, -0.692896, -1.65108), Vector3(2.26456, -0.692896, -1.65108), Vector3(2.26893, -0.692896, -1.65108), Vector3(2.27329, -0.692896, -1.65108), Vector3(2.27765, -0.692896, -1.65108), Vector3(2.28202, -0.692896, -1.65108), Vector3(2.28638, -0.692896, -1.65108), Vector3(2.29074, -0.692896, -1.65108), Vector3(2.29511, -0.692896, -1.65108), Vector3(2.29947, -0.692896, -1.65108), Vector3(2.30383, -0.692896, -1.65108), Vector3(2.3082, -0.692896, -1.65108), Vector3(2.31256, -0.692896, -1.65108), Vector3(2.31692, -0.692896, -1.65108), Vector3(2.32129, -0.692896, -1.65108), Vector3(2.32565, -0.692896, -1.65108), Vector3(2.33001, -0.692896, -1.65108), Vector3(2.33438, -0.692896, -1.65108), Vector3(2.33874, -0.692896, -1.65108), Vector3(2.3431, -0.692896, -1.65108), Vector3(2.34747, -0.692896, -1.65108), Vector3(2.35183, -0.692896, -1.65108), Vector3(2.35619, -0.692896, -1.65108), Vector3(2.36056, -0.692896, -1.65108), Vector3(2.36492, -0.692896, -1.65108), Vector3(2.36928, -0.692896, -1.65108), Vector3(2.37365, -0.692896, -1.65108), Vector3(2.37801, -0.692896, -1.65108), Vector3(2.38237, -0.692896, -1.65108), Vector3(2.38674, -0.692896, -1.65108), Vector3(2.3911, -0.692896, -1.65108), Vector3(2.39546, -0.692896, -1.65108), Vector3(2.39983, -0.692896, -1.65108), Vector3(2.40419, -0.692896, -1.65108), Vector3(2.40855, -0.692896, -1.65108), Vector3(2.41292, -0.692896, -1.65108), Vector3(2.41728, -0.692896, -1.65108), Vector3(2.42164, -0.692896, -1.65108), Vector3(2.42601, -0.692896, -1.65108), Vector3(2.43037, -0.692896, -1.65108), Vector3(2.43473, -0.692896, -1.65108), Vector3(2.4391, -0.692896, -1.65108), Vector3(2.44346, -0.692896, -1.65108), Vector3(2.44782, -0.692896, -1.65108), Vector3(2.45219, -0.692896, -1.65108), Vector3(2.45655, -0.692896, -1.65108), Vector3(2.46091, -0.692896, -1.65108), Vector3(2.46528, -0.692896, -1.65108), Vector3(2.46964, -0.692896, -1.65108), Vector3(2.474, -0.692896, -1.65108), Vector3(2.47837, -0.692896, -1.65108), Vector3(2.48273, -0.692896, -1.65108), Vector3(2.48709, -0.692896, -1.65108), Vector3(2.49146, -0.692896, -1.65108), Vector3(2.49582, -0.692896, -1.65108), Vector3(2.50018, -0.692896, -1.65108), Vector3(2.50455, -0.692896, -1.65108), Vector3(2.50891, -0.692896, -1.65108), Vector3(2.51327, -0.692896, -1.65108), Vector3(2.51764, -0.692896, -1.65108), Vector3(2.522, -0.692896, -1.65108), Vector3(2.52636, -0.692896, -1.65108), Vector3(2.53073, -0.692896, -1.65108), Vector3(2.53509, -0.692896, -1.65108), Vector3(2.53945, -0.692896, -1.65108), Vector3(2.54382, -0.692896, -1.65108), Vector3(2.54818, -0.692896, -1.65108), Vector3(2.55254, -0.692896, -1.65108), Vector3(2.55691, -0.692896, -1.65108), Vector3(2.56127, -0.692896, -1.65108), Vector3(2.56563, -0.692896, -1.65108), Vector3(2.57, -0.692896, -1.65108), Vector3(2.57436, -0.692896, -1.65108), Vector3(2.57872, -0.692896, -1.65108), Vector3(2.58309, -0.692896, -1.65108), Vector3(2.58745, -0.692896, -1.65108), Vector3(2.59181, -0.692896, -1.65108), Vector3(2.59618, -0.692896, -1.65108), Vector3(2.60054, -0.692896, -1.65108), Vector3(2.6049, -0.692896, -1.65108), Vector3(2.60927, -0.692896, -1.65108), Vector3(2.61363, -0.692896, -1.65108), Vector3(2.61799, -0.692896, -1.65108), Vector3(2.62236, -0.692896, -1.65108), Vector3(2.62672, -0.692896, -1.65108), Vector3(2.63108, -0.692896, -1.65108), Vector3(2.63545, -0.692896, -1.65108), Vector3(2.63981, -0.692896, -1.65108), Vector3(2.64417, -0.692896, -1.65108), Vector3(2.64854, -0.692896, -1.65108), Vector3(2.6529, -0.692896, -1.65108), Vector3(2.65726, -0.692896, -1.65108), Vector3(2.66163, -0.692896, -1.65108), Vector3(2.66599, -0.692896, -1.65108), Vector3(2.67035, -0.692896, -1.65108), Vector3(2.67472, -0.692896, -1.65108), Vector3(2.67908, -0.692896, -1.65108), Vector3(2.68344, -0.692896, -1.65108), Vector3(2.68781, -0.692896, -1.65108), Vector3(2.69217, -0.692896, -1.65108), Vector3(2.69653, -0.692896, -1.65108), Vector3(2.7009, -0.692896, -1.65108), Vector3(2.70526, -0.692896, -1.65108), Vector3(2.70962, -0.692896, -1.65108), Vector3(2.71399, -0.692896, -1.65108), Vector3(2.71835, -0.692896, -1.65108), Vector3(2.72271, -0.692896, -1.65108), Vector3(2.72708, -0.692896, -1.65108), Vector3(2.73144, -0.692896, -1.65108), Vector3(2.7358, -0.692896, -1.65108), Vector3(2.74017, -0.692896, -1.65108), Vector3(2.74453, -0.692896, -1.65108), Vector3(2.74889, -0.692896, -1.65108), Vector3(2.75326, -0.692896, -1.65108), Vector3(2.75762, -0.692896, -1.65108), Vector3(2.76198, -0.692896, -1.65108), Vector3(2.76635, -0.692896, -1.65108), Vector3(2.77071, -0.692896, -1.65108), Vector3(2.77507, -0.692896, -1.65108), Vector3(2.77944, -0.692896, -1.65108), Vector3(2.7838, -0.692896, -1.65108), Vector3(2.78816, -0.692896, -1.65108), Vector3(2.79253, -0.692896, -1.65108), Vector3(2.79689, -0.692896, -1.65108), Vector3(2.80125, -0.692896, -1.65108), Vector3(2.80562, -0.692896, -1.65108), Vector3(2.80998, -0.692896, -1.65108), Vector3(2.81434, -0.692896, -1.65108), Vector3(2.81871, -0.692896, -1.65108), Vector3(2.82307, -0.692896, -1.65108), Vector3(2.82743, -0.692896, -1.65108), Vector3(2.8318, -0.692896, -1.65108), Vector3(2.83616, -0.692896, -1.65108), Vector3(2.84052, -0.692896, -1.65108), Vector3(2.84489, -0.692896, -1.65108), Vector3(2.84925, -0.692896, -1.65108), Vector3(2.85361, -0.692896, -1.65108), Vector3(2.85798, -0.692896, -1.65108), Vector3(2.86234, -0.692896, -1.65108), Vector3(2.8667, -0.692896, -1.65108), Vector3(2.87107, -0.692896, -1.65108), Vector3(2.87543, -0.692896, -1.65108), Vector3(2.87979, -0.692896, -1.65108), Vector3(2.88416, -0.692896, -1.65108), Vector3(2.88852, -0.692896, -1.65108), Vector3(2.89288, -0.692896, -1.65108), Vector3(2.89725, -0.692896, -1.65108), Vector3(2.90161, -0.692896, -1.65108), Vector3(2.90597, -0.692896, -1.65108), Vector3(2.91034, -0.692896, -1.65108), Vector3(2.9147, -0.692896, -1.65108), Vector3(2.91906, -0.692896, -1.65108), Vector3(2.92343, -0.692896, -1.65108), Vector3(2.92779, -0.692896, -1.65108), Vector3(2.93215, -0.692896, -1.65108), Vector3(2.93652, -0.692896, -1.65108), Vector3(2.94088, -0.692896, -1.65108), Vector3(2.94524, -0.692896, -1.65108), Vector3(2.94961, -0.692896, -1.65108), Vector3(2.95397, -0.692896, -1.65108), Vector3(2.95833, -0.692896, -1.65108), Vector3(2.9627, -0.692896, -1.65108), Vector3(2.96706, -0.692896, -1.65108), Vector3(2.97142, -0.692896, -1.65108), Vector3(2.97579, -0.692896, -1.65108), Vector3(2.98015, -0.692896, -1.65108), Vector3(2.98451, -0.692896, -1.65108), Vector3(2.98888, -0.692896, -1.65108), Vector3(2.99324, -0.692896, -1.65108), Vector3(2.9976, -0.692896, -1.65108), Vector3(3.00197, -0.692896, -1.65108), Vector3(3.00633, -0.692896, -1.65108), Vector3(3.01069, -0.692896, -1.65108), Vector3(3.01506, -0.692896, -1.65108), Vector3(3.01942, -0.692896, -1.65108), Vector3(3.02378, -0.692896, -1.65108), Vector3(3.02815, -0.692896, -1.65108), Vector3(3.03251, -0.692896, -1.65108), Vector3(3.03687, -0.692896, -1.65108), Vector3(3.04124, -0.692896, -1.65108), Vector3(3.0456, -0.692896, -1.65108), Vector3(3.04996, -0.692896, -1.65108), Vector3(3.05433, -0.692896, -1.65108), Vector3(3.05869, -0.692896, -1.65108), Vector3(3.06305, -0.692896, -1.65108), Vector3(3.06742, -0.692896, -1.65108), Vector3(3.07178, -0.692896, -1.65108), Vector3(3.07614, -0.692896, -1.65108), Vector3(3.08051, -0.692896, -1.65108), Vector3(3.08487, -0.692896, -1.65108), Vector3(3.08923, -0.692896, -1.65108), Vector3(3.0936, -0.692896, -1.65108), Vector3(3.09796, -0.692896, -1.65108), Vector3(3.10232, -0.692896, -1.65108), Vector3(3.10669, -0.692896, -1.65108), Vector3(3.11105, -0.692896, -1.65108), Vector3(3.11541, -0.692896, -1.65108), Vector3(3.11978, -0.692896, -1.65108), Vector3(3.12414, -0.692896, -1.65108), Vector3(3.1285, -0.692896, -1.65108), Vector3(3.13287, -0.692896, -1.65108), Vector3(3.13723, -0.692896, -1.65108), Vector3(3.14159, -0.692896, -1.65108), Vector3(3.14596, -0.692896, -1.65108), Vector3(3.15032, -0.692896, -1.65108), Vector3(3.15468, -0.692896, -1.65108), Vector3(3.15905, -0.692896, -1.65108), Vector3(3.16341, -0.692896, -1.65108), Vector3(3.16777, -0.692896, -1.65108), Vector3(3.17214, -0.692896, -1.65108), Vector3(3.1765, -0.692896, -1.65108), Vector3(3.18086, -0.692896, -1.65108), Vector3(3.18523, -0.692896, -1.65108), Vector3(3.18959, -0.692896, -1.65108), Vector3(3.19395, -0.692896, -1.65108), Vector3(3.19832, -0.692896, -1.65108), Vector3(3.20268, -0.692896, -1.65108), Vector3(3.20704, -0.692896, -1.65108), Vector3(3.21141, -0.692896, -1.65108), Vector3(3.21577, -0.692896, -1.65108), Vector3(3.22013, -0.692896, -1.65108), Vector3(3.2245, -0.692896, -1.65108), Vector3(3.22886, -0.692896, -1.65108), Vector3(3.23322, -0.692896, -1.65108), Vector3(3.23759, -0.692896, -1.65108), Vector3(3.24195, -0.692896, -1.65108), Vector3(3.24631, -0.692896, -1.65108), Vector3(3.25068, -0.692896, -1.65108), Vector3(3.25504, -0.692896, -1.65108), Vector3(3.2594, -0.692896, -1.65108), Vector3(3.26377, -0.692896, -1.65108), Vector3(3.26813, -0.692896, -1.65108), Vector3(3.27249, -0.692896, -1.65108), Vector3(3.27686, -0.692896, -1.65108), Vector3(3.28122, -0.692896, -1.65108), Vector3(3.28558, -0.692896, -1.65108), Vector3(3.28995, -0.692896, -1.65108), Vector3(3.29431, -0.692896, -1.65108), Vector3(3.29867, -0.692896, -1.65108), Vector3(3.30304, -0.692896, -1.65108), Vector3(3.3074, -0.692896, -1.65108), Vector3(3.31176, -0.692896, -1.65108), Vector3(3.31613, -0.692896, -1.65108), Vector3(3.32049, -0.692896, -1.65108), Vector3(3.32485, -0.692896, -1.65108), Vector3(3.32922, -0.692896, -1.65108), Vector3(3.33358, -0.692896, -1.65108), Vector3(3.33794, -0.692896, -1.65108), Vector3(3.34231, -0.692896, -1.65108), Vector3(3.34667, -0.692896, -1.65108), Vector3(3.35103, -0.692896, -1.65108), Vector3(3.3554, -0.692896, -1.65108), Vector3(3.35976, -0.692896, -1.65108), Vector3(3.36412, -0.692896, -1.65108), Vector3(3.36849, -0.692896, -1.65108), Vector3(3.37285, -0.692896, -1.65108), Vector3(3.37721, -0.692896, -1.65108), Vector3(3.38158, -0.692896, -1.65108), Vector3(3.38594, -0.692896, -1.65108), Vector3(3.3903, -0.692896, -1.65108), Vector3(3.39467, -0.692896, -1.65108), Vector3(3.39903, -0.692896, -1.65108), Vector3(3.40339, -0.692896, -1.65108), Vector3(3.40776, -0.692896, -1.65108), Vector3(3.41212, -0.692896, -1.65108), Vector3(3.41648, -0.692896, -1.65108), Vector3(3.42085, -0.692896, -1.65108), Vector3(3.42521, -0.692896, -1.65108), Vector3(3.42957, -0.692896, -1.65108), Vector3(3.43394, -0.692896, -1.65108), Vector3(3.4383, -0.692896, -1.65108), Vector3(3.44266, -0.692896, -1.65108), Vector3(3.44703, -0.692896, -1.65108), Vector3(3.45139, -0.692896, -1.65108), Vector3(3.45575, -0.692896, -1.65108), Vector3(3.46012, -0.692896, -1.65108), Vector3(3.46448, -0.692896, -1.65108), Vector3(3.46884, -0.692896, -1.65108), Vector3(3.47321, -0.692896, -1.65108), Vector3(3.47757, -0.692896, -1.65108), Vector3(3.48193, -0.692896, -1.65108), Vector3(3.4863, -0.692896, -1.65108), Vector3(3.49066, -0.692896, -1.65108), Vector3(3.49502, -0.692896, -1.65108), Vector3(3.49939, -0.692896, -1.65108), Vector3(3.50375, -0.692896, -1.65108), Vector3(3.50811, -0.692896, -1.65108), Vector3(3.51248, -0.692896, -1.65108), Vector3(3.51684, -0.692896, -1.65108), Vector3(3.5212, -0.692896, -1.65108), Vector3(3.52557, -0.692896, -1.65108), Vector3(3.52993, -0.692896, -1.65108), Vector3(3.53429, -0.692896, -1.65108), Vector3(3.53866, -0.692896, -1.65108), Vector3(3.54302, -0.692896, -1.65108), Vector3(3.54738, -0.692896, -1.65108), Vector3(3.55174, -0.692896, -1.65108), Vector3(3.55611, -0.692896, -1.65108), Vector3(3.56047, -0.692896, -1.65108), Vector3(3.56484, -0.692896, -1.65108), Vector3(3.5692, -0.692896, -1.65108), Vector3(3.57356, -0.692896, -1.65108), Vector3(3.57792, -0.692896, -1.65108), Vector3(3.58229, -0.692896, -1.65108), Vector3(3.58665, -0.692896, -1.65108), Vector3(3.59101, -0.692896, -1.65108), Vector3(3.59538, -0.692896, -1.65108), Vector3(3.59974, -0.692896, -1.65108), Vector3(3.6041, -0.692896, -1.65108), Vector3(3.60847, -0.692896, -1.65108), Vector3(3.61283, -0.692896, -1.65108), Vector3(3.61719, -0.692896, -1.65108), Vector3(3.62156, -0.692896, -1.65108), Vector3(3.62592, -0.692896, -1.65108), Vector3(3.63028, -0.692896, -1.65108), Vector3(3.63465, -0.692896, -1.65108), Vector3(3.63901, -0.692896, -1.65108), Vector3(3.64337, -0.692896, -1.65108), Vector3(3.64774, -0.692896, -1.65108), Vector3(3.6521, -0.692896, -1.65108), Vector3(3.65646, -0.692896, -1.65108), Vector3(3.66083, -0.692896, -1.65108), Vector3(3.66519, -0.692896, -1.65108), Vector3(3.66955, -0.692896, -1.65108), Vector3(3.67392, -0.692896, -1.65108), Vector3(3.67828, -0.692896, -1.65108), Vector3(3.68264, -0.692896, -1.65108), Vector3(3.68701, -0.692896, -1.65108), Vector3(3.69137, -0.692896, -1.65108), Vector3(3.69573, -0.692896, -1.65108), Vector3(3.7001, -0.692896, -1.65108), Vector3(3.70446, -0.692896, -1.65108), Vector3(3.70882, -0.692896, -1.65108), Vector3(3.71319, -0.692896, -1.65108), Vector3(3.71755, -0.692896, -1.65108), Vector3(3.72191, -0.692896, -1.65108), Vector3(3.72628, -0.692896, -1.65108), Vector3(3.73064, -0.692896, -1.65108), Vector3(3.735, -0.692896, -1.65108), Vector3(3.73937, -0.692896, -1.65108), Vector3(3.74373, -0.692896, -1.65108), Vector3(3.74809, -0.692896, -1.65108), Vector3(3.75246, -0.692896, -1.65108), Vector3(3.75682, -0.692896, -1.65108), Vector3(3.76118, -0.692896, -1.65108), Vector3(3.76555, -0.692896, -1.65108), Vector3(3.76991, -0.692896, -1.65108), Vector3(3.77427, -0.692896, -1.65108), Vector3(3.77864, -0.692896, -1.65108), Vector3(3.783, -0.692896, -1.65108), Vector3(3.78736, -0.692896, -1.65108), Vector3(3.79173, -0.692896, -1.65108), Vector3(3.79609, -0.692896, -1.65108), Vector3(3.80045, -0.692896, -1.65108), Vector3(3.80482, -0.692896, -1.65108), Vector3(3.80918, -0.692896, -1.65108), Vector3(3.81354, -0.692896, -1.65108), Vector3(3.81791, -0.692896, -1.65108), Vector3(3.82227, -0.692896, -1.65108), Vector3(3.82663, -0.692896, -1.65108), Vector3(3.831, -0.692896, -1.65108), Vector3(3.83536, -0.692896, -1.65108), Vector3(3.83972, -0.692896, -1.65108), Vector3(3.84409, -0.692896, -1.65108), Vector3(3.84845, -0.692896, -1.65108), Vector3(3.85281, -0.692896, -1.65108), Vector3(3.85718, -0.692896, -1.65108), Vector3(3.86154, -0.692896, -1.65108), Vector3(3.8659, -0.692896, -1.65108), Vector3(3.87027, -0.692896, -1.65108), Vector3(3.87463, -0.692896, -1.65108), Vector3(3.87899, -0.692896, -1.65108), Vector3(3.88336, -0.692896, -1.65108), Vector3(3.88772, -0.692896, -1.65108), Vector3(3.89208, -0.692896, -1.65108), Vector3(3.89645, -0.692896, -1.65108), Vector3(3.90081, -0.692896, -1.65108), Vector3(3.90517, -0.692896, -1.65108), Vector3(3.90954, -0.692896, -1.65108), Vector3(3.9139, -0.692896, -1.65108), Vector3(3.91826, -0.692896, -1.65108), Vector3(3.92263, -0.692896, -1.65108), Vector3(3.92699, -0.692896, -1.65108), Vector3(3.93135, -0.692896, -1.65108), Vector3(3.93572, -0.692896, -1.65108), Vector3(3.94008, -0.692896, -1.65108), Vector3(3.94444, -0.692896, -1.65108), Vector3(3.94881, -0.692896, -1.65108), Vector3(3.95317, -0.692896, -1.65108), Vector3(3.95753, -0.692896, -1.65108), Vector3(3.9619, -0.692896, -1.65108), Vector3(3.96626, -0.692896, -1.65108), Vector3(3.97062, -0.692896, -1.65108), Vector3(3.97499, -0.692896, -1.65108), Vector3(3.97935, -0.692896, -1.65108), Vector3(3.98371, -0.692896, -1.65108), Vector3(3.98808, -0.692896, -1.65108), Vector3(3.99244, -0.692896, -1.65108), Vector3(3.9968, -0.692896, -1.65108), Vector3(4.00117, -0.692896, -1.65108), Vector3(4.00553, -0.692896, -1.65108), Vector3(4.00989, -0.692896, -1.65108), Vector3(4.01426, -0.692896, -1.65108), Vector3(4.01862, -0.692896, -1.65108), Vector3(4.02298, -0.692896, -1.65108), Vector3(4.02735, -0.692896, -1.65108), Vector3(4.03171, -0.692896, -1.65108), Vector3(4.03607, -0.692896, -1.65108), Vector3(4.04044, -0.692896, -1.65108), Vector3(4.0448, -0.692896, -1.65108), Vector3(4.04916, -0.692896, -1.65108), Vector3(4.05353, -0.692896, -1.65108), Vector3(4.05789, -0.692896, -1.65108), Vector3(4.06225, -0.692896, -1.65108), Vector3(4.06662, -0.692896, -1.65108), Vector3(4.07098, -0.692896, -1.65108), Vector3(4.07534, -0.692896, -1.65108), Vector3(4.07971, -0.692896, -1.65108), Vector3(4.08407, -0.692896, -1.65108), Vector3(4.08843, -0.692896, -1.65108), Vector3(4.0928, -0.692896, -1.65108), Vector3(4.09716, -0.692896, -1.65108), Vector3(4.10152, -0.692896, -1.65108), Vector3(4.10589, -0.692896, -1.65108), Vector3(4.11025, -0.692896, -1.65108), Vector3(4.11461, -0.692896, -1.65108), Vector3(4.11898, -0.692896, -1.65108), Vector3(4.12334, -0.692896, -1.65108), Vector3(4.1277, -0.692896, -1.65108), Vector3(4.13207, -0.692896, -1.65108), Vector3(4.13643, -0.692896, -1.65108), Vector3(4.14079, -0.692896, -1.65108), Vector3(4.14516, -0.692896, -1.65108), Vector3(4.14952, -0.692896, -1.65108), Vector3(4.15388, -0.692896, -1.65108), Vector3(4.15825, -0.692896, -1.65108), Vector3(4.16261, -0.692896, -1.65108), Vector3(4.16697, -0.692896, -1.65108), Vector3(4.17134, -0.692896, -1.65108), Vector3(4.1757, -0.692896, -1.65108), Vector3(4.18006, -0.692896, -1.65108), Vector3(4.18443, -0.692896, -1.65108), Vector3(4.18879, -0.692896, -1.65108), Vector3(4.19315, -0.692896, -1.65108), Vector3(4.19752, -0.692896, -1.65108), Vector3(4.20188, -0.692896, -1.65108), Vector3(4.20624, -0.692896, -1.65108), Vector3(4.21061, -0.692896, -1.65108), Vector3(4.21497, -0.692896, -1.65108), Vector3(4.21933, -0.692896, -1.65108), Vector3(4.2237, -0.692896, -1.65108), Vector3(4.22806, -0.692896, -1.65108), Vector3(4.23242, -0.692896, -1.65108), Vector3(4.23679, -0.692896, -1.65108), Vector3(4.24115, -0.692896, -1.65108), Vector3(4.24551, -0.692896, -1.65108), Vector3(4.24988, -0.692896, -1.65108), Vector3(4.25424, -0.692896, -1.65108), Vector3(4.2586, -0.692896, -1.65108), Vector3(4.26297, -0.692896, -1.65108), Vector3(4.26733, -0.692896, -1.65108), Vector3(4.27169, -0.692896, -1.65108), Vector3(4.27606, -0.692896, -1.65108), Vector3(4.28042, -0.692896, -1.65108), Vector3(4.28478, -0.692896, -1.65108), Vector3(4.28915, -0.692896, -1.65108), Vector3(4.29351, -0.692896, -1.65108), Vector3(4.29787, -0.692896, -1.65108), Vector3(4.30224, -0.692896, -1.65108), Vector3(4.3066, -0.692896, -1.65108), Vector3(4.31096, -0.692896, -1.65108), Vector3(4.31533, -0.692896, -1.65108), Vector3(4.31969, -0.692896, -1.65108), Vector3(4.32405, -0.692896, -1.65108), Vector3(4.32842, -0.692896, -1.65108), Vector3(4.33278, -0.692896, -1.65108), Vector3(4.33714, -0.692896, -1.65108), Vector3(4.34151, -0.692896, -1.65108), Vector3(4.34587, -0.692896, -1.65108), Vector3(4.35023, -0.692896, -1.65108), Vector3(4.3546, -0.692896, -1.65108), Vector3(4.35896, -0.692896, -1.65108), Vector3(4.36332, -0.692896, -1.65108), Vector3(4.36769, -0.692896, -1.65108), Vector3(4.37205, -0.692896, -1.65108), Vector3(4.37641, -0.692896, -1.65108), Vector3(4.38078, -0.692896, -1.65108), Vector3(4.38514, -0.692896, -1.65108), Vector3(4.3895, -0.692896, -1.65108), Vector3(4.39387, -0.692896, -1.65108), Vector3(4.39823, -0.692896, -1.65108), Vector3(4.40259, -0.692896, -1.65108), Vector3(4.40696, -0.692896, -1.65108), Vector3(4.41132, -0.692896, -1.65108), Vector3(4.41568, -0.692896, -1.65108), Vector3(4.42005, -0.692896, -1.65108), Vector3(4.42441, -0.692896, -1.65108), Vector3(4.42877, -0.692896, -1.65108), Vector3(4.43314, -0.692896, -1.65108), Vector3(4.4375, -0.692896, -1.65108), Vector3(4.44186, -0.692896, -1.65108), Vector3(4.44623, -0.692896, -1.65108), Vector3(4.45059, -0.692896, -1.65108), Vector3(4.45495, -0.692896, -1.65108), Vector3(4.45932, -0.692896, -1.65108), Vector3(4.46368, -0.692896, -1.65108), Vector3(4.46804, -0.692896, -1.65108), Vector3(4.47241, -0.692896, -1.65108), Vector3(4.47677, -0.692896, -1.65108), Vector3(4.48113, -0.692896, -1.65108), Vector3(4.4855, -0.692896, -1.65108), Vector3(4.48986, -0.692896, -1.65108), Vector3(4.49422, -0.692896, -1.65108), Vector3(4.49859, -0.692896, -1.65108), Vector3(4.50295, -0.692896, -1.65108), Vector3(4.50731, -0.692896, -1.65108), Vector3(4.51168, -0.692896, -1.65108), Vector3(4.51604, -0.692896, -1.65108), Vector3(4.5204, -0.692896, -1.65108), Vector3(4.52477, -0.692896, -1.65108), Vector3(4.52913, -0.692896, -1.65108), Vector3(4.53349, -0.692896, -1.65108), Vector3(4.53786, -0.692896, -1.65108), Vector3(4.54222, -0.692896, -1.65108), Vector3(4.54658, -0.692896, -1.65108), Vector3(4.55095, -0.692896, -1.65108), Vector3(4.55531, -0.692896, -1.65108), Vector3(4.55967, -0.692896, -1.65108), Vector3(4.56404, -0.692896, -1.65108), Vector3(4.5684, -0.692896, -1.65108), Vector3(4.57276, -0.692896, -1.65108), Vector3(4.57713, -0.692896, -1.65108), Vector3(4.58149, -0.692896, -1.65108), Vector3(4.58585, -0.692896, -1.65108), Vector3(4.59022, -0.692896, -1.65108), Vector3(4.59458, -0.692896, -1.65108), Vector3(4.59894, -0.692896, -1.65108), Vector3(4.60331, -0.692896, -1.65108), Vector3(4.60767, -0.692896, -1.65108), Vector3(4.61203, -0.692896, -1.65108), Vector3(4.6164, -0.692896, -1.65108), Vector3(4.62076, -0.692896, -1.65108), Vector3(4.62512, -0.692896, -1.65108), Vector3(4.62949, -0.692896, -1.65108), Vector3(4.63385, -0.692896, -1.65108), Vector3(4.63821, -0.692896, -1.65108), Vector3(4.64258, -0.692896, -1.65108), Vector3(4.64694, -0.692896, -1.65108), Vector3(4.6513, -0.692896, -1.65108), Vector3(4.65567, -0.692896, -1.65108), Vector3(4.66003, -0.692896, -1.65108), Vector3(4.66439, -0.692896, -1.65108), Vector3(4.66876, -0.692896, -1.65108), Vector3(4.67312, -0.692896, -1.65108), Vector3(4.67748, -0.692896, -1.65108), Vector3(4.68185, -0.692896, -1.65108), Vector3(4.68621, -0.692896, -1.65108), Vector3(4.69057, -0.692896, -1.65108), Vector3(4.69494, -0.692896, -1.65108), Vector3(4.6993, -0.692896, -1.65108), Vector3(4.70366, -0.692896, -1.65108), Vector3(4.70803, -0.692896, -1.65108), Vector3(4.71239, -0.692896, -1.65108), Vector3(4.71675, -0.692896, -1.65108), Vector3(4.72112, -0.692896, -1.65108), Vector3(4.72548, -0.692896, -1.65108), Vector3(4.72984, -0.692896, -1.65108), Vector3(4.73421, -0.692896, -1.65108), Vector3(4.73857, -0.692896, -1.65108), Vector3(4.74293, -0.692896, -1.65108), Vector3(4.7473, -0.692896, -1.65108), Vector3(4.75166, -0.692896, -1.65108), Vector3(4.75602, -0.692896, -1.65108), Vector3(4.76039, -0.692896, -1.65108), Vector3(4.76475, -0.692896, -1.65108), Vector3(4.76911, -0.692896, -1.65108), Vector3(4.77348, -0.692896, -1.65108), Vector3(4.77784, -0.692896, -1.65108), Vector3(4.7822, -0.692896, -1.65108), Vector3(4.78657, -0.692896, -1.65108), Vector3(4.79093, -0.692896, -1.65108), Vector3(4.79529, -0.692896, -1.65108), Vector3(4.79966, -0.692896, -1.65108), Vector3(4.80402, -0.692896, -1.65108), Vector3(4.80838, -0.692896, -1.65108), Vector3(4.81275, -0.692896, -1.65108), Vector3(4.81711, -0.692896, -1.65108), Vector3(4.82147, -0.692896, -1.65108), Vector3(4.82584, -0.692896, -1.65108), Vector3(4.8302, -0.692896, -1.65108), Vector3(4.83456, -0.692896, -1.65108), Vector3(4.83893, -0.692896, -1.65108), Vector3(4.84329, -0.692896, -1.65108), Vector3(4.84765, -0.692896, -1.65108), Vector3(4.85202, -0.692896, -1.65108), Vector3(4.85638, -0.692896, -1.65108), Vector3(4.86074, -0.692896, -1.65108), Vector3(4.86511, -0.692896, -1.65108), Vector3(4.86947, -0.692896, -1.65108), Vector3(4.87383, -0.692896, -1.65108), Vector3(4.8782, -0.692896, -1.65108), Vector3(4.88256, -0.692896, -1.65108), Vector3(4.88692, -0.692896, -1.65108), Vector3(4.89129, -0.692896, -1.65108), Vector3(4.89565, -0.692896, -1.65108), Vector3(4.90001, -0.692896, -1.65108), Vector3(4.90438, -0.692896, -1.65108), Vector3(4.90874, -0.692896, -1.65108), Vector3(4.9131, -0.692896, -1.65108), Vector3(4.91747, -0.692896, -1.65108), Vector3(4.92183, -0.692896, -1.65108), Vector3(4.92619, -0.692896, -1.65108), Vector3(4.93056, -0.692896, -1.65108), Vector3(4.93492, -0.692896, -1.65108), Vector3(4.93928, -0.692896, -1.65108), Vector3(4.94365, -0.692896, -1.65108), Vector3(4.94801, -0.692896, -1.65108), Vector3(4.95237, -0.692896, -1.65108), Vector3(4.95674, -0.692896, -1.65108), Vector3(4.9611, -0.692896, -1.65108), Vector3(4.96546, -0.692896, -1.65108), Vector3(4.96982, -0.692896, -1.65108), Vector3(4.97419, -0.692896, -1.65108), Vector3(4.97855, -0.692896, -1.65108), Vector3(4.98291, -0.692896, -1.65108), Vector3(4.98728, -0.692896, -1.65108), Vector3(4.99164, -0.692896, -1.65108), Vector3(4.99601, -0.692896, -1.65108), Vector3(5.00037, -0.692896, -1.65108), Vector3(5.00473, -0.692896, -1.65108), Vector3(5.0091, -0.692896, -1.65108), Vector3(5.01346, -0.692896, -1.65108), Vector3(5.01782, -0.692896, -1.65108), Vector3(5.02218, -0.692896, -1.65108), Vector3(5.02655, -0.692896, -1.65108), Vector3(5.03091, -0.692896, -1.65108), Vector3(5.03527, -0.692896, -1.65108), Vector3(5.03964, -0.692896, -1.65108), Vector3(5.044, -0.692896, -1.65108), Vector3(5.04836, -0.692896, -1.65108), Vector3(5.05273, -0.692896, -1.65108), Vector3(5.05709, -0.692896, -1.65108), Vector3(5.06145, -0.692896, -1.65108), Vector3(5.06582, -0.692896, -1.65108), Vector3(5.07018, -0.692896, -1.65108), Vector3(5.07454, -0.692896, -1.65108), Vector3(5.07891, -0.692896, -1.65108), Vector3(5.08327, -0.692896, -1.65108), Vector3(5.08763, -0.692896, -1.65108), Vector3(5.092, -0.692896, -1.65108), Vector3(5.09636, -0.692896, -1.65108), Vector3(5.10072, -0.692896, -1.65108), Vector3(5.10509, -0.692896, -1.65108), Vector3(5.10945, -0.692896, -1.65108), Vector3(5.11381, -0.692896, -1.65108), Vector3(5.11818, -0.692896, -1.65108), Vector3(5.12254, -0.692896, -1.65108), Vector3(5.1269, -0.692896, -1.65108), Vector3(5.13127, -0.692896, -1.65108), Vector3(5.13563, -0.692896, -1.65108), Vector3(5.13999, -0.692896, -1.65108), Vector3(5.14436, -0.692896, -1.65108), Vector3(5.14872, -0.692896, -1.65108), Vector3(5.15308, -0.692896, -1.65108), Vector3(5.15745, -0.692896, -1.65108), Vector3(5.16181, -0.692896, -1.65108), Vector3(5.16617, -0.692896, -1.65108), Vector3(5.17054, -0.692896, -1.65108), Vector3(5.1749, -0.692896, -1.65108), Vector3(5.17926, -0.692896, -1.65108), Vector3(5.18363, -0.692896, -1.65108), Vector3(5.18799, -0.692896, -1.65108), Vector3(5.19235, -0.692896, -1.65108), Vector3(5.19672, -0.692896, -1.65108), Vector3(5.20108, -0.692896, -1.65108), Vector3(5.20544, -0.692896, -1.65108), Vector3(5.20981, -0.692896, -1.65108), Vector3(5.21417, -0.692896, -1.65108), Vector3(5.21853, -0.692896, -1.65108), Vector3(5.2229, -0.692896, -1.65108), Vector3(5.22726, -0.692896, -1.65108), Vector3(5.23162, -0.692896, -1.65108), Vector3(5.23599, -0.692896, -1.65108), Vector3(5.24035, -0.692896, -1.65108), Vector3(5.24471, -0.692896, -1.65108), Vector3(5.24908, -0.692896, -1.65108), Vector3(5.25344, -0.692896, -1.65108), Vector3(5.2578, -0.692896, -1.65108), Vector3(5.26217, -0.692896, -1.65108), Vector3(5.26653, -0.692896, -1.65108), Vector3(5.27089, -0.692896, -1.65108), Vector3(5.27526, -0.692896, -1.65108), Vector3(5.27962, -0.692896, -1.65108), Vector3(5.28398, -0.692896, -1.65108), Vector3(5.28835, -0.692896, -1.65108), Vector3(5.29271, -0.692896, -1.65108), Vector3(5.29707, -0.692896, -1.65108), Vector3(5.30144, -0.692896, -1.65108), Vector3(5.3058, -0.692896, -1.65108), Vector3(5.31016, -0.692896, -1.65108), Vector3(5.31453, -0.692896, -1.65108), Vector3(5.31889, -0.692896, -1.65108), Vector3(5.32325, -0.692896, -1.65108), Vector3(5.32762, -0.692896, -1.65108), Vector3(5.33198, -0.692896, -1.65108), Vector3(5.33634, -0.692896, -1.65108), Vector3(5.34071, -0.692896, -1.65108), Vector3(5.34507, -0.692896, -1.65108), Vector3(5.34943, -0.692896, -1.65108), Vector3(5.3538, -0.692896, -1.65108), Vector3(5.35816, -0.692896, -1.65108), Vector3(5.36252, -0.692896, -1.65108), Vector3(5.36689, -0.692896, -1.65108), Vector3(5.37125, -0.692896, -1.65108), Vector3(5.37561, -0.692896, -1.65108), Vector3(5.37998, -0.692896, -1.65108), Vector3(5.38434, -0.692896, -1.65108), Vector3(5.3887, -0.692896, -1.65108), Vector3(5.39307, -0.692896, -1.65108), Vector3(5.39743, -0.692896, -1.65108), Vector3(5.40179, -0.692896, -1.65108), Vector3(5.40616, -0.692896, -1.65108), Vector3(5.41052, -0.692896, -1.65108), Vector3(5.41488, -0.692896, -1.65108), Vector3(5.41925, -0.692896, -1.65108), Vector3(5.42361, -0.692896, -1.65108), Vector3(5.42797, -0.692896, -1.65108), Vector3(5.43234, -0.692896, -1.65108), Vector3(5.4367, -0.692896, -1.65108), Vector3(5.44106, -0.692896, -1.65108), Vector3(5.44543, -0.692896, -1.65108), Vector3(5.44979, -0.692896, -1.65108), Vector3(5.45415, -0.692896, -1.65108), Vector3(5.45852, -0.692896, -1.65108), Vector3(5.46288, -0.692896, -1.65108), Vector3(5.46724, -0.692896, -1.65108), Vector3(5.47161, -0.692896, -1.65108), Vector3(5.47597, -0.692896, -1.65108), Vector3(5.48033, -0.692896, -1.65108), Vector3(5.4847, -0.692896, -1.65108), Vector3(5.48906, -0.692896, -1.65108), Vector3(5.49342, -0.692896, -1.65108), Vector3(5.49779, -0.692896, -1.65108), Vector3(5.50215, -0.692896, -1.65108), Vector3(5.50651, -0.692896, -1.65108), Vector3(5.51088, -0.692896, -1.65108), Vector3(5.51524, -0.692896, -1.65108), Vector3(5.5196, -0.692896, -1.65108), Vector3(5.52397, -0.692896, -1.65108), Vector3(5.52833, -0.692896, -1.65108), Vector3(5.53269, -0.692896, -1.65108), Vector3(5.53706, -0.692896, -1.65108), Vector3(5.54142, -0.692896, -1.65108), Vector3(5.54578, -0.692896, -1.65108), Vector3(5.55015, -0.692896, -1.65108), Vector3(5.55451, -0.692896, -1.65108), Vector3(5.55887, -0.692896, -1.65108), Vector3(5.56324, -0.692896, -1.65108), Vector3(5.5676, -0.692896, -1.65108), Vector3(5.57196, -0.692896, -1.65108), Vector3(5.57633, -0.692896, -1.65108), Vector3(5.58069, -0.692896, -1.65108), Vector3(5.58505, -0.692896, -1.65108), Vector3(5.58942, -0.692896, -1.65108), Vector3(5.59378, -0.692896, -1.65108), Vector3(5.59814, -0.692896, -1.65108), Vector3(5.60251, -0.692896, -1.65108), Vector3(5.60687, -0.692896, -1.65108), Vector3(5.61123, -0.692896, -1.65108), Vector3(5.6156, -0.692896, -1.65108), Vector3(5.61996, -0.692896, -1.65108), Vector3(5.62432, -0.692896, -1.65108), Vector3(5.62869, -0.692896, -1.65108), Vector3(5.63305, -0.692896, -1.65108), Vector3(5.63741, -0.692896, -1.65108), Vector3(5.64178, -0.692896, -1.65108), Vector3(5.64614, -0.692896, -1.65108), Vector3(5.6505, -0.692896, -1.65108), Vector3(5.65487, -0.692896, -1.65108), Vector3(5.65923, -0.692896, -1.65108), Vector3(5.66359, -0.692896, -1.65108), Vector3(5.66796, -0.692896, -1.65108), Vector3(5.67232, -0.692896, -1.65108), Vector3(5.67668, -0.692896, -1.65108), Vector3(5.68105, -0.692896, -1.65108), Vector3(5.68541, -0.692896, -1.65108), Vector3(5.68977, -0.692896, -1.65108), Vector3(5.69414, -0.692896, -1.65108), Vector3(5.6985, -0.692896, -1.65108), Vector3(5.70286, -0.692896, -1.65108), Vector3(5.70723, -0.692896, -1.65108), Vector3(5.71159, -0.692896, -1.65108), Vector3(5.71595, -0.692896, -1.65108), Vector3(5.72032, -0.692896, -1.65108), Vector3(5.72468, -0.692896, -1.65108), Vector3(5.72904, -0.692896, -1.65108), Vector3(5.73341, -0.692896, -1.65108), Vector3(5.73777, -0.692896, -1.65108), Vector3(5.74213, -0.692896, -1.65108), Vector3(5.7465, -0.692896, -1.65108), Vector3(5.75086, -0.692896, -1.65108), Vector3(5.75522, -0.692896, -1.65108), Vector3(5.75959, -0.692896, -1.65108), Vector3(5.76395, -0.692896, -1.65108), Vector3(5.76831, -0.692896, -1.65108), Vector3(5.77268, -0.692896, -1.65108), Vector3(5.77704, -0.692896, -1.65108), Vector3(5.7814, -0.692896, -1.65108), Vector3(5.78577, -0.692896, -1.65108), Vector3(5.79013, -0.692896, -1.65108), Vector3(5.79449, -0.692896, -1.65108), Vector3(5.79886, -0.692896, -1.65108), Vector3(5.80322, -0.692896, -1.65108), Vector3(5.80758, -0.692896, -1.65108), Vector3(5.81195, -0.692896, -1.65108), Vector3(5.81631, -0.692896, -1.65108), Vector3(5.82067, -0.692896, -1.65108), Vector3(5.82504, -0.692896, -1.65108), Vector3(5.8294, -0.692896, -1.65108), Vector3(5.83376, -0.692896, -1.65108), Vector3(5.83813, -0.692896, -1.65108), Vector3(5.84249, -0.692896, -1.65108), Vector3(5.84685, -0.692896, -1.65108), Vector3(5.85122, -0.692896, -1.65108), Vector3(5.85558, -0.692896, -1.65108), Vector3(5.85994, -0.692896, -1.65108), Vector3(5.86431, -0.692896, -1.65108), Vector3(5.86867, -0.692896, -1.65108), Vector3(5.87303, -0.692896, -1.65108), Vector3(5.8774, -0.692896, -1.65108), Vector3(5.88176, -0.692896, -1.65108), Vector3(5.88612, -0.692896, -1.65108), Vector3(5.89049, -0.692896, -1.65108), Vector3(5.89485, -0.692896, -1.65108), Vector3(5.89921, -0.692896, -1.65108), Vector3(5.90358, -0.692896, -1.65108), Vector3(5.90794, -0.692896, -1.65108), Vector3(5.9123, -0.692896, -1.65108), Vector3(5.91667, -0.692896, -1.65108), Vector3(5.92103, -0.692896, -1.65108), Vector3(5.92539, -0.692896, -1.65108), Vector3(5.92976, -0.692896, -1.65108), Vector3(5.93412, -0.692896, -1.65108), Vector3(5.93848, -0.692896, -1.65108), Vector3(5.94285, -0.692896, -1.65108), Vector3(5.94721, -0.692896, -1.65108), Vector3(5.95157, -0.692896, -1.65108), Vector3(5.95594, -0.692896, -1.65108), Vector3(5.9603, -0.692896, -1.65108), Vector3(5.96466, -0.692896, -1.65108), Vector3(5.96903, -0.692896, -1.65108), Vector3(5.97339, -0.692896, -1.65108), Vector3(5.97775, -0.692896, -1.65108), Vector3(5.98212, -0.692896, -1.65108), Vector3(5.98648, -0.692896, -1.65108), Vector3(5.99084, -0.692896, -1.65108), Vector3(5.99521, -0.692896, -1.65108), Vector3(5.99957, -0.692896, -1.65108), Vector3(6.00393, -0.692896, -1.65108), Vector3(6.0083, -0.692896, -1.65108), Vector3(6.01266, -0.692896, -1.65108), Vector3(6.01702, -0.692896, -1.65108), Vector3(6.02139, -0.692896, -1.65108), Vector3(6.02575, -0.692896, -1.65108), Vector3(6.03011, -0.692896, -1.65108), Vector3(6.03448, -0.692896, -1.65108), Vector3(6.03884, -0.692896, -1.65108), Vector3(6.0432, -0.692896, -1.65108), Vector3(6.04757, -0.692896, -1.65108), Vector3(6.05193, -0.692896, -1.65108), Vector3(6.05629, -0.692896, -1.65108), Vector3(6.06066, -0.692896, -1.65108), Vector3(6.06502, -0.692896, -1.65108), Vector3(6.06938, -0.692896, -1.65108), Vector3(6.07375, -0.692896, -1.65108), Vector3(6.07811, -0.692896, -1.65108), Vector3(6.08247, -0.692896, -1.65108), Vector3(6.08684, -0.692896, -1.65108), Vector3(6.0912, -0.692896, -1.65108), Vector3(6.09556, -0.692896, -1.65108), Vector3(6.09993, -0.692896, -1.65108), Vector3(6.10429, -0.692896, -1.65108), Vector3(6.10865, -0.692896, -1.65108), Vector3(6.11302, -0.692896, -1.65108), Vector3(6.11738, -0.692896, -1.65108), Vector3(6.12174, -0.692896, -1.65108), Vector3(6.12611, -0.692896, -1.65108), Vector3(6.13047, -0.692896, -1.65108), Vector3(6.13483, -0.692896, -1.65108), Vector3(6.1392, -0.692896, -1.65108), Vector3(6.14356, -0.692896, -1.65108), Vector3(6.14792, -0.692896, -1.65108), Vector3(6.15229, -0.692896, -1.65108), Vector3(6.15665, -0.692896, -1.65108), Vector3(6.16101, -0.692896, -1.65108), Vector3(6.16538, -0.692896, -1.65108), Vector3(6.16974, -0.692896, -1.65108), Vector3(6.1741, -0.692896, -1.65108), Vector3(6.17847, -0.692896, -1.65108), Vector3(6.18283, -0.692896, -1.65108), Vector3(6.18719, -0.692896, -1.65108), Vector3(6.19156, -0.692896, -1.65108), Vector3(6.19592, -0.692896, -1.65108), Vector3(6.20028, -0.692896, -1.65108), Vector3(6.20465, -0.692896, -1.65108), Vector3(6.20901, -0.692896, -1.65108), Vector3(6.21337, -0.692896, -1.65108), Vector3(6.21774, -0.692896, -1.65108), Vector3(6.2221, -0.692896, -1.65108), Vector3(6.22646, -0.692896, -1.65108), Vector3(6.23083, -0.692896, -1.65108), Vector3(6.23519, -0.692896, -1.65108), Vector3(6.23955, -0.692896, -1.65108), Vector3(6.24392, -0.692896, -1.65108), Vector3(6.24828, -0.692896, -1.65108), Vector3(6.25264, -0.692896, -1.65108), Vector3(6.25701, -0.692896, -1.65108), Vector3(6.26137, -0.692896, -1.65108), Vector3(6.26573, -0.692896, -1.65108), Vector3(6.2701, -0.692896, -1.65108), Vector3(6.27446, -0.692896, -1.65108), Vector3(6.27882, -0.692896, -1.65108), Vector3(6.28319, -0.692896, -1.65108), Vector3(6.28755, -0.692896, -1.65108), Vector3(6.29191, -0.692896, -1.65108), Vector3(6.29628, -0.692896, -1.65108), Vector3(6.30064, -0.692896, -1.65108), Vector3(6.305, -0.692896, -1.65108), Vector3(6.30937, -0.692896, -1.65108), Vector3(6.31373, -0.692896, -1.65108), Vector3(6.31809, -0.692896, -1.65108), Vector3(6.32246, -0.692896, -1.65108), Vector3(6.32682, -0.692896, -1.65108), Vector3(6.33118, -0.692896, -1.65108), Vector3(6.33555, -0.692896, -1.65108), Vector3(6.33991, -0.692896, -1.65108), Vector3(6.34427, -0.692896, -1.65108), Vector3(6.34864, -0.692896, -1.65108), Vector3(6.353, -0.692896, -1.65108), Vector3(6.35736, -0.692896, -1.65108), Vector3(6.36173, -0.692896, -1.65108), Vector3(6.36609, -0.692896, -1.65108), Vector3(6.37045, -0.692896, -1.65108), Vector3(6.37481, -0.692896, -1.65108), Vector3(6.37918, -0.692896, -1.65108), Vector3(6.38354, -0.692896, -1.65108), Vector3(6.38791, -0.692896, -1.65108), Vector3(6.39227, -0.692896, -1.65108), Vector3(6.39663, -0.692896, -1.65108), Vector3(6.40099, -0.692896, -1.65108), Vector3(6.40536, -0.692896, -1.65108), Vector3(6.40972, -0.692896, -1.65108), Vector3(6.41408, -0.692896, -1.65108), Vector3(6.41845, -0.692896, -1.65108), Vector3(6.42281, -0.692896, -1.65108), Vector3(6.42718, -0.692896, -1.65108), Vector3(6.43154, -0.692896, -1.65108), Vector3(6.4359, -0.692896, -1.65108), Vector3(6.44026, -0.692896, -1.65108), Vector3(6.44463, -0.692896, -1.65108), Vector3(6.44899, -0.692896, -1.65108), Vector3(6.45335, -0.692896, -1.65108), Vector3(6.45772, -0.692896, -1.65108), Vector3(6.46208, -0.692896, -1.65108), Vector3(6.46644, -0.692896, -1.65108), Vector3(6.47081, -0.692896, -1.65108), Vector3(6.47517, -0.692896, -1.65108), Vector3(6.47953, -0.692896, -1.65108), Vector3(6.4839, -0.692896, -1.65108), Vector3(6.48826, -0.692896, -1.65108), Vector3(6.49262, -0.692896, -1.65108), Vector3(6.49699, -0.692896, -1.65108), Vector3(6.50135, -0.692896, -1.65108), Vector3(6.50571, -0.692896, -1.65108), Vector3(6.51008, -0.692896, -1.65108), Vector3(6.51444, -0.692896, -1.65108), Vector3(6.5188, -0.692896, -1.65108), Vector3(6.52317, -0.692896, -1.65108), Vector3(6.52753, -0.692896, -1.65108), Vector3(6.53189, -0.692896, -1.65108), Vector3(6.53626, -0.692896, -1.65108), Vector3(6.54062, -0.692896, -1.65108), Vector3(6.54498, -0.692896, -1.65108), Vector3(6.54935, -0.692896, -1.65108), Vector3(6.55371, -0.692896, -1.65108), Vector3(6.55807, -0.692896, -1.65108), Vector3(6.56244, -0.692896, -1.65108), Vector3(6.5668, -0.692896, -1.65108), Vector3(6.57116, -0.692896, -1.65108), Vector3(6.57553, -0.692896, -1.65108), Vector3(6.57989, -0.692896, -1.65108), Vector3(6.58425, -0.692896, -1.65108), Vector3(6.58862, -0.692896, -1.65108), Vector3(6.59298, -0.692896, -1.65108), Vector3(6.59734, -0.692896, -1.65108), Vector3(6.60171, -0.692896, -1.65108), Vector3(6.60607, -0.692896, -1.65108), Vector3(6.61043, -0.692896, -1.65108), Vector3(6.6148, -0.692896, -1.65108), Vector3(6.61916, -0.692896, -1.65108), Vector3(6.62352, -0.692896, -1.65108), Vector3(6.62789, -0.692896, -1.65108), Vector3(6.63225, -0.692896, -1.65108), Vector3(6.63661, -0.692896, -1.65108), Vector3(6.64098, -0.692896, -1.65108), Vector3(6.64534, -0.692896, -1.65108), Vector3(6.6497, -0.692896, -1.65108), Vector3(6.65407, -0.692896, -1.65108), Vector3(6.65843, -0.692896, -1.65108), Vector3(6.66279, -0.692896, -1.65108), Vector3(6.66716, -0.692896, -1.65108), Vector3(6.67152, -0.692896, -1.65108), Vector3(6.67588, -0.692896, -1.65108), Vector3(6.68025, -0.692896, -1.65108), Vector3(6.68461, -0.692896, -1.65108), Vector3(6.68897, -0.692896, -1.65108), Vector3(6.69334, -0.692896, -1.65108), Vector3(6.6977, -0.692896, -1.65108), Vector3(6.70206, -0.692896, -1.65108), Vector3(6.70643, -0.692896, -1.65108), Vector3(6.71079, -0.692896, -1.65108), Vector3(6.71515, -0.692896, -1.65108), Vector3(6.71952, -0.692896, -1.65108), Vector3(6.72388, -0.692896, -1.65108), Vector3(6.72824, -0.692896, -1.65108), Vector3(6.73261, -0.692896, -1.65108), Vector3(6.73697, -0.692896, -1.65108), Vector3(6.74133, -0.692896, -1.65108), Vector3(6.7457, -0.692896, -1.65108), Vector3(6.75006, -0.692896, -1.65108), Vector3(6.75442, -0.692896, -1.65108), Vector3(6.75879, -0.692896, -1.65108), Vector3(6.76315, -0.692896, -1.65108), Vector3(6.76751, -0.692896, -1.65108), Vector3(6.77188, -0.692896, -1.65108), Vector3(6.77624, -0.692896, -1.65108), Vector3(6.7806, -0.692896, -1.65108), Vector3(6.78497, -0.692896, -1.65108), Vector3(6.78933, -0.692896, -1.65108), Vector3(6.79369, -0.692896, -1.65108), Vector3(6.79806, -0.692896, -1.65108), Vector3(6.80242, -0.692896, -1.65108), Vector3(6.80678, -0.692896, -1.65108), Vector3(6.81115, -0.692896, -1.65108), Vector3(6.81551, -0.692896, -1.65108), Vector3(6.81987, -0.692896, -1.65108), Vector3(6.82424, -0.692896, -1.65108), Vector3(6.8286, -0.692896, -1.65108), Vector3(6.83296, -0.692896, -1.65108), Vector3(6.83733, -0.692896, -1.65108), Vector3(6.84169, -0.692896, -1.65108), Vector3(6.84605, -0.692896, -1.65108), Vector3(6.85042, -0.692896, -1.65108), Vector3(6.85478, -0.692896, -1.65108), Vector3(6.85914, -0.692896, -1.65108), Vector3(6.86351, -0.692896, -1.65108), Vector3(6.86787, -0.692896, -1.65108), Vector3(6.87223, -0.692896, -1.65108), Vector3(6.8766, -0.692896, -1.65108), Vector3(6.88096, -0.692896, -1.65108), Vector3(6.88532, -0.692896, -1.65108), Vector3(6.88969, -0.692896, -1.65108), Vector3(6.89405, -0.692896, -1.65108), Vector3(6.89841, -0.692896, -1.65108), Vector3(6.90278, -0.692896, -1.65108), Vector3(6.90714, -0.692896, -1.65108), Vector3(6.9115, -0.692896, -1.65108), Vector3(6.91587, -0.692896, -1.65108), Vector3(6.92023, -0.692896, -1.65108), Vector3(6.92459, -0.692896, -1.65108), Vector3(6.92896, -0.692896, -1.65108), Vector3(6.93332, -0.692896, -1.65108), Vector3(6.93768, -0.692896, -1.65108), Vector3(6.94205, -0.692896, -1.65108), Vector3(6.94641, -0.692896, -1.65108), Vector3(6.95077, -0.692896, -1.65108), Vector3(6.95514, -0.692896, -1.65108), Vector3(6.9595, -0.692896, -1.65108), Vector3(6.96386, -0.692896, -1.65108), Vector3(6.96823, -0.692896, -1.65108), Vector3(6.97259, -0.692896, -1.65108), Vector3(6.97695, -0.692896, -1.65108), Vector3(6.98132, -0.692896, -1.65108), Vector3(6.98568, -0.692896, -1.65108), Vector3(6.99004, -0.692896, -1.65108), Vector3(6.99441, -0.692896, -1.65108), Vector3(6.99877, -0.692896, -1.65108), Vector3(7.00313, -0.692896, -1.65108), Vector3(7.0075, -0.692896, -1.65108), Vector3(7.01186, -0.692896, -1.65108), Vector3(7.01622, -0.692896, -1.65108), Vector3(7.02059, -0.692896, -1.65108), Vector3(7.02495, -0.692896, -1.65108), Vector3(7.02931, -0.692896, -1.65108), Vector3(7.03368, -0.692896, -1.65108), Vector3(7.03804, -0.692896, -1.65108), Vector3(7.0424, -0.692896, -1.65108), Vector3(7.04677, -0.692896, -1.65108), Vector3(7.05113, -0.692896, -1.65108), Vector3(7.05549, -0.692896, -1.65108), Vector3(7.05986, -0.692896, -1.65108), Vector3(7.06422, -0.692896, -1.65108), Vector3(7.06858, -0.692896, -1.65108), Vector3(7.07295, -0.692896, -1.65108), Vector3(7.07731, -0.692896, -1.65108), Vector3(7.08167, -0.692896, -1.65108), Vector3(7.08604, -0.692896, -1.65108), Vector3(7.0904, -0.692896, -1.65108), Vector3(7.09476, -0.692896, -1.65108), Vector3(7.09913, -0.692896, -1.65108), Vector3(7.10349, -0.692896, -1.65108), Vector3(7.10785, -0.692896, -1.65108), Vector3(7.11222, -0.692896, -1.65108), Vector3(7.11658, -0.692896, -1.65108), Vector3(7.12094, -0.692896, -1.65108), Vector3(7.12531, -0.692896, -1.65108), Vector3(7.12967, -0.692896, -1.65108), Vector3(7.13403, -0.692896, -1.65108), Vector3(7.1384, -0.692896, -1.65108), Vector3(7.14276, -0.692896, -1.65108), Vector3(7.14712, -0.692896, -1.65108), Vector3(7.15149, -0.692896, -1.65108), Vector3(7.15585, -0.692896, -1.65108), Vector3(7.16021, -0.692896, -1.65108), Vector3(7.16458, -0.692896, -1.65108), Vector3(7.16894, -0.692896, -1.65108), Vector3(7.1733, -0.692896, -1.65108), Vector3(7.17767, -0.692896, -1.65108), Vector3(7.18203, -0.692896, -1.65108), Vector3(7.18639, -0.692896, -1.65108), Vector3(7.19076, -0.692896, -1.65108), Vector3(7.19512, -0.692896, -1.65108), Vector3(7.19948, -0.692896, -1.65108), Vector3(7.20385, -0.692896, -1.65108), Vector3(7.20821, -0.692896, -1.65108), Vector3(7.21257, -0.692896, -1.65108), Vector3(7.21694, -0.692896, -1.65108), Vector3(7.2213, -0.692896, -1.65108), Vector3(7.22566, -0.692896, -1.65108), Vector3(7.23003, -0.692896, -1.65108), Vector3(7.23439, -0.692896, -1.65108), Vector3(7.23875, -0.692896, -1.65108), Vector3(7.24312, -0.692896, -1.65108), Vector3(7.24748, -0.692896, -1.65108), Vector3(7.25184, -0.692896, -1.65108), Vector3(7.25621, -0.692896, -1.65108), Vector3(7.26057, -0.692896, -1.65108), Vector3(7.26493, -0.692896, -1.65108), Vector3(7.2693, -0.692896, -1.65108), Vector3(7.27366, -0.692896, -1.65108), Vector3(7.27802, -0.692896, -1.65108), Vector3(7.28239, -0.692896, -1.65108), Vector3(7.28675, -0.692896, -1.65108), Vector3(7.29111, -0.692896, -1.65108), Vector3(7.29548, -0.692896, -1.65108), Vector3(7.29984, -0.692896, -1.65108), Vector3(7.3042, -0.692896, -1.65108), Vector3(7.30857, -0.692896, -1.65108), Vector3(7.31293, -0.692896, -1.65108), Vector3(7.31729, -0.692896, -1.65108), Vector3(7.32166, -0.692896, -1.65108), Vector3(7.32602, -0.692896, -1.65108), Vector3(7.33038, -0.692896, -1.65108), Vector3(7.33475, -0.692896, -1.65108), Vector3(7.33911, -0.692896, -1.65108), Vector3(7.34347, -0.692896, -1.65108), Vector3(7.34784, -0.692896, -1.65108), Vector3(7.3522, -0.692896, -1.65108), Vector3(7.35656, -0.692896, -1.65108), Vector3(7.36093, -0.692896, -1.65108), Vector3(7.36529, -0.692896, -1.65108), Vector3(7.36965, -0.692896, -1.65108), Vector3(7.37402, -0.692896, -1.65108), Vector3(7.37838, -0.692896, -1.65108), Vector3(7.38274, -0.692896, -1.65108), Vector3(7.38711, -0.692896, -1.65108), Vector3(7.39147, -0.692896, -1.65108), Vector3(7.39583, -0.692896, -1.65108), Vector3(7.4002, -0.692896, -1.65108), Vector3(7.40456, -0.692896, -1.65108), Vector3(7.40892, -0.692896, -1.65108), Vector3(7.41329, -0.692896, -1.65108), Vector3(7.41765, -0.692896, -1.65108), Vector3(7.42201, -0.692896, -1.65108), Vector3(7.42638, -0.692896, -1.65108), Vector3(7.43074, -0.692896, -1.65108), Vector3(7.4351, -0.692896, -1.65108), Vector3(7.43947, -0.692896, -1.65108), Vector3(7.44383, -0.692896, -1.65108), Vector3(7.44819, -0.692896, -1.65108), Vector3(7.45256, -0.692896, -1.65108), Vector3(7.45692, -0.692896, -1.65108), Vector3(7.46128, -0.692896, -1.65108), Vector3(7.46565, -0.692896, -1.65108), Vector3(7.47001, -0.692896, -1.65108), Vector3(7.47437, -0.692896, -1.65108), Vector3(7.47874, -0.692896, -1.65108), Vector3(7.4831, -0.692896, -1.65108), Vector3(7.48746, -0.692896, -1.65108), Vector3(7.49183, -0.692896, -1.65108), Vector3(7.49619, -0.692896, -1.65108), Vector3(7.50055, -0.692896, -1.65108), Vector3(7.50492, -0.692896, -1.65108), Vector3(7.50928, -0.692896, -1.65108), Vector3(7.51364, -0.692896, -1.65108), Vector3(7.51801, -0.692896, -1.65108), Vector3(7.52237, -0.692896, -1.65108), Vector3(7.52673, -0.692896, -1.65108), Vector3(7.5311, -0.692896, -1.65108), Vector3(7.53546, -0.692896, -1.65108), Vector3(7.53982, -0.692896, -1.65108), Vector3(7.54419, -0.692896, -1.65108), Vector3(7.54855, -0.692896, -1.65108), Vector3(7.55291, -0.692896, -1.65108), Vector3(7.55728, -0.692896, -1.65108), Vector3(7.56164, -0.692896, -1.65108), Vector3(7.566, -0.692896, -1.65108), Vector3(7.57037, -0.692896, -1.65108), Vector3(7.57473, -0.692896, -1.65108), Vector3(7.57909, -0.692896, -1.65108), Vector3(7.58346, -0.692896, -1.65108), Vector3(7.58782, -0.692896, -1.65108), Vector3(7.59218, -0.692896, -1.65108), Vector3(7.59655, -0.692896, -1.65108), Vector3(7.60091, -0.692896, -1.65108), Vector3(7.60527, -0.692896, -1.65108), Vector3(7.60964, -0.692896, -1.65108), Vector3(7.614, -0.692896, -1.65108), Vector3(7.61836, -0.692896, -1.65108), Vector3(7.62273, -0.692896, -1.65108), Vector3(7.62709, -0.692896, -1.65108), Vector3(7.63145, -0.692896, -1.65108), Vector3(7.63582, -0.692896, -1.65108), Vector3(7.64018, -0.692896, -1.65108), Vector3(7.64454, -0.692896, -1.65108), Vector3(7.64891, -0.692896, -1.65108), Vector3(7.65327, -0.692896, -1.65108), Vector3(7.65763, -0.692896, -1.65108), Vector3(7.66199, -0.692896, -1.65108), Vector3(7.66636, -0.692896, -1.65108), Vector3(7.67072, -0.692896, -1.65108), Vector3(7.67509, -0.692896, -1.65108), Vector3(7.67945, -0.692896, -1.65108), Vector3(7.68381, -0.692896, -1.65108), Vector3(7.68818, -0.692896, -1.65108), Vector3(7.69254, -0.692896, -1.65108), Vector3(7.6969, -0.692896, -1.65108), Vector3(7.70127, -0.692896, -1.65108), Vector3(7.70563, -0.692896, -1.65108), Vector3(7.70999, -0.692896, -1.65108), Vector3(7.71435, -0.692896, -1.65108), Vector3(7.71872, -0.692896, -1.65108), Vector3(7.72308, -0.692896, -1.65108), Vector3(7.72745, -0.692896, -1.65108), Vector3(7.73181, -0.692896, -1.65108), Vector3(7.73617, -0.692896, -1.65108), Vector3(7.74053, -0.692896, -1.65108), Vector3(7.7449, -0.692896, -1.65108), Vector3(7.74926, -0.692896, -1.65108), Vector3(7.75362, -0.692896, -1.65108), Vector3(7.75799, -0.692896, -1.65108), Vector3(7.76235, -0.692896, -1.65108), Vector3(7.76672, -0.692896, -1.65108), Vector3(7.77108, -0.692896, -1.65108), Vector3(7.77544, -0.692896, -1.65108), Vector3(7.77981, -0.692896, -1.65108), Vector3(7.78417, -0.692896, -1.65108), Vector3(7.78853, -0.692896, -1.65108), Vector3(7.79289, -0.692896, -1.65108), Vector3(7.79726, -0.692896, -1.65108), Vector3(7.80162, -0.692896, -1.65108), Vector3(7.80598, -0.692896, -1.65108), Vector3(7.81035, -0.692896, -1.65108), Vector3(7.81471, -0.692896, -1.65108), Vector3(7.81908, -0.692896, -1.65108), Vector3(7.82344, -0.692896, -1.65108), Vector3(7.8278, -0.692896, -1.65108), Vector3(7.83216, -0.692896, -1.65108), Vector3(7.83653, -0.692896, -1.65108), Vector3(7.84089, -0.692896, -1.65108), Vector3(7.84525, -0.692896, -1.65108), Vector3(7.84962, -0.692896, -1.65108), Vector3(7.85398, -0.692896, -1.65108)]
-}
-
-[sub_resource type="Animation" id="Animation_2m457"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sun:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.16008, -0.69276, -1.65137)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_odhir"]
-_data = {
-"DayCycle": SubResource("Animation_o7bwb"),
-"RESET": SubResource("Animation_2m457")
-}
-
-[sub_resource type="LabelSettings" id="LabelSettings_ym1l4"]
-font_size = 21
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
-
 [node name="World Scene" type="Node3D"]
-
-[node name="Hotbar" parent="." node_paths=PackedStringArray("storage", "player") instance=ExtResource("1_uevcw")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-offset_left = -250.0
-offset_top = -50.0
-offset_right = 250.0
-grow_vertical = 0
-size_flags_horizontal = 0
-storage = NodePath("../Player/Storage")
-player = NodePath("../Player")
-slot_size = 40
-slot_padding = 2
 
 [node name="TreePineScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_42fp6")
+modifier_stack = SubResource("Resource_frogt")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -696,10 +576,14 @@ script = ExtResource("8_qf28a")
 negative = true
 shape = SubResource("Resource_2ydm1")
 
+[node name="ScatterShape2" type="Node3D" parent="TreePineScatter"]
+script = ExtResource("8_qf28a")
+shape = SubResource("Resource_6ag6o")
+
 [node name="GrassScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_nqno4")
+modifier_stack = SubResource("Resource_s2ere")
 Performance/use_chunks = false
 Performance/chunk_dimensions = Vector3(1, 1, 1)
 
@@ -722,15 +606,6 @@ path = "res://assets/models/grass/plant.glb"
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 script = ExtResource("8_qf28a")
 shape = SubResource("Resource_witgl")
-
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.645583, 0.719861, -0.254997, -0.397971, -0.0321356, 0.916835, 0.6518, 0.693374, 0.30723, -7.79659, 5.63228, -3.97896)
-shadow_enabled = true
-shadow_blur = 0.259
-directional_shadow_split_1 = 0.01
-directional_shadow_split_2 = 0.15
-directional_shadow_split_3 = 0.2
-directional_shadow_blend_splits = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -755,39 +630,15 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_7bl4s")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10548, 0)
-collision_layer = 2
-collision_mask = 7
-script = ExtResource("16_4adgd")
+[node name="Player" parent="." instance=ExtResource("16_2ednn")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-visible = false
-mesh = SubResource("CapsuleMesh_f6fvt")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_l2ulm")
-
-[node name="Neck" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614361, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/Neck" node_paths=PackedStringArray("neck")]
-attributes = SubResource("CameraAttributesPractical_bqnbl")
-script = ExtResource("18_m4q6a")
-sensitivity = 0.1
-neck = NodePath("..")
-
-[node name="Shadow" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.724878, 0)
-mesh = SubResource("CylinderMesh_xtr5c")
-
-[node name="Storage" type="Node" parent="Player"]
-script = ExtResource("31_xjimm")
-storage_size = 3
-starting_items = Array[ExtResource("18_2achq")]([SubResource("Resource_d3d8q"), SubResource("Resource_4exrv"), null])
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_bca8c")
+[node name="Sun" parent="Player" index="11"]
+transform = Transform3D(-0.645583, 0.719861, -0.254997, -0.397971, -0.0321356, 0.916835, 0.6518, 0.693374, 0.30723, -7.79659, 5.63228, -3.97896)
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.4
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 50.0
 
 [node name="Tree" parent="." instance=ExtResource("23_kqevk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
@@ -795,7 +646,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 [node name="RocksScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_pmvsv")
+modifier_stack = SubResource("Resource_w2oxo")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -829,10 +680,10 @@ negative = true
 shape = SubResource("Resource_0teth")
 
 [node name="RocksScatter2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3685, 0, 77.1279)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3685, 0, 71.4057)
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_4lthy")
+modifier_stack = SubResource("Resource_j68vb")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -873,7 +724,7 @@ script = ExtResource("1_d8o67")
 render_mode = 1
 keep_static_colliders = true
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_70que")
+modifier_stack = SubResource("Resource_vsc0p")
 Performance/use_chunks = false
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -898,7 +749,7 @@ shape = SubResource("Resource_oxpn4")
 [node name="OutsideGrassScatter" type="Node3D" parent="."]
 script = ExtResource("1_d8o67")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_gr78f")
+modifier_stack = SubResource("Resource_ujilu")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -1057,22 +908,7 @@ autoplay = true
 [node name="prepared_ground" parent="." instance=ExtResource("28_qyj1m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0141878, 2.75878)
 
-[node name="DayCycle" type="AnimationPlayer" parent="."]
-autoplay = "DayCycle"
-speed_scale = 0.1
-libraries = {
-"": SubResource("AnimationLibrary_odhir")
-}
-
-[node name="Label" type="Label" parent="DayCycle"]
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 69.0
-offset_bottom = 48.0
-text = "00:00"
-label_settings = SubResource("LabelSettings_ym1l4")
-script = ExtResource("30_r4uh0")
-
-[node name="bed" parent="." node_paths=PackedStringArray("timeManager") instance=ExtResource("33_xsfau")]
+[node name="bed" parent="." instance=ExtResource("33_xsfau")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.38517, 0, 0)
-timeManager = NodePath("../DayCycle")
+
+[editable path="Player"]
