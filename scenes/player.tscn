@@ -751,10 +751,13 @@ environment = SubResource("Environment_yxn1w")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.69836, 0.715698, 0.0083607, 0.0130466, 0.00104969, 0.999914, 0.715628, 0.698409, -0.0100705, -7.79659, 5.63228, -3.97896)
 layers = 0
-light_volumetric_fog_energy = 3.0
+light_volumetric_fog_energy = 5.0
 light_angular_distance = 0.5
+light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 2.0
+directional_shadow_split_3 = 0.4
+directional_shadow_blend_splits = true
 directional_shadow_max_distance = 50.0
 directional_shadow_pancake_size = 40.0
 
