@@ -650,6 +650,7 @@ sky_material = SubResource("PhysicalSkyMaterial_qnid1")
 background_mode = 2
 sky = SubResource("Sky_7aeng")
 ambient_light_energy = 0.0
+reflected_light_source = 2
 ssao_intensity = 4.0
 glow_normalized = true
 volumetric_fog_enabled = true
@@ -753,10 +754,8 @@ layers = 0
 light_volumetric_fog_energy = 3.0
 light_angular_distance = 0.5
 shadow_enabled = true
-directional_shadow_split_1 = 0.01
-directional_shadow_split_2 = 0.15
-directional_shadow_split_3 = 0.2
-directional_shadow_blend_splits = true
+shadow_blur = 2.0
+directional_shadow_max_distance = 50.0
 directional_shadow_pancake_size = 40.0
 
 [node name="FullscreenControl" type="Node" parent="."]
