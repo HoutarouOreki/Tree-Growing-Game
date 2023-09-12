@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://sy3uaj42dltf"]
+
+[ext_resource type="PackedScene" uid="uid://50slcdjil7ie" path="res://assets/models/desk.glb" id="1_17v24"]
+
+[node name="desk" instance=ExtResource("1_17v24")]
+
+[node name="Cylinder_001" parent="." index="1"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.696416, -0.249287, -1.02034)
