@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlantKind" load_steps=2 format=3 uid="uid://ba5ddhdyi21gs"]
+
+[ext_resource type="Script" path="res://scripts/plants/plant_kind.gd" id="1_xp6du"]
+
+[resource]
+script = ExtResource("1_xp6du")
+name = "Apple Tree"
+stages_lengths = Array[int]([1, 1, 1, 1, 1])
+path = "apple_tree"
