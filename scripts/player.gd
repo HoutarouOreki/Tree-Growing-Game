@@ -5,8 +5,15 @@ var disabled: bool = false
 @onready var itemRay: RayCast3D = $Neck/Camera3D/ItemRay
 @onready var dayCycle: AnimationPlayer = $DayCycle
 
+
+func _process(delta: float) -> void:
+	if !disabled && dayCycle.current_animation_position > 23:
+		Transition.advance_day(self)
+
+
 func _ready() -> void:
-	pass #dayCycle.seek(6)
+	dayCycle.seek(6.5)
+	global_position = SaveManager.current_save.player_position
 
 
 func _unhandled_input(event: InputEvent) -> void:

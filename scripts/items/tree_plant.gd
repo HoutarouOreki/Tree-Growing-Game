@@ -14,6 +14,7 @@ func _place(position: Vector3, collider: Node3D):
 	var instance = scene_resource.instantiate() as Node3D
 	collider.add_child(instance)
 	instance.name = planted_tree_node_name
+	register_plant(instance.global_position)
 	PopUpManager.add(instance)
 	var timer = Timer.new()
 	add_child(timer)
@@ -22,6 +23,13 @@ func _place(position: Vector3, collider: Node3D):
 	await timer.timeout
 	var grassScatter = get_tree().root.get_node("World Scene/GrassScatter")
 	grassScatter.rebuild()
+
+
+func register_plant(position: Vector3):
+	var plant_data = PlantData.new()
+	plant_data.kind = load("res://assets/plant_kinds/apple_tree.tres")
+	plant_data.position = position
+	PlantManager.add_plant(plant_data)
 
 
 func can_plant_here(collider: Node3D) -> bool:
