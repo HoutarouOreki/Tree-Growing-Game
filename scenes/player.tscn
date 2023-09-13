@@ -666,21 +666,21 @@ albedo = Color(0.760784, 0.968627, 1, 1)
 emission = Color(0.658824, 0.858824, 1, 1)
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_6r7ho")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_f6fvt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_l2ulm")
 
 [node name="Neck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614361, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61436, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -699,7 +699,7 @@ collision_mask = 65535
 debug_shape_thickness = 3
 
 [node name="Shadow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.724878, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275122, 0)
 mesh = SubResource("CylinderMesh_xtr5c")
 
 [node name="Hotbar" parent="." instance=ExtResource("9_wtw3x")]
@@ -749,7 +749,7 @@ script = ExtResource("13_d481f")
 environment = SubResource("Environment_yxn1w")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.69836, 0.715698, 0.0083607, 0.0130466, 0.00104969, 0.999914, 0.715628, 0.698409, -0.0100705, -7.79659, 5.63228, -3.97896)
+transform = Transform3D(-0.69836, 0.715698, 0.0083607, 0.0130466, 0.00104969, 0.999914, 0.715628, 0.698409, -0.0100705, -7.79659, 6.63228, -3.97896)
 layers = 0
 light_volumetric_fog_energy = 5.0
 light_angular_distance = 0.5
@@ -765,5 +765,6 @@ directional_shadow_pancake_size = 40.0
 script = ExtResource("14_lo4hn")
 
 [node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 size = Vector3(100, 20, 100)
 material = SubResource("FogMaterial_0iky6")

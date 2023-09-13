@@ -3,7 +3,7 @@ extends Node
 const saves_directory = "user://saves/"
 
 
-var current_save: Save
+@export var current_save: Save
 
 
 func _ready() -> void:
