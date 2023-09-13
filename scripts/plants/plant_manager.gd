@@ -18,14 +18,3 @@ func generate_plant_nodes() -> Array[PlantNode]:
 		arr.append(node)
 
 	return arr
-
-
-func save():
-	SaveManager.store()
-
-
-func _ready() -> void:
-	if !SaveManager.load_save("default"):
-		SaveManager.create_save("default")
-
-	plants = SaveManager.current_save.plants
