@@ -23,16 +23,18 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("hotbar_next"):
 		stop_process()
-		selectedSlotIndex += 1
-		if selectedSlotIndex >= storage.storage_size:
-			selectedSlotIndex = 0
+		var newSlotIndex = selectedSlotIndex + 1
+		if newSlotIndex >= storage.storage_size:
+			newSlotIndex = 0
+		selectedSlotIndex = newSlotIndex
 		start_process()
 
 	if event.is_action_pressed("hotbar_previous"):
 		stop_process()
-		selectedSlotIndex -= 1
-		if selectedSlotIndex < 0:
-			selectedSlotIndex = storage.storage_size - 1
+		var newSlotIndex = selectedSlotIndex - 1
+		if newSlotIndex < 0:
+			newSlotIndex = storage.storage_size - 1
+		selectedSlotIndex = newSlotIndex
 		start_process()
 
 	notify_property_list_changed()
