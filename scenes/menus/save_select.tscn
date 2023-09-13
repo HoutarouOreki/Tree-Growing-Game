@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=3 uid="uid://breobh7yysw4l"]
+
+[ext_resource type="Script" path="res://scripts/menus/save_select.gd" id="1_c3xgt"]
+[ext_resource type="Theme" uid="uid://dec7irkhj5hdn" path="res://scenes/menus/theme.tres" id="2_58lik"]
+[ext_resource type="PackedScene" uid="uid://biojacvntfee8" path="res://scenes/menus/new_game_screen.tscn" id="2_jnxtv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0eda8"]
+font_size = 60
+outline_size = 10
+outline_color = Color(0.309804, 0.0980392, 0, 1)
+
+[node name="SaveSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c3xgt")
+new_game_scene = ExtResource("2_jnxtv")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.243137, 0.188235, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_58lik")
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_58lik")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+text = "Save select
+"
+label_settings = SubResource("LabelSettings_0eda8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewGameButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "New game"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="SavesFlowContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveDisplayButton" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[node name="SaveDisplayButton7" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[node name="SaveDisplayButton8" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[node name="SaveDisplayButton6" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[node name="SaveDisplayButton2" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[node name="SaveDisplayButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[node name="SaveDisplayButton4" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[node name="SaveDisplayButton5" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer" instance_placeholder="res://scenes/menus/save_display_button.tscn"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

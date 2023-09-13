@@ -7,7 +7,7 @@ func _place(position: Vector3, collider: Node3D) -> void:
 	var scene_resource = load("res://scenes/prepared_ground.tscn")
 	var instance = scene_resource.instantiate() as Node3D
 	instance.position = position
-	get_tree().root.add_child(instance)
+	get_tree().current_scene.add_child(instance)
 	PopUpManager.add(instance)
 
 

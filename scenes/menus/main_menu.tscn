@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_81alr"]
 [ext_resource type="Theme" uid="uid://dec7irkhj5hdn" path="res://scenes/menus/theme.tres" id="1_icbln"]
-[ext_resource type="PackedScene" uid="uid://dh6d87dv0g7pp" path="res://scenes/world_scene.tscn" id="2_re41j"]
+[ext_resource type="PackedScene" uid="uid://breobh7yysw4l" path="res://scenes/menus/save_select.tscn" id="2_35kd1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u2ja8"]
 font_size = 60
@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_81alr")
-playScene = ExtResource("2_re41j")
+playScene = ExtResource("2_35kd1")
 
 [node name="Background" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(10, 10)
