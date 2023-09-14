@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://biojacvntfee8"]
+[gd_scene load_steps=6 format=3 uid="uid://biojacvntfee8"]
 
 [ext_resource type="Theme" uid="uid://dec7irkhj5hdn" path="res://scenes/menus/theme.tres" id="1_whlu6"]
 [ext_resource type="Theme" uid="uid://4ulgv0jgyxkv" path="res://scenes/menus/input_group_theme.tres" id="2_afvjs"]
 [ext_resource type="Script" path="res://scripts/menus/new_game_screen.gd" id="2_bx0kv"]
-[ext_resource type="PackedScene" uid="uid://dh6d87dv0g7pp" path="res://scenes/world_scene.tscn" id="3_lhjv0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x2vsy"]
 font_size = 60
@@ -50,7 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_whlu6")
 script = ExtResource("2_bx0kv")
-world_scene = ExtResource("3_lhjv0")
+world_scene = "res://scenes/world_scene.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(10, 10)

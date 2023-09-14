@@ -8,15 +8,12 @@ class_name FirstPersonCamera extends Camera3D
 var _mouse_position = Vector2(0.0, 0.0)
 var _total_pitch = 0.0
 
+
 func _input(event):
 	# Receives mouse motion
 	if event is InputEventMouseMotion:
 		_mouse_position = event.relative
 
-	if event is InputEventMouseButton:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	elif event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Updates mouselook and movement every frame
 func _process(_delta):

@@ -34,6 +34,15 @@ func _process(delta):
 	if !playing:
 		return
 
+	if !parent:
+		stop_playing()
+		return
+
+	if !parent.is_node_ready():
+		parent = null
+		stop_playing()
+		return
+
 	if since_last_play == 0:
 		play()
 

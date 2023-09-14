@@ -2,7 +2,7 @@ extends Control
 
 
 @onready var saves_flow_container: VBoxContainer = $MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/SavesFlowContainer
-@export var new_game_scene: PackedScene
+@export_file("*.tscn") var new_game_scene: String
 
 
 func _ready() -> void:
@@ -13,4 +13,4 @@ func _ready() -> void:
 
 
 func _on_new_game_button_pressed() -> void:
-	Transition.change_scene_packed(new_game_scene)
+	Transition.change_scene(new_game_scene)

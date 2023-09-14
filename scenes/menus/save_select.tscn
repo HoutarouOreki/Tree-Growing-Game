@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://breobh7yysw4l"]
+[gd_scene load_steps=4 format=3 uid="uid://breobh7yysw4l"]
 
 [ext_resource type="Script" path="res://scripts/menus/save_select.gd" id="1_c3xgt"]
 [ext_resource type="Theme" uid="uid://dec7irkhj5hdn" path="res://scenes/menus/theme.tres" id="2_58lik"]
-[ext_resource type="PackedScene" uid="uid://biojacvntfee8" path="res://scenes/menus/new_game_screen.tscn" id="2_jnxtv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0eda8"]
 font_size = 60
@@ -17,7 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c3xgt")
-new_game_scene = ExtResource("2_jnxtv")
+new_game_scene = "res://scenes/menus/new_game_screen.tscn"
 
 [node name="Background" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(10, 10)

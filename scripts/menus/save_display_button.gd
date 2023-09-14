@@ -1,4 +1,3 @@
-@tool
 class_name SaveDisplayButton extends Control
 
 
@@ -8,6 +7,9 @@ class_name SaveDisplayButton extends Control
 
 
 func _ready() -> void:
+	if !save:
+		return
+
 	name_label.text = save.name
 	var time_dict = Time.get_datetime_dict_from_datetime_string(save.save_date, false)
 	_format_time_dict(time_dict)
