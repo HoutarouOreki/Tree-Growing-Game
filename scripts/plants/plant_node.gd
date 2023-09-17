@@ -1,16 +1,17 @@
-class_name PlantNode extends Node3D
+class_name PlantNode extends StaticBody3D
 
 
-var data: PlantData
+@export var data: PlantData
+@onready var selectionMesh: MeshInstance3D = $SelectionMesh
 
 
-static func create(data: PlantData) -> PlantNode:
-	var node = PlantNode.new()
-	node.data = data
-	node.position = data.position
+static func create(plantData: PlantData) -> PlantNode:
+	var scene = (load("res://scenes/plants/plant_node.tscn") as PackedScene).instantiate()
+	scene.data = plantData
+	scene.position = plantData.position
 
-	var model = load(data.get_model_path()).instantiate()
+	var model = (load(plantData.get_model_path()) as PackedScene).instantiate()
 	model.name = "Model"
-	node.add_child(model)
+	scene.add_child(model)
 
-	return node
+	return scene

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dmf4kqps53wio"]
+[gd_scene load_steps=36 format=3 uid="uid://dmf4kqps53wio"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_6ixng"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6r7ho"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cjtttjdeoqfne" path="res://assets/item_sprites/tree.png" id="8_f4gct"]
 [ext_resource type="PackedScene" uid="uid://b2pjqpfsqd2xs" path="res://ui/storage_ui.tscn" id="9_wtw3x"]
 [ext_resource type="Script" path="res://scripts/player_interaction.gd" id="10_2e1hf"]
+[ext_resource type="Script" path="res://scripts/items/axe.gd" id="10_ijs6q"]
+[ext_resource type="Texture2D" uid="uid://bk8u3lq3nj8pm" path="res://assets/item_sprites/axe.png" id="11_qfx4l"]
 [ext_resource type="Script" path="res://scripts/player_items.gd" id="12_gguj2"]
 [ext_resource type="Script" path="res://scripts/time_info.gd" id="13_d481f"]
 [ext_resource type="Script" path="res://scripts/FullscreenControl.gd" id="14_lo4hn"]
@@ -53,6 +55,13 @@ name = "Tree"
 texture = ExtResource("8_f4gct")
 count = 0
 actionScript = ExtResource("7_s84na")
+
+[sub_resource type="Resource" id="Resource_yueuq"]
+script = ExtResource("5_fyn3y")
+name = "Axe"
+texture = ExtResource("11_qfx4l")
+count = 0
+actionScript = ExtResource("10_ijs6q")
 
 [sub_resource type="Animation" id="Animation_o7bwb"]
 resource_name = "DayCycle"
@@ -719,7 +728,7 @@ slot_padding = 2
 [node name="Storage" type="Node" parent="."]
 script = ExtResource("3_xwejg")
 storage_size = 3
-starting_items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_d3d8q"), SubResource("Resource_4exrv"), null])
+starting_items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_d3d8q"), SubResource("Resource_4exrv"), SubResource("Resource_yueuq")])
 
 [node name="MovementScript" type="Node" parent="."]
 script = ExtResource("1_6ixng")

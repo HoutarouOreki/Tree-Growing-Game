@@ -12,7 +12,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	var plant_nodes = PlantManager.generate_plant_nodes()
 	for plantNode in plant_nodes:
-		add_child(plantNode)
+		add_child(plantNode, true)
 
 
 func _unhandled_input(event: InputEvent) -> void:

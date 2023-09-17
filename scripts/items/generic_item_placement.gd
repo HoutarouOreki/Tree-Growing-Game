@@ -23,12 +23,16 @@ func process(player: Player):
 
 	if !info:
 		if last_collider:
+			if !is_instance_valid(last_collider):
+				last_collider = null
 			_stop_preview(last_collider)
 			last_collider = null
 		return
 
 	if info.collider != last_collider:
 		if last_collider:
+			if !is_instance_valid(last_collider):
+				last_collider = null
 			_stop_preview(last_collider)
 		last_collider = info.collider
 		_start_preview(position, last_collider)
@@ -74,6 +78,9 @@ func start_process(player: Player):
 func stop_process(player: CharacterBody3D):
 	if !last_collider:
 		return
+		
+	if !is_instance_valid(last_collider):
+		last_collider = null
 
 	_stop_preview(last_collider)
 	last_collider = null

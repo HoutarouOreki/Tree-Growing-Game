@@ -10,6 +10,10 @@ func add_plant(plantData: PlantData) -> void:
 	plants.append(plantData)
 
 
+func remove_plant(plantData: PlantData) -> void:
+	plants.erase(plantData)
+
+
 func generate_plant_nodes() -> Array[PlantNode]:
 	var arr: Array[PlantNode] = []
 
