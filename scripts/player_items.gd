@@ -17,7 +17,7 @@ func use_item(event):
 		storage.slots[selectedSlotIndex].item.action(player, event)
 
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent):
 	if player.disabled:
 		return
 

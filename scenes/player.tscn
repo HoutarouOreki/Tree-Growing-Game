@@ -688,6 +688,7 @@ emission = Color(0.658824, 0.858824, 1, 1)
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 7
+floor_max_angle = 0.523599
 script = ExtResource("1_6r7ho")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -793,6 +794,7 @@ script = ExtResource("14_lo4hn")
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 size = Vector3(100, 20, 100)
+shape = 2
 material = SubResource("FogMaterial_0iky6")
 
 [node name="PauseScreen" parent="." instance=ExtResource("15_s0ws8")]

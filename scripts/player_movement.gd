@@ -2,7 +2,7 @@ extends Node
 
 
 @onready var player: Player = $".."
-@onready var neck := $"../Neck"
+@onready var neck: Node3D = $"../Neck"
 
 const SPEED = 2.8
 const ACCELERATION = 30.5

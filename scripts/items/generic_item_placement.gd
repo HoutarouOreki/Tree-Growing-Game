@@ -78,7 +78,7 @@ func start_process(player: Player):
 func stop_process(player: CharacterBody3D):
 	if !last_collider:
 		return
-		
+
 	if !is_instance_valid(last_collider):
 		last_collider = null
 

@@ -12,11 +12,11 @@ var _mouse_position = Vector2(0.0, 0.0)
 var _total_pitch = 0.0
 
 # Movement state
-var _direction = Vector3(0.0, 0.0, 0.0)
-var _velocity = Vector3(0.0, 0.0, 0.0)
-var _acceleration = 30
-var _deceleration = -10
-var _vel_multiplier = 4
+var _direction: Vector3 = Vector3(0.0, 0.0, 0.0)
+var _velocity: Vector3 = Vector3(0.0, 0.0, 0.0)
+var _acceleration: float = 30
+var _deceleration: float = -10
+var _vel_multiplier: float = 4
 
 # Keyboard state
 var _w = false
@@ -69,12 +69,12 @@ func _process(delta):
 	_update_movement(delta)
 
 # Updates camera movement
-func _update_movement(delta):
+func _update_movement(delta: float):
 	# Computes desired direction from key states
 	_direction = Vector3(
-		(_d as float) - (_a as float),
-		(_e as float) - (_q as float),
-		(_s as float) - (_w as float)
+		float(_d) - float(_a),
+		float(_e) - float(_q),
+		float(_s) - float(_w)
 	)
 
 	# Computes the change in velocity due to desired direction and "drag"

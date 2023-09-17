@@ -13,6 +13,7 @@ var since_last_play = 0.0
 var playing = false
 var parent: Node3D
 
+@warning_ignore("shadowed_variable")
 func start_playing(parent: Node3D):
 	playing = true
 	self.parent = parent

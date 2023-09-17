@@ -44,10 +44,11 @@ func stop_process(player: Player):
 	instance.queue_free()
 
 
-func get_or_create_instance(player: Player):
+func get_or_create_instance(player: Player) -> Node3D:
 	var instance = player.find_child(name, false, false)
 	if !instance:
-		instance = actionScript.new()
+		instance = Node3D.new()
+		instance.set_script(actionScript)
 		player.add_child(instance)
 		instance.name = self.name
 

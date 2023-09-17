@@ -14,4 +14,4 @@ func _unhandled_input(event: InputEvent) -> void:
 func interact():
 	var collider = interactionRay.get_collider()
 	if collider && collider.has_method("interact"):
-		collider.interact(player)
+		collider.call("interact", player)

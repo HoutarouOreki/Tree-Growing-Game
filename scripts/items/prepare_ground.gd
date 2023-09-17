@@ -4,7 +4,7 @@ const preview_transparency = 0.7
 const preview_node_name = "preview tree"
 
 func _place(position: Vector3, collider: Node3D) -> void:
-	var scene_resource = load("res://scenes/prepared_ground.tscn")
+	var scene_resource = load("res://scenes/prepared_ground.tscn") as PackedScene
 	var instance = scene_resource.instantiate() as Node3D
 	instance.position = position
 	get_tree().current_scene.add_child(instance)
@@ -12,7 +12,7 @@ func _place(position: Vector3, collider: Node3D) -> void:
 
 
 func _getCollisionMask() -> int:
-	return pow(2, 2)
+	return int(pow(2, 2))
 
 
 func _getAvoidanceMask() -> int:
@@ -20,7 +20,7 @@ func _getAvoidanceMask() -> int:
 
 
 func _start_preview(position: Vector3, collider: Node3D):
-	var scene_resource = load("res://scenes/ground_cursor.tscn")
+	var scene_resource = load("res://scenes/ground_cursor.tscn") as PackedScene
 	var instance = scene_resource.instantiate() as Node3D
 	FadeManager.set_transparency(instance, preview_transparency)
 	collider.add_child(instance)

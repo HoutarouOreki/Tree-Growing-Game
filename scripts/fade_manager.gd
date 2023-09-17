@@ -45,7 +45,7 @@ func _process(delta):
 func remove_completed():
 	while infos_to_remove.size() > 0:
 		var index = infos_to_remove.pop_back() as int
-		var fadeInfo = infos.pop_at(index) as FadeInfo
+		var fadeInfo: FadeInfo = infos.pop_at(index)
 		if fadeInfo.callback:
 			fadeInfo.callback.call()
 		if fadeInfo.remove_on_complete && is_instance_valid(fadeInfo.node):

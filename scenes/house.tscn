@@ -555,7 +555,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.33178)
 shape = SubResource("BoxShape3D_12g70")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="House"]
-transform = Transform3D(1, 0, 0, 0, 0.814925, -0.579566, 0, 0.579566, 0.814925, 0, -0.23843, 3.91415)
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, -0.218454, 3.99519)
 shape = SubResource("BoxShape3D_1me5o")
 
 [node name="bed" parent="." instance=ExtResource("2_fbeyc")]

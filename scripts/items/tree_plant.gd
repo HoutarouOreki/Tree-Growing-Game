@@ -4,13 +4,15 @@ const planted_tree_node_name = "tree"
 const preview_tree_node_name = "preview tree"
 const preview_transparency = 0.7
 
+const Scatter := preload("res://addons/proton_scatter/src/scatter.gd")
+
 
 func _place(position: Vector3, collider: Node3D):
 	if !can_plant_here(collider):
 		return
 
 	remove_preview(collider)
-	var scene_resource = load("res://scenes/growing_tree.tscn")
+	var scene_resource = load("res://scenes/plants/plant_node.tscn") as PackedScene
 	var instance = scene_resource.instantiate() as Node3D
 	collider.add_child(instance)
 	instance.name = planted_tree_node_name
@@ -21,7 +23,7 @@ func _place(position: Vector3, collider: Node3D):
 	timer.start(0.2)
 	timer.autostart = true
 	await timer.timeout
-	var grassScatter = get_tree().root.get_node("World Scene/GrassScatter")
+	var grassScatter = get_tree().root.get_node("World Scene/GrassScatter") as Scatter
 	grassScatter.rebuild()
 
 
@@ -37,7 +39,7 @@ func can_plant_here(collider: Node3D) -> bool:
 
 
 func _getCollisionMask() -> int:
-	return pow(2, 3)
+	return int(pow(2, 3))
 
 
 func _preview(position: Vector3, collider: Node3D):
@@ -53,7 +55,7 @@ func _start_preview(position: Vector3, collider: Node3D):
 	if !can_plant_here(collider):
 		return
 
-	var preview_scene_resource = load("res://assets/models/trees/TreeStage1.glb")
+	var preview_scene_resource = preload("res://assets/models/plants/apple_tree/Stage1.glb") as PackedScene
 	var instance = preview_scene_resource.instantiate() as Node3D
 	FadeManager.set_transparency(instance, preview_transparency)
 	collider.add_child(instance)

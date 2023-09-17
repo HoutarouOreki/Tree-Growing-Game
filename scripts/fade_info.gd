@@ -8,6 +8,7 @@ var progress_s: float = 0.0
 var remove_on_complete: bool
 var callback: Callable
 
+@warning_ignore("shadowed_variable")
 static func create(node: Node, from: float, to: float, duration_s: float, remove_on_complete: bool, callback: Callable) -> FadeInfo:
 	var fadeInfo = FadeInfo.new()
 	fadeInfo.node = node

@@ -36,4 +36,4 @@ func _load_fullscreen_mode() -> DisplayServer.WindowMode:
 		var file_fullscreen_mode = FileAccess.open(_save_path_fullscreen_mode, FileAccess.READ)
 		return file_fullscreen_mode.get_var()
 	else:
-		return int(ProjectSettings.get_setting("display/window/size/mode"))
+		return int(ProjectSettings.get_setting("display/window/size/mode")) as DisplayServer.WindowMode

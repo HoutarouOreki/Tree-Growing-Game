@@ -7,7 +7,7 @@ extends Control
 
 func _ready() -> void:
 	for save in SaveManager.get_saves():
-		var button = load("res://scenes/menus/save_display_button.tscn").instantiate() as SaveDisplayButton
+		var button = (load("res://scenes/menus/save_display_button.tscn") as PackedScene).instantiate() as SaveDisplayButton
 		button.save = save
 		saves_flow_container.add_child(button)
 
