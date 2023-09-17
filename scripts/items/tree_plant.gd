@@ -4,8 +4,6 @@ const planted_tree_node_name = "tree"
 const preview_tree_node_name = "preview tree"
 const preview_transparency = 0.7
 
-const Scatter := preload("res://addons/proton_scatter/src/scatter.gd")
-
 
 func _place(position: Vector3, collider: Node3D):
 	if !can_plant_here(collider):
@@ -18,13 +16,6 @@ func _place(position: Vector3, collider: Node3D):
 	instance.name = planted_tree_node_name
 	register_plant(instance.global_position)
 	PopUpManager.add(instance)
-	var timer = Timer.new()
-	add_child(timer)
-	timer.start(0.2)
-	timer.autostart = true
-	await timer.timeout
-	var grassScatter = get_tree().root.get_node("World Scene/GrassScatter") as Scatter
-	grassScatter.rebuild()
 
 
 func register_plant(position: Vector3):
