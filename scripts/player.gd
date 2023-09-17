@@ -5,11 +5,17 @@ var disabled: bool = false
 @onready var itemRay: RayCast3D = $Neck/Camera3D/ItemRay
 @onready var dayCycle: AnimationPlayer = $DayCycle
 @onready var pauseScreen: Control = $PauseScreen
+@onready var neck: Node3D = $Neck
+@onready var camera: Camera3D = $Neck/Camera3D
+
+
+func get_basis_vertically_locked() -> Basis:
+	return neck.basis
 
 
 func _process(delta: float) -> void:
 	if !disabled && dayCycle.current_animation_position > 23:
-		Transition.advance_day(self)
+		TransitionManager.advance_day(self)
 
 
 func _ready() -> void:

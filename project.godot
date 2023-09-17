@@ -22,12 +22,12 @@ boot_splash/minimum_display_time=1000
 
 [autoload]
 
+TransitionManager="*res://scripts/transition_manager.gd"
 FootstepsManager="*res://scripts/footsteps.gd"
 PopUpManager="*res://scripts/pop_up_manager.gd"
 FadeManager="*res://scripts/fade_manager.gd"
 PlantManager="*res://scripts/plants/plant_manager.gd"
 SaveManager="*res://scripts/saves/save_manager.gd"
-Transition="*res://scenes/transition.tscn"
 
 [debug]
 
@@ -106,6 +106,7 @@ save_game={
 3d_physics/layer_4="PlantableGround"
 3d_physics/layer_5="UnpreparableGround"
 3d_physics/layer_9="Plants"
+3d_physics/layer_21="Axable"
 
 [rendering]
 

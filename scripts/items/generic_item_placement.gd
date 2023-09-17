@@ -25,7 +25,7 @@ func process(player: Player):
 		if last_collider:
 			if !is_instance_valid(last_collider):
 				last_collider = null
-			_stop_preview(last_collider)
+			_stop_preview(last_collider, player)
 			last_collider = null
 		return
 
@@ -33,18 +33,18 @@ func process(player: Player):
 		if last_collider:
 			if !is_instance_valid(last_collider):
 				last_collider = null
-			_stop_preview(last_collider)
+			_stop_preview(last_collider, player)
 		last_collider = info.collider
-		_start_preview(position, last_collider)
+		_start_preview(position, last_collider, player)
 
-	_preview(info.point, info.collider)
+	_preview(info.point, info.collider, player)
 
 
 func action(player: CharacterBody3D, event: InputEvent):
 	var info = get_collider_and_point(player)
 
 	if info:
-		_place(info.point, info.collider)
+		_place(info.point, info.collider, player)
 
 
 func _getCollisionMask() -> int:
@@ -55,19 +55,19 @@ func _getAvoidanceMask() -> int:
 	return 0
 
 
-func _place(position: Vector3, collider: Node3D) -> void:
+func _place(position: Vector3, collider: Node3D, player: Player) -> void:
 	pass
 
 
-func _preview(position: Vector3, collider: Node3D):
+func _preview(position: Vector3, collider: Node3D, player: Player):
 	pass
 
 
-func _start_preview(position: Vector3, collider: Node3D):
+func _start_preview(position: Vector3, collider: Node3D, player: Player):
 	pass
 
 
-func _stop_preview(collider: Node3D):
+func _stop_preview(collider: Node3D, player: Player):
 	pass
 
 
@@ -82,5 +82,5 @@ func stop_process(player: CharacterBody3D):
 	if !is_instance_valid(last_collider):
 		last_collider = null
 
-	_stop_preview(last_collider)
+	_stop_preview(last_collider, player)
 	last_collider = null

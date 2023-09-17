@@ -15,3 +15,8 @@ static func create(plantData: PlantData) -> PlantNode:
 	scene.add_child(model)
 
 	return scene
+
+
+func axe(player: Player) -> void:
+	PlantManager.remove_plant(data)
+	queue_free()

@@ -7,4 +7,4 @@ extends Control
 
 func _on_create_button_pressed() -> void:
 	SaveManager.create_save(name_input.text)
-	Transition.change_scene(world_scene)
+	TransitionManager.change_scene(world_scene)

@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cupsigoigbpk7"]
+[gd_scene load_steps=4 format=3 uid="uid://cupsigoigbpk7"]
 
+[ext_resource type="Script" path="res://scripts/environment/axable_tree.gd" id="1_7k3sx"]
 [ext_resource type="PackedScene" uid="uid://cxtku624mlm0" path="res://assets/models/trees/treeFall.glb" id="1_27s8o"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qwbg8"]
@@ -7,6 +8,9 @@ height = 1.2
 radius = 0.2
 
 [node name="TreeFall" type="StaticBody3D"]
+collision_layer = 1048577
+collision_mask = 0
+script = ExtResource("1_7k3sx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)

@@ -28,4 +28,4 @@ func _format_key(time_dict: Dictionary, key: StringName):
 
 func _on_button_pressed() -> void:
 	SaveManager.load_save(save.name)
-	Transition.change_scene("res://scenes/world_scene.tscn")
+	TransitionManager.change_scene("res://scenes/world_scene.tscn")

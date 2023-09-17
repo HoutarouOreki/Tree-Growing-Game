@@ -3,7 +3,7 @@ extends GenericItemPlacement
 const preview_transparency = 0.7
 const preview_node_name = "preview tree"
 
-func _place(position: Vector3, collider: Node3D) -> void:
+func _place(position: Vector3, collider: Node3D, player: Player) -> void:
 	var scene_resource = load("res://scenes/prepared_ground.tscn") as PackedScene
 	var instance = scene_resource.instantiate() as Node3D
 	instance.position = position
@@ -19,7 +19,7 @@ func _getAvoidanceMask() -> int:
 	return 0xFFFF & ~_getCollisionMask()
 
 
-func _start_preview(position: Vector3, collider: Node3D):
+func _start_preview(position: Vector3, collider: Node3D, player: Player):
 	var scene_resource = load("res://scenes/ground_cursor.tscn") as PackedScene
 	var instance = scene_resource.instantiate() as Node3D
 	FadeManager.set_transparency(instance, preview_transparency)
@@ -27,7 +27,7 @@ func _start_preview(position: Vector3, collider: Node3D):
 	instance.name = preview_node_name
 
 
-func _preview(position: Vector3, collider: Node3D):
+func _preview(position: Vector3, collider: Node3D, player: Player):
 	var previewNode = collider.find_child(preview_node_name, false, false) as Node3D
 	if !previewNode:
 		return
@@ -35,7 +35,7 @@ func _preview(position: Vector3, collider: Node3D):
 	previewNode.global_position = position
 
 
-func _stop_preview(collider: Node3D):
+func _stop_preview(collider: Node3D, player: Player):
 	remove_preview(collider)
 
 

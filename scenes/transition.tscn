@@ -115,7 +115,7 @@ _data = {
 "transition": SubResource("Animation_l76r0")
 }
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="TransitionCanvas" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_61yy6")
 

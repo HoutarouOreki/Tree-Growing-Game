@@ -10,8 +10,8 @@ func _on_exit_button_pressed() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	Transition.change_scene(playScene)
+	TransitionManager.change_scene(playScene)
 
 
 func _on_options_button_pressed() -> void:
-	Transition.change_scene(optionsScene)
+	TransitionManager.change_scene(optionsScene)

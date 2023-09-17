@@ -21,4 +21,4 @@ func unpause() -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	Transition.change_scene("res://scenes/menus/main_menu.tscn")
+	TransitionManager.change_scene("res://scenes/menus/main_menu.tscn")

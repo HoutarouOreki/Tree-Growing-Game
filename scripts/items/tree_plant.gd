@@ -5,7 +5,7 @@ const preview_tree_node_name = "preview tree"
 const preview_transparency = 0.7
 
 
-func _place(position: Vector3, collider: Node3D):
+func _place(position: Vector3, collider: Node3D, player: Player):
 	if !can_plant_here(collider):
 		return
 
@@ -33,11 +33,11 @@ func _getCollisionMask() -> int:
 	return int(pow(2, 3))
 
 
-func _preview(position: Vector3, collider: Node3D):
+func _preview(position: Vector3, collider: Node3D, player: Player):
 	pass
 
 
-func _start_preview(position: Vector3, collider: Node3D):
+func _start_preview(position: Vector3, collider: Node3D, player: Player):
 	var previewNode = collider.find_child(preview_tree_node_name, false, false)
 	if previewNode:
 		collider.remove_child(previewNode)
@@ -53,7 +53,7 @@ func _start_preview(position: Vector3, collider: Node3D):
 	instance.name = preview_tree_node_name
 
 
-func _stop_preview(collider: Node3D):
+func _stop_preview(collider: Node3D, player: Player):
 	remove_preview(collider)
 
 

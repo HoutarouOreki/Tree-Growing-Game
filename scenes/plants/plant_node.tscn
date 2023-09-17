@@ -15,7 +15,7 @@ height = 0.5
 radial_segments = 32
 
 [node name="PlantNode" type="StaticBody3D"]
-collision_layer = 256
+collision_layer = 1048832
 collision_mask = 0
 script = ExtResource("1_xcd7e")
 

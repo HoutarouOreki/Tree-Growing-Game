@@ -13,4 +13,4 @@ func _ready() -> void:
 
 
 func _on_new_game_button_pressed() -> void:
-	Transition.change_scene(new_game_scene)
+	TransitionManager.change_scene(new_game_scene)
