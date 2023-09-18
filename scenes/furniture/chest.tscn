@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4eh4r28p4mtt"]
+
+[ext_resource type="Script" path="res://scripts/objects/chest.gd" id="1_lqn08"]
+[ext_resource type="PackedScene" uid="uid://coh145cdeixfv" path="res://assets/models/furniture/chest.glb" id="1_wgk5t"]
+[ext_resource type="Script" path="res://scripts/storage/storage.gd" id="3_tpvig"]
+[ext_resource type="PackedScene" uid="uid://6psin4vmlve" path="res://scenes/menus/storage_screen.tscn" id="4_10ceo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlijh"]
+size = Vector3(0.262172, 0.260593, 0.268366)
+
+[node name="Chest" type="StaticBody3D"]
+script = ExtResource("1_lqn08")
+
+[node name="chest" parent="." instance=ExtResource("1_wgk5t")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131183, 0)
+shape = SubResource("BoxShape3D_xlijh")
+
+[node name="Storage" type="Node" parent="."]
+script = ExtResource("3_tpvig")
+starting_items = Array[Resource("res://scripts/storage/storage_item.gd")]([null, null, null, null, null, null, null, null, null, null])
+
+[node name="StorageScreen" parent="." node_paths=PackedStringArray("storage") instance=ExtResource("4_10ceo")]
+visible = true
+storage = NodePath("../Storage")
