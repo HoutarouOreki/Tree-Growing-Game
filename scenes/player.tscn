@@ -723,7 +723,7 @@ debug_shape_thickness = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275122, 0)
 mesh = SubResource("CylinderMesh_xtr5c")
 
-[node name="Hotbar" parent="." instance=ExtResource("9_wtw3x")]
+[node name="Hotbar" parent="." node_paths=PackedStringArray("storage") instance=ExtResource("9_wtw3x")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -733,6 +733,7 @@ offset_top = -50.0
 offset_right = 250.0
 grow_vertical = 0
 size_flags_horizontal = 0
+storage = NodePath("../Storage")
 slot_size = 40
 slot_padding = 2
 

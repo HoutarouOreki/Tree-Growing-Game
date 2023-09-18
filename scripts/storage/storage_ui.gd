@@ -1,6 +1,6 @@
 class_name StorageUi extends Control
 
-@onready var storage: Storage = $"../Storage"
+@export var storage: Storage
 @onready var player := $".."
 @export_range(0, 100000, 1) var slot_size: int = 32
 @export_range(0, 100000, 1) var slot_padding: int = 4
