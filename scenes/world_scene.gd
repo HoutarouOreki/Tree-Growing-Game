@@ -1,9 +1,6 @@
 extends Node3D
 
 
-var save: Save
-
-
 func _enter_tree() -> void:
 	if !SaveManager.current_save && !SaveManager.load_save("default"):
 		SaveManager.create_save("default")

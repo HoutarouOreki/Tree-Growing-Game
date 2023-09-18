@@ -23,11 +23,11 @@ boot_splash/minimum_display_time=1000
 [autoload]
 
 TransitionManager="*res://scripts/transition_manager.gd"
+SaveManager="*res://scripts/saves/save_manager.gd"
 FootstepsManager="*res://scripts/footsteps.gd"
 PopUpManager="*res://scripts/pop_up_manager.gd"
 FadeManager="*res://scripts/fade_manager.gd"
 PlantManager="*res://scripts/plants/plant_manager.gd"
-SaveManager="*res://scripts/saves/save_manager.gd"
 
 [debug]
 

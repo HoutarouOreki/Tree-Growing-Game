@@ -20,7 +20,8 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	dayCycle.seek(6.5)
-	global_position = SaveManager.current_save.player_position
+	global_position = (SaveManager.current_save as GameSave).player_position
+	neck.rotation_degrees.y = (SaveManager.current_save as GameSave).neck_rotation_deg_y
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 

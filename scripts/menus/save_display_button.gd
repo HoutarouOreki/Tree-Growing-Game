@@ -1,7 +1,7 @@
 class_name SaveDisplayButton extends Control
 
 
-@export var save: Save
+@export var save: GameSave
 @onready var name_label: Label = $"MarginContainer/HBoxContainer/MarginContainer/NameLabel"
 @onready var date_label: Label = $"MarginContainer/HBoxContainer/DateLabel"
 

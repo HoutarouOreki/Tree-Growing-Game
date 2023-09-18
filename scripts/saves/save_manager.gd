@@ -2,23 +2,21 @@ extends Node
 
 const saves_directory = "user://saves/"
 
-
-@export var current_save: Save
-
+var current_save: GameSave
 
 func _ready() -> void:
 	if !DirAccess.dir_exists_absolute(saves_directory):
 		DirAccess.make_dir_absolute(saves_directory)
 
 
-## Returns local [Save]s in chronological order, starting from most recent.
-func get_saves() -> Array[Save]:
-	var arr: Array[Save] = []
+## Returns local [GameSave]s in chronological order, starting from most recent.
+func get_saves() -> Array[GameSave]:
+	var arr: Array[GameSave] = []
 
 	for file in DirAccess.get_files_at(saves_directory):
 		arr.append(ResourceLoader.load(saves_directory + file))
 
-	arr.sort_custom(func (a: Save, b: Save):
+	arr.sort_custom(func (a: GameSave, b: GameSave):
 		return a.save_date >= b.save_date
 	)
 
@@ -38,7 +36,7 @@ func load_save(name: String) -> bool:
 
 
 func create_save(name: String) -> void:
-	current_save = Save.new()
+	current_save = GameSave.new()
 	current_save.name = _make_safe_name(name)
 	store()
 
