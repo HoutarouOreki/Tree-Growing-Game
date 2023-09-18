@@ -7,6 +7,7 @@ var disabled: bool = false
 @onready var pauseScreen: Control = $PauseScreen
 @onready var neck: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera3D
+@onready var playerItemsScreen: Control = $PlayerItemsScreen
 
 
 func get_basis_vertically_locked() -> Basis:
@@ -30,10 +31,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		dayCycle.seek(dayCycle.current_animation_position + 1)
 	elif Input.is_key_pressed(KEY_PAGEDOWN):
 		dayCycle.seek(dayCycle.current_animation_position - 1)
-	elif Input.is_action_just_pressed("ui_cancel"):
+	elif event.is_action("ui_cancel") && Input.is_action_just_pressed("ui_cancel"):
 		get_tree().paused = true
 		pauseScreen.show()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif event.is_action("open_inventory") && Input.is_action_just_pressed("open_inventory"):
+		playerItemsScreen.show()
 	else:
 		return
 

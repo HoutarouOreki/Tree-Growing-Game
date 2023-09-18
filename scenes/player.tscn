@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dmf4kqps53wio"]
+[gd_scene load_steps=38 format=3 uid="uid://dmf4kqps53wio"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_6ixng"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6r7ho"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scripts/time_info.gd" id="13_d481f"]
 [ext_resource type="Script" path="res://scripts/FullscreenControl.gd" id="14_lo4hn"]
 [ext_resource type="PackedScene" uid="uid://dpfeqnr8ysmpu" path="res://scenes/menus/pause_screen.tscn" id="15_s0ws8"]
+[ext_resource type="PackedScene" uid="uid://b1vrdh287862n" path="res://scenes/menus/player_items_screen.tscn" id="18_7ubt7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_f6fvt"]
 
@@ -800,3 +801,5 @@ material = SubResource("FogMaterial_0iky6")
 
 [node name="PauseScreen" parent="." instance=ExtResource("15_s0ws8")]
 visible = false
+
+[node name="PlayerItemsScreen" parent="." instance=ExtResource("18_7ubt7")]

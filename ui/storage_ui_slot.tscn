@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbncy4bij2sit"]
+
+[ext_resource type="Script" path="res://scripts/storage/storage_ui_slot.gd" id="1_jxb62"]
+[ext_resource type="Script" path="res://scripts/storage/storage_item.gd" id="2_0q1oa"]
+[ext_resource type="Theme" uid="uid://gl5b3timkie4" path="res://scenes/menus/inventory_theme.tres" id="2_myd4s"]
+[ext_resource type="Texture2D" uid="uid://6xc5b38d25gf" path="res://addons/proton_scatter/demos/assets/textures/grid.png" id="3_ulx4i"]
+
+[sub_resource type="Resource" id="Resource_5jvnb"]
+script = ExtResource("2_0q1oa")
+name = "Hhhh"
+texture = ExtResource("3_ulx4i")
+count = 0
+
+[node name="StorageUiSlot" type="Control"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jxb62")
+item = SubResource("Resource_5jvnb")
+selected = null
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_myd4s")
+
+[node name="SelectedOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.14902)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+process_mode = 4
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 28.0
+mouse_filter = 2
+texture = ExtResource("3_ulx4i")
+expand_mode = 1
+stretch_mode = 5

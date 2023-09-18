@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://6psin4vmlve"]
+
+[ext_resource type="Script" path="res://scripts/storage/storage_screen.gd" id="1_1n4ig"]
+[ext_resource type="PackedScene" uid="uid://b2pjqpfsqd2xs" path="res://ui/storage_ui.tscn" id="2_ky2m2"]
+[ext_resource type="Script" path="res://scripts/menus/visibility_input_handler.gd" id="3_m1egn"]
+
+[node name="StorageScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1n4ig")
+
+[node name="StorageUI" parent="." instance=ExtResource("2_ky2m2")]
+layout_mode = 1
+
+[node name="VisibilityInputHandler" type="Node" parent="."]
+script = ExtResource("3_m1egn")

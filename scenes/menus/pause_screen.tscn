@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpfeqnr8ysmpu"]
+[gd_scene load_steps=5 format=3 uid="uid://dpfeqnr8ysmpu"]
 
 [ext_resource type="Theme" uid="uid://dec7irkhj5hdn" path="res://scenes/menus/theme.tres" id="1_px8dy"]
 [ext_resource type="Script" path="res://scripts/menus/pause_screen.gd" id="2_7pbiu"]
+[ext_resource type="Script" path="res://scripts/menus/visibility_input_handler.gd" id="3_iup8q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8wasq"]
 font_size = 60
@@ -66,6 +67,9 @@ text = "Resume"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Exit to menu"
+
+[node name="VisibilityInputHandler" type="Node" parent="."]
+script = ExtResource("3_iup8q")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
