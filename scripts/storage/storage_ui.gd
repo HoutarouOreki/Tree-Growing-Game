@@ -1,3 +1,4 @@
+@tool
 class_name StorageUi extends Control
 
 @export var storage: Storage
@@ -44,31 +45,13 @@ func on_change():
 
 
 func generate_layout():
+	var i = 0
 	for slot in storage.slots:
-		add_slot_visual(slot)
+		add_slot_visual(slot, selectedSlotIndex == i)
+		i += 1
 
-func add_slot_visual(slot: StorageSlot):
-	var itemContainer = Control.new()
-	gridContainer.add_child(itemContainer)
-	itemContainer.custom_minimum_size = Vector2(slot_size, slot_size)
-	var background = ColorRect.new()
-	if slot == storage.slots[selectedSlotIndex]:
-		background.color = Color8(100, 100, 100)
-	else:
-		background.color = Color8(50, 50, 50)
-	background.size = Vector2(slot_size, slot_size)
-	itemContainer.add_child(background)
 
-	if !slot.item:
-		return
-
-	background.add_child(create_item_visual(slot.item))
-
-func create_item_visual(item: StorageItem) -> Control:
-	var texture = TextureRect.new()
-	texture.texture = item.texture
-	texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	texture.stretch_mode = texture.STRETCH_KEEP_ASPECT_CENTERED
-	texture.size = Vector2(slot_size - slot_padding * 2, slot_size - slot_padding * 2)
-	texture.position = Vector2(slot_padding, slot_padding)
-	return texture
+func add_slot_visual(slot: StorageSlot, selected: bool):
+	var storageUiSlot = (load("res://ui/storage_ui_slot.tscn") as PackedScene).instantiate() as StorageUiSlot
+	storageUiSlot.set_params(slot_size, slot_padding, slot.item, selected)
+	gridContainer.add_child(storageUiSlot)
