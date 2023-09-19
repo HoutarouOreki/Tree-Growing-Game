@@ -1,31 +1,60 @@
 class_name AxableTree extends StaticBody3D
 
 
-const FALLING_TIME: float = 1.5
+@export var durability: int = 5
+
+@onready var animations: AnimationPlayer = $TreeAnimations
+@onready var animationContainer: Node3D = $AnimationContainer
+@onready var sounds: TreeSounds = $AnimationContainer/ModelContainer/TreeSounds
+var model: Node3D
+var animation_direction_right: bool
 
 
-var timeSinceAxed: float
-var startTransform: Transform3D
-var targetTransform: Transform3D
+func _ready() -> void:
+	model = animationContainer.get_child(0).get_child(0)
+	animations.animation_finished.connect(on_animation_finished)
+	animation_direction_right = randi() % 2 == 1
 
 
-func _process(delta: float) -> void:
-	if !targetTransform:
+func axe(player: Player) -> void:
+	if animations.is_playing():
 		return
 
-	if timeSinceAxed >= FALLING_TIME:
-		queue_free()
+	(sounds as TreeSounds).play_hit()
+
+	if durability > 0:
+		on_hit(player)
 		return
 
-	timeSinceAxed += delta
-	var eased_progress = ease(timeSinceAxed / FALLING_TIME, 3)
-
-	transform = startTransform.interpolate_with(targetTransform, eased_progress)
+	fall_down(player)
 
 
-func axe(player: Player):
+func fall_down(player: Player) -> void:
 	collision_layer = 0
-	var fallingRotationAxis = player.get_basis_vertically_locked().z.normalized()
-	startTransform = transform
-	targetTransform = transform
-	targetTransform.basis = startTransform.basis.rotated(fallingRotationAxis, deg_to_rad(90))
+	update_rotation(player)
+	animations.play("fall")
+	(sounds as TreeSounds).play_break()
+
+
+func on_hit(player: Player) -> void:
+	durability -= 1
+	update_rotation(player)
+	animations.play("on_hit", -1, 1.5)
+
+
+func update_rotation(player: Player) -> void:
+	var player_xz = Vector2(player.global_position.x, player.global_position.z)
+	var tree_xz = Vector2(global_position.x, global_position.z)
+	var rotation_angle = -player_xz.angle_to_point(tree_xz) - rotation.y
+	if animation_direction_right:
+		rotation_angle += deg_to_rad(180)
+	animationContainer.rotation.y = rotation_angle
+	model.rotation.y = -rotation_angle
+
+
+func on_animation_finished(animation_name: String) -> void:
+	if animation_name == "fall":
+		visible = false
+		(sounds as TreeSounds).play_fall()
+		await (sounds as TreeSounds).break_sound_finished
+		queue_free()

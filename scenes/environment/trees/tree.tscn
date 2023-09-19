@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbnfpuaqsj804"]
+[gd_scene load_steps=6 format=3 uid="uid://bbnfpuaqsj804"]
 
 [ext_resource type="Script" path="res://scripts/environment/axable_tree.gd" id="1_8so4f"]
 [ext_resource type="PackedScene" uid="uid://ewfc6evfb513" path="res://assets/models/trees/tree.glb" id="1_frouc"]
+[ext_resource type="PackedScene" uid="uid://hhaoof6knkj6" path="res://scenes/environment/trees/tree_animations.tscn" id="3_rd16m"]
+[ext_resource type="PackedScene" uid="uid://bttomam4ylr88" path="res://scenes/environment/trees/tree_sounds.tscn" id="4_vv5ub"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ih75d"]
 height = 1.2
@@ -12,8 +14,17 @@ collision_layer = 1048577
 collision_mask = 0
 script = ExtResource("1_8so4f")
 
-[node name="tree" parent="." instance=ExtResource("1_frouc")]
+[node name="AnimationContainer" type="Node3D" parent="."]
+
+[node name="ModelContainer" type="Node3D" parent="AnimationContainer"]
+
+[node name="tree" parent="AnimationContainer/ModelContainer" instance=ExtResource("1_frouc")]
+
+[node name="TreeSounds" parent="AnimationContainer/ModelContainer" instance=ExtResource("4_vv5ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.700005, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 shape = SubResource("CylinderShape3D_ih75d")
+
+[node name="TreeAnimations" parent="." instance=ExtResource("3_rd16m")]

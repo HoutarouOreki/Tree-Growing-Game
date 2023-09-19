@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://bttomam4ylr88"]
+
+[ext_resource type="Script" path="res://scripts/environment/tree_sounds.gd" id="1_e0uwd"]
+[ext_resource type="AudioStream" uid="uid://de8ougbedqtkc" path="res://assets/sounds/impacts/15_Hit_on_wood_1.wav" id="2_6tnmt"]
+[ext_resource type="AudioStream" uid="uid://b1yt8y0esxqk6" path="res://assets/sounds/impacts/15_Hit_on_wood_2.wav" id="3_ba2rg"]
+[ext_resource type="AudioStream" uid="uid://boka4ccdqrxpu" path="res://assets/sounds/impacts/WoodSnap1.wav" id="4_lyg6f"]
+[ext_resource type="AudioStream" uid="uid://qp8ovsodvodn" path="res://assets/sounds/impacts/WoodSnap3.wav" id="5_5twim"]
+[ext_resource type="AudioStream" uid="uid://t314tadd3jl" path="res://assets/sounds/impacts/WoodSnap4.wav" id="6_gl4k4"]
+[ext_resource type="AudioStream" uid="uid://c8d3su1mwekuq" path="res://assets/sounds/impacts/WoodSnap5.wav" id="7_p3fnt"]
+
+[node name="TreeSounds" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200005, 0)
+script = ExtResource("1_e0uwd")
+
+[node name="HitSound1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_6tnmt")
+bus = &"Environment"
+
+[node name="HitSound2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ba2rg")
+bus = &"Environment"
+
+[node name="BreakSound1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_lyg6f")
+bus = &"Environment"
+
+[node name="BreakSound2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_5twim")
+bus = &"Environment"
+
+[node name="BreakSound3" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_gl4k4")
+bus = &"Environment"
+
+[node name="FallSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stream = ExtResource("7_p3fnt")
+bus = &"Environment"
