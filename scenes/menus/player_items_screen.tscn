@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b1vrdh287862n"]
 
-[ext_resource type="PackedScene" uid="uid://b8xh5tl4qkvo5" path="res://ui/player_items_category_control.tscn" id="1_7xcmt"]
+[ext_resource type="Script" path="res://scripts/menus/player_items_screen.gd" id="1_tny8a"]
 [ext_resource type="Script" path="res://scripts/storage/player_items_category.gd" id="2_nyjf0"]
 [ext_resource type="Script" path="res://scripts/menus/visibility_input_handler.gd" id="3_2tfck"]
 
@@ -29,6 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_3pwtb")
+script = ExtResource("1_tny8a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -57,19 +58,19 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 alignment = 1
 
-[node name="PlayerItemsCategoryControl" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_7xcmt")]
+[node name="PlayerItemsCategoryControl" parent="MarginContainer/VBoxContainer" instance_placeholder="res://ui/player_items_category_control.tscn"]
 layout_mode = 2
 itemsCategory = SubResource("Resource_1cj7i")
 
-[node name="PlayerItemsCategoryControl2" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_7xcmt")]
+[node name="PlayerItemsCategoryControl2" parent="MarginContainer/VBoxContainer" instance_placeholder="res://ui/player_items_category_control.tscn"]
 layout_mode = 2
 itemsCategory = SubResource("Resource_eoape")
 
-[node name="PlayerItemsCategoryControl3" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_7xcmt")]
+[node name="PlayerItemsCategoryControl3" parent="MarginContainer/VBoxContainer" instance_placeholder="res://ui/player_items_category_control.tscn"]
 layout_mode = 2
 itemsCategory = SubResource("Resource_1cj7i")
 
-[node name="PlayerItemsCategoryControl4" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_7xcmt")]
+[node name="PlayerItemsCategoryControl4" parent="MarginContainer/VBoxContainer" instance_placeholder="res://ui/player_items_category_control.tscn"]
 layout_mode = 2
 itemsCategory = SubResource("Resource_1cj7i")
 

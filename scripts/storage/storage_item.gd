@@ -1,10 +1,21 @@
 @tool
 class_name StorageItem extends Resource
 
+
+signal amount_changed
+
+
 @export var name: String
 @export var texture: Texture2D
-@export_range(1, 9999, 1) var count: int
+
+@export_range(1, 9999, 1) var count: int:
+	get: return count
+	set(value):
+		count = value
+		amount_changed.emit()
+
 @export var actionScript: Script
+
 
 func action(player: Player, event: InputEvent):
 	if !actionScript:

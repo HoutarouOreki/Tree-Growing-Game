@@ -1,5 +1,5 @@
 @tool
-extends MarginContainer
+class_name PlayerItemsCategoryControl extends MarginContainer
 
 
 @export var itemsCategory: PlayerItemsCategory

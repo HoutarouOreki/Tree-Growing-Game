@@ -8,6 +8,7 @@ class_name AxableTree extends StaticBody3D
 @onready var sounds: TreeSounds = $AnimationContainer/ModelContainer/TreeSounds
 var model: Node3D
 var animation_direction_right: bool
+var player: Player
 
 
 func _ready() -> void:
@@ -34,6 +35,7 @@ func fall_down(player: Player) -> void:
 	update_rotation(player)
 	animations.play("fall")
 	(sounds as TreeSounds).play_break()
+	self.player = player
 
 
 func on_hit(player: Player) -> void:
@@ -54,7 +56,15 @@ func update_rotation(player: Player) -> void:
 
 func on_animation_finished(animation_name: String) -> void:
 	if animation_name == "fall":
+		drop_items()
 		visible = false
 		(sounds as TreeSounds).play_fall()
 		await (sounds as TreeSounds).break_sound_finished
 		queue_free()
+
+
+func drop_items() -> void:
+	var item = StorageItem.new()
+	item.name = "Wood"
+	item.count = 7
+	player.add_item(item)

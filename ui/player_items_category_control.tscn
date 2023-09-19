@@ -63,4 +63,5 @@ text = "ExampleCategory"
 label_settings = SubResource("LabelSettings_1qaws")
 
 [node name="BoxContainer" type="BoxContainer" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
