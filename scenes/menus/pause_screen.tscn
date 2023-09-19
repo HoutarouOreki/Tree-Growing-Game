@@ -70,6 +70,7 @@ text = "Exit to menu"
 
 [node name="VisibilityInputHandler" type="Node" parent="."]
 script = ExtResource("3_iup8q")
+closing_actions = Array[String](["ui_cancel", "pause"])
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

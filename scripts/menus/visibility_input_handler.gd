@@ -24,7 +24,7 @@ func onVisibilityChanged() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	for closing_action in closing_actions:
-		if event.is_action(closing_action) && Input.is_action_just_pressed(closing_action):
+		if InputHelper.is_action_press(closing_action, event):
 			get_viewport().set_input_as_handled()
 			parent.hide()
 			break

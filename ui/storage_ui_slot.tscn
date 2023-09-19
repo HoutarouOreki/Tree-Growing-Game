@@ -17,7 +17,6 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_jxb62")
 item = SubResource("Resource_5jvnb")
-selected = null
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

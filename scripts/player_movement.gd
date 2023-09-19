@@ -16,13 +16,14 @@ func _physics_process(delta):
 		player.velocity.y -= gravity * delta
 
 	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Vector2.ZERO if player.disabled else Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
+	var movement_vector = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
+	var input_dir = Vector2.ZERO if player.disabled else movement_vector
 	var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	var new_velocity = player.velocity.move_toward(
 		direction * SPEED if direction else Vector3.ZERO,
 		ACCELERATION * delta
-	)
+	) * movement_vector.length()
 
 	if (new_velocity * Vector3(input_dir.x, 0, input_dir.y)).is_zero_approx():
 		FootstepsManager.stop_playing()

@@ -7,7 +7,9 @@ extends Node
 func _unhandled_input(event: InputEvent) -> void:
 	if player.disabled:
 		return
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+
+	if InputHelper.is_action_press("interact", event):
+		get_viewport().set_input_as_handled()
 		interact()
 
 
