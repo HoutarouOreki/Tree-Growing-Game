@@ -1,13 +1,11 @@
 extends Control
 
 
-@export var playerItems: PlayerItems
 @onready var vboxContainer: VBoxContainer = $MarginContainer/VBoxContainer
 
 
 func _ready() -> void:
-	if playerItems:
-		playerItems.item_gained.connect(on_item_gained)
+		(SaveManager.current_save as GameSave).items.item_gained.connect(on_item_gained)
 
 
 func on_item_gained(name: String, amount: int) -> void:

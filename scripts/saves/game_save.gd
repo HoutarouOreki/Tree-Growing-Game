@@ -5,6 +5,7 @@ class_name GameSave extends Resource
 @export var plants: Array[PlantData] = []
 @export var save_date: String
 @export var day: int
+@export var items: PlayerItems = PlayerItems.new()
 
 ## Where the player will spawn when the scene loads.
 @export var player_position: Vector3

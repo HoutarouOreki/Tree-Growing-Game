@@ -1,4 +1,3 @@
-@tool
 class_name PlayerItemsCategoryControl extends MarginContainer
 
 
@@ -16,7 +15,7 @@ func generate_layout() -> void:
 		boxContainer.remove_child(child)
 		child.queue_free()
 
-	label.text = itemsCategory.name
+	label.text = itemsCategory.get_name_string()
 
 	for item in itemsCategory.items:
 		var uiSlot = (preload("res://ui/storage_ui_slot.tscn") as PackedScene).instantiate() as StorageUiSlot

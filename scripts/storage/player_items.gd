@@ -1,30 +1,24 @@
-class_name PlayerItems extends Node
+class_name PlayerItems extends Resource
 
 
 signal item_gained(name: String, amount: int)
 
 
 @export var categories: Array[PlayerItemsCategory]
-@export var otherItems: Array[StorageItem]
 
 
 func add_item(newItem: StorageItem) -> void:
-	item_gained.emit(newItem.name, newItem.count)
+	var matchingCategory: PlayerItemsCategory
 
 	for category in categories:
-		if try_stack_item(newItem, category.items):
-			return
+		if category.name == newItem.category:
+			matchingCategory = category
 
-	if try_stack_item(newItem, otherItems):
-		return
+	if !matchingCategory:
+		matchingCategory = PlayerItemsCategory.create(newItem.category)
+		categories.append(matchingCategory)
 
-	otherItems.append(newItem)
+	matchingCategory.add_item(newItem.duplicate(true))
+	item_gained.emit(newItem.name, newItem.count)
 
 
-func try_stack_item(newItem: StorageItem, arr: Array[StorageItem]) -> bool:
-	for item in arr:
-		if item.name == newItem.name:
-			item.count += newItem.count
-			return true
-
-	return false

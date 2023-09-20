@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dmf4kqps53wio"]
+[gd_scene load_steps=39 format=3 uid="uid://dmf4kqps53wio"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_6ixng"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6r7ho"]
@@ -18,9 +18,6 @@
 [ext_resource type="Script" path="res://scripts/FullscreenControl.gd" id="14_lo4hn"]
 [ext_resource type="PackedScene" uid="uid://dpfeqnr8ysmpu" path="res://scenes/menus/pause_screen.tscn" id="15_s0ws8"]
 [ext_resource type="PackedScene" uid="uid://b1vrdh287862n" path="res://scenes/menus/player_items_screen.tscn" id="18_7ubt7"]
-[ext_resource type="Script" path="res://scripts/storage/player_items.gd" id="19_5le73"]
-[ext_resource type="Texture2D" uid="uid://cp33xtx5gm8kl" path="res://assets/item_sprites/ShikashiFantasyIcons.png" id="20_jtlxb"]
-[ext_resource type="Script" path="res://scripts/storage/player_items_category.gd" id="20_qu0or"]
 [ext_resource type="PackedScene" uid="uid://r0cpmn3uj5li" path="res://ui/new_items_toast.tscn" id="22_xv6pl"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_f6fvt"]
@@ -53,6 +50,7 @@ name = "Shovel"
 texture = ExtResource("6_12j7q")
 count = 0
 actionScript = ExtResource("4_gnknr")
+category = 0
 
 [sub_resource type="Resource" id="Resource_4exrv"]
 script = ExtResource("5_fyn3y")
@@ -60,6 +58,7 @@ name = "Tree"
 texture = ExtResource("8_f4gct")
 count = 0
 actionScript = ExtResource("7_s84na")
+category = 0
 
 [sub_resource type="Resource" id="Resource_yueuq"]
 script = ExtResource("5_fyn3y")
@@ -67,6 +66,7 @@ name = "Axe"
 texture = ExtResource("11_qfx4l")
 count = 0
 actionScript = ExtResource("10_ijs6q")
+category = 0
 
 [sub_resource type="Animation" id="Animation_o7bwb"]
 resource_name = "DayCycle"
@@ -690,56 +690,6 @@ density = 0.01
 albedo = Color(0.760784, 0.968627, 1, 1)
 emission = Color(0.658824, 0.858824, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iuevf"]
-atlas = ExtResource("20_jtlxb")
-region = Rect2(0, 544, 32, 32)
-
-[sub_resource type="Resource" id="Resource_g0ifs"]
-script = ExtResource("5_fyn3y")
-name = "Wood"
-texture = SubResource("AtlasTexture_iuevf")
-count = 3
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pjkkc"]
-atlas = ExtResource("20_jtlxb")
-region = Rect2(32, 544, 32, 32)
-
-[sub_resource type="Resource" id="Resource_et03a"]
-script = ExtResource("5_fyn3y")
-name = "Rock"
-texture = SubResource("AtlasTexture_pjkkc")
-count = 5
-
-[sub_resource type="Resource" id="Resource_gm083"]
-script = ExtResource("20_qu0or")
-name = "Resources"
-items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_g0ifs"), SubResource("Resource_et03a"), null, null, null, null])
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kgdvc"]
-atlas = ExtResource("20_jtlxb")
-region = Rect2(0, 448, 32, 32)
-
-[sub_resource type="Resource" id="Resource_vftrs"]
-script = ExtResource("5_fyn3y")
-name = "Apple"
-texture = SubResource("AtlasTexture_kgdvc")
-count = 0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v8j25"]
-atlas = ExtResource("20_jtlxb")
-region = Rect2(64, 448, 32, 32)
-
-[sub_resource type="Resource" id="Resource_bhxv8"]
-script = ExtResource("5_fyn3y")
-name = "Pear"
-texture = SubResource("AtlasTexture_v8j25")
-count = 0
-
-[sub_resource type="Resource" id="Resource_waemt"]
-script = ExtResource("20_qu0or")
-name = "Food"
-items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_vftrs"), SubResource("Resource_bhxv8"), null])
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 7
@@ -856,12 +806,6 @@ material = SubResource("FogMaterial_0iky6")
 [node name="PauseScreen" parent="." instance=ExtResource("15_s0ws8")]
 visible = false
 
-[node name="PlayerItemsScreen" parent="." node_paths=PackedStringArray("player_items") instance=ExtResource("18_7ubt7")]
-player_items = NodePath("../PlayerItems")
+[node name="PlayerItemsScreen" parent="." instance=ExtResource("18_7ubt7")]
 
-[node name="PlayerItems" type="Node" parent="."]
-script = ExtResource("19_5le73")
-categories = Array[ExtResource("20_qu0or")]([SubResource("Resource_gm083"), SubResource("Resource_waemt")])
-
-[node name="NewItemsToast" parent="PlayerItems" node_paths=PackedStringArray("playerItems") instance=ExtResource("22_xv6pl")]
-playerItems = NodePath("..")
+[node name="NewItemsToast" parent="." instance=ExtResource("22_xv6pl")]

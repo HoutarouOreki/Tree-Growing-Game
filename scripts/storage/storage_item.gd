@@ -15,6 +15,7 @@ signal amount_changed
 		amount_changed.emit()
 
 @export var actionScript: Script
+@export var category: PlayerItemsCategory.Categories
 
 
 func action(player: Player, event: InputEvent):

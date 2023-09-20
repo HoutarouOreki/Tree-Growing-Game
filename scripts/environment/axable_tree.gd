@@ -64,7 +64,6 @@ func on_animation_finished(animation_name: String) -> void:
 
 
 func drop_items() -> void:
-	var item = StorageItem.new()
-	item.name = "Wood"
+	var item = preload("res://items/wood.tres").duplicate()
 	item.count = 7
 	player.add_item(item)

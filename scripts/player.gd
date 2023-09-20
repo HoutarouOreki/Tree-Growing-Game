@@ -8,11 +8,10 @@ var disabled: bool = false
 @onready var neck: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera3D
 @onready var playerItemsScreen: Control = $PlayerItemsScreen
-@onready var playerItems: PlayerItems = $PlayerItems
 
 
 func add_item(item: StorageItem) -> void:
-	playerItems.add_item(item)
+	(SaveManager.current_save as GameSave).items.add_item(item)
 
 
 func get_basis_vertically_locked() -> Basis:
