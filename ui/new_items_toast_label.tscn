@@ -77,6 +77,7 @@ anchors_preset = 0
 offset_right = 100.0
 offset_bottom = 20.0
 size_flags_vertical = 0
+mouse_filter = 2
 script = ExtResource("1_mgy62")
 text = "ExampleText"
 

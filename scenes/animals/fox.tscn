@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://cdw7bn1j8no1"]
+
+[ext_resource type="PackedScene" uid="uid://dxvaupb8ugv5p" path="res://assets/models/animals/Fox.glb" id="1_0i16e"]
+[ext_resource type="Script" path="res://scripts/animals/animal.gd" id="2_fof2c"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_k701p"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_r627a"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="5_yh2iv"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="6_cstul"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/animation_action.gd" id="7_iqjee"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="8_gc6m1"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/walk_to_target_action.gd" id="8_ysrrt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5j1rg"]
+
+[node name="Fox" instance=ExtResource("1_0i16e")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_fof2c")
+max_velocity = 0.9
+acceleration_amount = 7.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_5j1rg")
+
+[node name="AnimalArmature" parent="RootNode" index="0"]
+transform = Transform3D(22.325, 0, 0, 0, -9.75857e-07, 22.325, 0, -22.325, -9.75857e-07, 0, 0, 0)
+
+[node name="Skeleton3D" parent="RootNode/AnimalArmature" index="0"]
+bones/0/position = Vector3(0, -9.05931e-06, 0.00472439)
+bones/0/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/1/position = Vector3(-2.09007e-11, 0.0151163, -0.00638804)
+bones/1/rotation = Quaternion(0.772403, -7.98055e-07, -9.73696e-07, 0.635133)
+bones/3/rotation = Quaternion(-0.0059659, -2.06927e-05, 1.64095e-07, 0.999982)
+bones/4/rotation = Quaternion(0.105914, 2.09239e-05, -2.89451e-06, 0.994375)
+bones/5/rotation = Quaternion(0.0762206, 2.40384e-06, -3.00873e-07, 0.997091)
+bones/6/rotation = Quaternion(0.0287964, 3.30747e-08, -5.74492e-09, 0.999585)
+bones/7/rotation = Quaternion(-0.0573577, -1.0122e-07, 6.04304e-08, 0.998354)
+bones/8/rotation = Quaternion(-0.306058, -1.99296e-15, 4.84033e-07, 0.952013)
+bones/21/rotation = Quaternion(0.745546, 0.659997, -0.0420855, -0.0824264)
+bones/22/rotation = Quaternion(-3.70122e-07, 0.983443, -0.181217, 2.0992e-06)
+bones/25/rotation = Quaternion(0.745545, -0.659997, 0.0420894, -0.0824306)
+bones/26/rotation = Quaternion(3.57471e-07, 0.983442, -0.181225, -2.23227e-06)
+bones/28/rotation = Quaternion(0.569424, 0.52126, 0.421386, -0.475897)
+bones/29/rotation = Quaternion(0.718668, 0.646261, 0.171602, 0.190828)
+bones/30/rotation = Quaternion(0.701814, -1.01322e-07, 2.15063e-07, 0.71236)
+bones/31/rotation = Quaternion(-3.48845e-07, 0.772424, -0.635107, 8.03999e-07)
+bones/33/rotation = Quaternion(0.569423, -0.521261, -0.421388, -0.475896)
+bones/34/rotation = Quaternion(0.718668, -0.646262, -0.171602, 0.190827)
+bones/35/rotation = Quaternion(0.701815, 1.26244e-07, -2.91218e-07, 0.712359)
+bones/36/rotation = Quaternion(3.4491e-07, 0.772423, -0.635108, -8.00765e-07)
+bones/40/rotation = Quaternion(0.00781996, -5.37537e-10, 2.02159e-08, 0.999969)
+bones/41/rotation = Quaternion(0.0293117, 4.91989e-06, 4.81218e-06, 0.99957)
+bones/42/rotation = Quaternion(0.144751, 1.17882e-07, 1.78013e-08, 0.989468)
+bones/43/rotation = Quaternion(0.172524, -1.16889e-07, 1.18039e-08, 0.985005)
+bones/44/rotation = Quaternion(0.0365959, 5.30842e-10, -1.3145e-10, 0.99933)
+bones/45/rotation = Quaternion(0.249669, 3.39266e-09, -1.33034e-09, 0.968331)
+bones/58/rotation = Quaternion(0.905064, 1.89269e-07, -4.02799e-07, -0.425274)
+bones/64/rotation = Quaternion(0.905064, -1.89269e-07, 4.02799e-07, -0.425274)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="3"]
+path_max_distance = 3.01
+
+[node name="BeehaveTree" type="Node" parent="." index="4" node_paths=PackedStringArray("blackboard")]
+script = ExtResource("3_k701p")
+actor_node_path = NodePath("..")
+blackboard = NodePath("@Node@18892")
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree" index="0"]
+script = ExtResource("4_r627a")
+
+[node name="AlwaysSucceedDecorator" type="Node" parent="BeehaveTree/SequenceComposite" index="0"]
+script = ExtResource("5_yh2iv")
+
+[node name="TimeLimiterDecorator2" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator" index="0"]
+script = ExtResource("6_cstul")
+wait_time = 10.0
+
+[node name="AnimationAction" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator/TimeLimiterDecorator2" index="0" node_paths=PackedStringArray("animation_node")]
+script = ExtResource("7_iqjee")
+animations = Array[String](["Idle", "Idle_2", "Idle_2_HeadLow"])
+animation_node = NodePath("../../../../../AnimationPlayer")
+
+[node name="SelectorRandomComposite" type="Node" parent="BeehaveTree/SequenceComposite" index="1"]
+script = ExtResource("8_gc6m1")
+
+[node name="AlwaysSucceedDecorator2" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite" index="0"]
+script = ExtResource("5_yh2iv")
+
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator2" index="0"]
+script = ExtResource("6_cstul")
+wait_time = 20.0
+
+[node name="WalkAction" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator2/TimeLimiterDecorator" index="0" node_paths=PackedStringArray("animation_node")]
+script = ExtResource("8_ysrrt")
+acceleration = 3.0
+animations = Array[String](["Walk"])
+animation_node = NodePath("../../../../../../AnimationPlayer")
+
+[node name="AlwaysSucceedDecorator3" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite" index="1"]
+script = ExtResource("5_yh2iv")
+
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator3" index="0"]
+script = ExtResource("6_cstul")
+wait_time = 20.0
+
+[node name="RunAction" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator3/TimeLimiterDecorator" index="0" node_paths=PackedStringArray("animation_node")]
+script = ExtResource("8_ysrrt")
+max_speed = 5.0
+acceleration = 20.0
+new_target_distance = 30.0
+animations = Array[String](["Gallop"])
+animation_node = NodePath("../../../../../../AnimationPlayer")

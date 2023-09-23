@@ -8,6 +8,10 @@
 
 config_version=5
 
+[addons]
+
+proton_scatter/always_show_gizmos=false
+
 [application]
 
 config/name="Tree Growing Game"
@@ -28,6 +32,8 @@ FootstepsManager="*res://scripts/footsteps.gd"
 PopUpManager="*res://scripts/pop_up_manager.gd"
 FadeManager="*res://scripts/fade_manager.gd"
 PlantManager="*res://scripts/plants/plant_manager.gd"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [debug]
 
@@ -46,7 +52,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [filesystem]
 
@@ -149,6 +155,11 @@ interact={
 3d_physics/layer_5="UnpreparableGround"
 3d_physics/layer_9="Plants"
 3d_physics/layer_21="Axable"
+
+[navigation]
+
+3d/default_cell_size=0.1
+3d/default_cell_height=0.1
 
 [rendering]
 
