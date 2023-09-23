@@ -21,6 +21,10 @@ var velocity2: Vector2:
 		velocity.z = value.y
 
 
+func _init() -> void:
+	safe_margin = 0.01
+
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += Vector3(0, -delta * gravity, 0)

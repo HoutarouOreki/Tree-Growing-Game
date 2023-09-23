@@ -8897,14 +8897,14 @@ mesh = SubResource("ArrayMesh_u0elw")
 skin = SubResource("Skin_7rvxy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607158, 0.0723708)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0.072)
 shape = SubResource("CapsuleShape3D_t8fbp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7klb1")
 }
-blend_times = [&"Idle", &"Walk", 0.2, &"Idle", &"Idle", 0.2, &"Idle", &"Idle_2", 0.2, &"Idle", &"Idle_Headlow", 0.2, &"Idle", &"Eating", 0.2]
+blend_times = [&"Idle", &"Walk", 0.2, &"Idle", &"Idle", 0.2, &"Idle", &"Idle_2", 0.2, &"Idle", &"Eating", 0.2, &"Idle", &"Idle_Headlow", 0.2]
 
 [node name="BeehaveTree" type="Node" parent="."]
 script = ExtResource("3_eu7jc")
@@ -8920,10 +8920,9 @@ script = ExtResource("4_p1et0")
 script = ExtResource("5_awfkh")
 wait_time = 10.0
 
-[node name="AnimationAction" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator/TimeLimiterDecorator2" node_paths=PackedStringArray("animation_node")]
+[node name="AnimationAction" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator/TimeLimiterDecorator2"]
 script = ExtResource("8_d5f5p")
 animations = Array[String](["Idle", "Idle_2", "Idle_Headlow", "Eating"])
-animation_node = NodePath("../../../../../AnimationPlayer")
 
 [node name="AlwaysSucceedDecorator2" type="Node" parent="BeehaveTree/SequenceComposite"]
 script = ExtResource("4_p1et0")

@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/animals/behaviors/walk_to_target_action.gd" id="8_ysrrt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5j1rg"]
+radius = 0.1
+height = 0.4
 
 [node name="Fox" instance=ExtResource("1_0i16e")]
 collision_layer = 2
@@ -20,7 +22,7 @@ max_velocity = 0.9
 acceleration_amount = 7.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
 shape = SubResource("CapsuleShape3D_5j1rg")
 
 [node name="AnimalArmature" parent="RootNode" index="0"]
@@ -64,7 +66,7 @@ path_max_distance = 3.01
 [node name="BeehaveTree" type="Node" parent="." index="4" node_paths=PackedStringArray("blackboard")]
 script = ExtResource("3_k701p")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18777")
+blackboard = NodePath("@Node@25851")
 
 [node name="SequenceComposite" type="Node" parent="BeehaveTree" index="0"]
 script = ExtResource("4_r627a")
@@ -76,10 +78,9 @@ script = ExtResource("5_yh2iv")
 script = ExtResource("6_cstul")
 wait_time = 10.0
 
-[node name="AnimationAction" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator/TimeLimiterDecorator2" index="0" node_paths=PackedStringArray("animation_node")]
+[node name="AnimationAction" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator/TimeLimiterDecorator2" index="0"]
 script = ExtResource("7_iqjee")
 animations = Array[String](["Idle", "Idle_2", "Idle_2_HeadLow"])
-animation_node = NodePath("../../../../../AnimationPlayer")
 
 [node name="SelectorRandomComposite" type="Node" parent="BeehaveTree/SequenceComposite" index="1"]
 script = ExtResource("8_gc6m1")
