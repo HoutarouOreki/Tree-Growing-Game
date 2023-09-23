@@ -8904,7 +8904,7 @@ shape = SubResource("CapsuleShape3D_t8fbp")
 libraries = {
 "": SubResource("AnimationLibrary_7klb1")
 }
-blend_times = [&"Idle", &"Idle_Headlow", 0.2, &"Idle", &"Walk", 0.2, &"Idle", &"Eating", 0.2, &"Idle", &"Idle", 0.2, &"Idle", &"Idle_2", 0.2]
+blend_times = [&"Idle", &"Walk", 0.2, &"Idle", &"Idle", 0.2, &"Idle", &"Idle_2", 0.2, &"Idle", &"Idle_Headlow", 0.2, &"Idle", &"Eating", 0.2]
 
 [node name="BeehaveTree" type="Node" parent="."]
 script = ExtResource("3_eu7jc")

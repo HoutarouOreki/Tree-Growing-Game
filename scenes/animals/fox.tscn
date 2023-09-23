@@ -64,7 +64,7 @@ path_max_distance = 3.01
 [node name="BeehaveTree" type="Node" parent="." index="4" node_paths=PackedStringArray("blackboard")]
 script = ExtResource("3_k701p")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18892")
+blackboard = NodePath("@Node@18777")
 
 [node name="SequenceComposite" type="Node" parent="BeehaveTree" index="0"]
 script = ExtResource("4_r627a")
