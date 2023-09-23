@@ -15,7 +15,7 @@ var current_speed: float = 0.0
 
 var velocity2: Vector2:
 	get:
-		return to_v2(velocity)
+		return Animal.to_v2(velocity)
 	set (value):
 		velocity.x = value.x
 		velocity.z = value.y
@@ -50,9 +50,9 @@ func adjust_velocity(delta: float) -> void:
 	velocity2 = velocity2.limit_length(new_length)
 
 
-func to_v2(v: Vector3) -> Vector2:
+static func to_v2(v: Vector3) -> Vector2:
 	return Vector2(v.x, v.z)
 
 
-func to_v3(v: Vector2) -> Vector3:
+static func to_v3(v: Vector2) -> Vector3:
 	return Vector3(v.x, 0, v.y)

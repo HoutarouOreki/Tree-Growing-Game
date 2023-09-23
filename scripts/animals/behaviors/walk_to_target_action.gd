@@ -1,34 +1,58 @@
+@tool
 class_name WalkToTargetAction extends AnimationAction
 
 var animal: Animal
-var reached: bool
 @export var max_speed: float = 1
 @export var acceleration: float = 4
-@export var new_target_distance: float = 10
-var previous_max_speed: float
-var previous_acceleration: float
+
+@export var target_type: TargetType = TargetType.Random:
+	set (value):
+		target_type = value
+		notify_property_list_changed()
+
+var random_target_distance: float = 10
+var target: Node3D
+
+
+func _get_property_list() -> Array[Dictionary]:
+	var properties: Array[Dictionary] = []
+	if target_type == TargetType.Random:
+		properties.append({
+			"name": "random_target_distance",
+			"type": TYPE_FLOAT,
+			"usage": PROPERTY_USAGE_DEFAULT
+		})
+	elif target_type == TargetType.Node:
+		properties.append({
+			"name": "target",
+			"type": TYPE_NODE_PATH,
+		})
+
+	return properties
 
 
 func before_run(actor: Node, blackboard: Blackboard) -> void:
 	animal = actor
-	previous_max_speed = animal.max_velocity
-	previous_acceleration = animal.acceleration_amount
 	animal.max_velocity = max_speed
 	animal.acceleration_amount = acceleration
 	super.before_run(actor, blackboard)
-	reached = !try_generate_new_target()
+	if target_type == TargetType.Random:
+		try_generate_new_random_target()
+	else:
+		animal.navigation_agent.target_position = target.global_position
 
 
-func try_generate_new_target() -> bool:
+func try_generate_new_random_target() -> bool:
 	for i in range(10):
 		if new_target_attempt():
 			return true
 
+	animal.navigation_agent.target_position = animal.position
 	return false
 
 
 func new_target_attempt() -> bool:
-	var ten_meters = Vector3(0, 0, new_target_distance).rotated(Vector3.UP, deg_to_rad(randf() * 360))
+	var ten_meters = Vector3(0, 0, random_target_distance).rotated(Vector3.UP, deg_to_rad(randf() * 360))
 	var new_target = animal.global_position + ten_meters
 	new_target = NavigationServer3D.map_get_closest_point(animal.navigation_agent.get_navigation_map(), new_target)
 	animal.navigation_agent.target_position = new_target
@@ -37,8 +61,6 @@ func new_target_attempt() -> bool:
 
 func after_run(actor: Node, blackboard: Blackboard) -> void:
 	(actor as Animal).acceleration_direction = Vector2.ZERO
-	(actor as Animal).max_velocity = previous_max_speed
-	(actor as Animal).acceleration_amount = previous_acceleration
 	animal = null
 
 
@@ -48,12 +70,17 @@ func interrupt(actor: Node, blackboard: Blackboard) -> void:
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	if !animal || animal.navigation_agent.is_navigation_finished():
-		reached = true
 		after_run(actor, blackboard)
 		return SUCCESS
+
+	if target_type == TargetType.Node && animal.navigation_agent.target_position.distance_squared_to(target.global_position) > 1:
+		animal.navigation_agent.target_position = target.global_position
 
 	var next_path_position: Vector3 = animal.navigation_agent.get_next_path_position()
 	var current_agent_position: Vector3 = animal.global_position
 	var new_accel: Vector3 = (next_path_position - current_agent_position).normalized()
-	animal.acceleration_direction = animal.to_v2(new_accel)
+	animal.acceleration_direction = Animal.to_v2(new_accel)
 	return RUNNING
+
+
+enum TargetType { Random, Node }

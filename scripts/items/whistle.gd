@@ -13,3 +13,6 @@ func _enter_tree() -> void:
 
 func action(player: CharacterBody3D, event: InputEvent):
 	audio_player.play()
+	for node in get_tree().get_nodes_in_group(&"dogs"):
+		var dog: Dog = node
+		dog.on_whistle(player)
