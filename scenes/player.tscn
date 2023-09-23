@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dmf4kqps53wio"]
+[gd_scene load_steps=42 format=3 uid="uid://dmf4kqps53wio"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_6ixng"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6r7ho"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://scripts/player_interaction.gd" id="10_2e1hf"]
 [ext_resource type="Script" path="res://scripts/items/axe.gd" id="10_ijs6q"]
 [ext_resource type="Texture2D" uid="uid://bk8u3lq3nj8pm" path="res://assets/item_sprites/axe.png" id="11_qfx4l"]
+[ext_resource type="Script" path="res://scripts/items/whistle.gd" id="12_l1el6"]
+[ext_resource type="Texture2D" uid="uid://dnsvmh3ilpv8v" path="res://assets/item_sprites/whistle.png" id="13_142x1"]
 [ext_resource type="Script" path="res://scripts/time_info.gd" id="13_d481f"]
 [ext_resource type="Script" path="res://scripts/player_hotbar_manager.gd" id="14_6vyvk"]
 [ext_resource type="Script" path="res://scripts/FullscreenControl.gd" id="14_lo4hn"]
@@ -66,6 +68,14 @@ name = "Axe"
 texture = ExtResource("11_qfx4l")
 count = 0
 actionScript = ExtResource("10_ijs6q")
+category = 0
+
+[sub_resource type="Resource" id="Resource_kb6bc"]
+script = ExtResource("5_fyn3y")
+name = "Whistle"
+texture = ExtResource("13_142x1")
+count = 0
+actionScript = ExtResource("12_l1el6")
 category = 0
 
 [sub_resource type="Animation" id="Animation_o7bwb"]
@@ -744,8 +754,8 @@ slot_padding = 2
 
 [node name="Storage" type="Node" parent="."]
 script = ExtResource("3_xwejg")
-storage_size = 3
-starting_items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_d3d8q"), SubResource("Resource_4exrv"), SubResource("Resource_yueuq")])
+storage_size = 4
+starting_items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_d3d8q"), SubResource("Resource_4exrv"), SubResource("Resource_yueuq"), SubResource("Resource_kb6bc")])
 
 [node name="MovementScript" type="Node" parent="."]
 script = ExtResource("1_6ixng")
