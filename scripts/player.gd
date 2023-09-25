@@ -18,6 +18,10 @@ func get_basis_vertically_locked() -> Basis:
 	return neck.basis
 
 
+func get_look_transform() -> Transform3D:
+	return camera.global_transform
+
+
 func _process(delta: float) -> void:
 	if !disabled && dayCycle.current_animation_position > 23:
 		TransitionManager.advance_day(self)

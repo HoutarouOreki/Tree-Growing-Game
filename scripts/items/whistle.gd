@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 	add_child(audio_player)
 
 
-func action(player: CharacterBody3D, event: InputEvent):
+func action(player: Player, event: InputEvent):
 	audio_player.play()
 	for node in get_tree().get_nodes_in_group(&"dogs"):
 		var dog: Dog = node

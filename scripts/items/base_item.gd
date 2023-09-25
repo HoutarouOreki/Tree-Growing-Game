@@ -2,7 +2,7 @@
 class_name BaseItem extends Node3D
 
 
-func action(player: CharacterBody3D, event: InputEvent):
+func action(player: Player, event: InputEvent):
 	pass
 
 

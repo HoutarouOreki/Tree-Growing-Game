@@ -9446,7 +9446,7 @@ path_max_distance = 3.01
 [node name="DogBeehavior" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("2_sxeej")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18248")
+blackboard = NodePath("@Node@18249")
 
 [node name="SelectorReactiveComposite" type="Node" parent="DogBeehavior"]
 script = ExtResource("3_surdh")
@@ -9461,6 +9461,7 @@ script = ExtResource("4_k8brl")
 script = ExtResource("5_d5mvl")
 max_speed = 5.0
 acceleration = 30.0
+teleport_to_closest_navigation_point = true
 target_type = 1
 animations = Array[String](["Gallop"])
 

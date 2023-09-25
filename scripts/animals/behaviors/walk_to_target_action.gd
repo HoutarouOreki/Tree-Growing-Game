@@ -5,6 +5,8 @@ var animal: Animal
 @export var max_speed: float = 1
 @export var acceleration: float = 4
 
+@export var teleport_to_closest_navigation_point: bool
+
 @export var target_type: TargetType = TargetType.Random:
 	set (value):
 		target_type = value
@@ -73,6 +75,8 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		after_run(actor, blackboard)
 		return SUCCESS
 
+	teleport_if_needed()
+
 	if target_type == TargetType.Node && animal.navigation_agent.target_position.distance_squared_to(target.global_position) > 1:
 		animal.navigation_agent.target_position = target.global_position
 
@@ -81,6 +85,25 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	var new_accel: Vector3 = (next_path_position - current_agent_position).normalized()
 	animal.acceleration_direction = Animal.to_v2(new_accel)
 	return RUNNING
+
+
+func teleport_if_needed() -> void:
+	if !teleport_to_closest_navigation_point:
+		return
+
+	const teleport_distance_to_map_threshold = 0.5
+
+	if !animal.navigation_agent.is_target_reachable():
+		animal.global_position = animal.navigation_agent.target_position
+		animal.velocity = Vector3.ZERO
+		return
+
+	var nav_map_rid = animal.navigation_agent.get_navigation_map()
+	var closest_point_on_map = NavigationServer3D.map_get_closest_point(nav_map_rid, animal.global_position)
+	var distance = animal.global_position.distance_to(closest_point_on_map)
+	if distance > teleport_distance_to_map_threshold:
+		animal.global_position = closest_point_on_map + Vector3.UP * teleport_distance_to_map_threshold
+		animal.velocity = Vector3.ZERO
 
 
 enum TargetType { Random, Node }
