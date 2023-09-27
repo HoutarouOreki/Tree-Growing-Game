@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c1qcrto0phpd"]
+[gd_scene load_steps=49 format=3 uid="uid://c1qcrto0phpd"]
 
 [ext_resource type="Script" path="res://scripts/animals/dog.gd" id="1_10d3b"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_sxeej"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="3_surdh"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="4_fv0ks"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/is_whistled.gd" id="4_k8brl"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="4_wtkyh"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/dog/is_following.gd" id="5_17uym"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/walk_to_player_action.gd" id="5_d5mvl"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="5_mwrnl"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/dog/is_too_far_from_followed_target.gd" id="6_1fgco"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/animation_action.gd" id="6_ukrj4"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="7_inmbk"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/dog/follow_target_action.gd" id="7_j51cj"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/walk_to_target_action.gd" id="8_bn2sp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bps46"]
@@ -9446,10 +9450,29 @@ path_max_distance = 3.01
 [node name="DogBeehavior" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("2_sxeej")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18249")
+blackboard = NodePath("@Node@27289")
 
 [node name="SelectorReactiveComposite" type="Node" parent="DogBeehavior"]
 script = ExtResource("3_surdh")
+
+[node name="FollowSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+script = ExtResource("4_wtkyh")
+
+[node name="IsFollowing" type="Node" parent="DogBeehavior/SelectorReactiveComposite/FollowSequence"]
+script = ExtResource("5_17uym")
+
+[node name="IsTooFarFromFollowedTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/FollowSequence"]
+script = ExtResource("6_1fgco")
+inner_range = 3.0
+outer_range = 12.0
+
+[node name="FollowTargetAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/FollowSequence"]
+script = ExtResource("7_j51cj")
+max_speed = 5.0
+acceleration = 30.0
+teleport_to_closest_navigation_point = true
+target_type = 1
+animations = Array[String](["Gallop"])
 
 [node name="RecallSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
 script = ExtResource("3_73csu")
