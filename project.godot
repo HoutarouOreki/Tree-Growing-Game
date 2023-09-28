@@ -153,6 +153,7 @@ interact={
 3d_physics/layer_3="Ground"
 3d_physics/layer_4="PlantableGround"
 3d_physics/layer_5="UnpreparableGround"
+3d_physics/layer_7="Fetchables"
 3d_physics/layer_8="Interactable"
 3d_physics/layer_9="Plants"
 3d_physics/layer_21="Axable"

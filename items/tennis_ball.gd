@@ -7,6 +7,10 @@ func action(player: Player, event: InputEvent):
 
 	var look_transform = player.get_look_transform()
 	ball.position = look_transform.origin + look_transform.basis * Vector3.FORWARD
-	ball.linear_velocity = look_transform.basis * (Vector3.FORWARD * 20)
+	ball.linear_velocity = look_transform.basis * (Vector3.FORWARD * 16)
 
 	get_tree().current_scene.add_child(ball)
+
+	for node in get_tree().get_nodes_in_group(&"dogs"):
+		var dog: Dog = node as Dog
+		dog.on_fetchable_thrown(ball)
