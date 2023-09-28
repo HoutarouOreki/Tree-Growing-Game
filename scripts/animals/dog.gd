@@ -1,27 +1,35 @@
 class_name Dog extends Animal
 
 
-## If and only if a [Player] used a whistle to recall this dog,
-## this will reference them.
-var whistled_by_player: Player
+@onready var commands_control: DogCommandsControl = $DogCommandsControl as DogCommandsControl
+var state: DogState = DogState.Idle
+
+@export var dog_owner: Player
 
 
-var following_target: Node3D
+func on_whistle() -> void:
+	state = DogState.BeingRecalled
 
 
-func on_whistle(player: Player) -> void:
-	whistled_by_player = player
+func on_follow() -> void:
+	state = DogState.Following
 
 
-func on_follow(node: Node3D) -> void:
-	following_target = node
+func on_sit() -> void:
+	state = DogState.Sitting
 
 
-func on_unfollow(node: Node3D) -> void:
-	if following_target == node:
-		following_target = null
+func set_idle() -> void:
+	state = DogState.Idle
 
 
-func on_stay() -> void:
-	following_target = null
-	whistled_by_player = null
+func interact(player: Player) -> void:
+	commands_control.show()
+
+
+enum DogState {
+	Idle,
+	Sitting,
+	Following,
+	BeingRecalled
+}

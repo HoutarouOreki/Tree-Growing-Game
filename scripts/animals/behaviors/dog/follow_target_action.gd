@@ -7,7 +7,7 @@ func _init() -> void:
 
 func before_run(actor: Node, blackboard: Blackboard) -> void:
 	var dog: Dog = actor as Dog
-	target = dog.following_target
+	target = dog.dog_owner
 	super.before_run(actor, blackboard)
 
 

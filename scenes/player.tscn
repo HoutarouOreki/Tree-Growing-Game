@@ -736,7 +736,7 @@ sensitivity = 0.1
 
 [node name="InteractionRay" type="RayCast3D" parent="Neck/Camera3D"]
 target_position = Vector3(0, 0, -3)
-collision_mask = 65535
+collision_mask = 65529
 debug_shape_thickness = 3
 
 [node name="ItemRay" type="RayCast3D" parent="Neck/Camera3D"]

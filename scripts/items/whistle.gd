@@ -15,4 +15,4 @@ func action(player: Player, event: InputEvent):
 	audio_player.play()
 	for node in get_tree().get_nodes_in_group(&"dogs"):
 		var dog: Dog = node
-		dog.on_whistle(player)
+		dog.on_whistle()

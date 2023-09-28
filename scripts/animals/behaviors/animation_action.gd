@@ -13,5 +13,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 
 
 func before_run(actor: Node, blackboard: Blackboard) -> void:
-	var animal: Animal = actor
+	var animal: Animal = actor as Animal
+	animal.acceleration_direction = Vector2.ZERO
 	animal.animations.play(animations.pick_random(), 0.2, animation_speed_multiplier)
