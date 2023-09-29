@@ -9,20 +9,14 @@ signal break_sound_finished
 
 
 func play_hit():
-	_play_random_from(hit_sounds)
+	AudioHelper.play_random_from(hit_sounds)
 
 
 func play_break():
-	_play_random_from(break_sounds)
+	AudioHelper.play_random_from(break_sounds)
 
 
 func play_fall():
-	var sound = _play_random_from(fall_sounds)
+	var sound = AudioHelper.play_random_from(fall_sounds)
 	await sound.finished
 	break_sound_finished.emit()
-
-
-func _play_random_from(arr: Array[AudioStreamPlayer3D]) -> AudioStreamPlayer3D:
-	var sound = arr.pick_random() as AudioStreamPlayer3D
-	sound.play()
-	return sound

@@ -7,6 +7,11 @@ class_name Dog extends Animal
 
 @export var dog_owner: Player
 
+var woofs_sounds: Array[AudioStreamPlayer3D]
+var panting_sounds: Array[AudioStreamPlayer3D]
+var woof_sounds: Array[AudioStreamPlayer3D]
+var current_sound: AudioStreamPlayer3D
+
 var state: DogState = DogState.Idle:
 	get:
 		return state
@@ -16,6 +21,16 @@ var state: DogState = DogState.Idle:
 		state = value
 
 var targeted_fetchable: RigidBody3D
+
+
+func _ready() -> void:
+	for node in $"Sounds".get_children():
+		if node.name.begins_with("WoofSound"):
+			woof_sounds.append(node)
+		elif node.name.begins_with("WoofsSound"):
+			woofs_sounds.append(node)
+		elif node.name.begins_with("PantingSound"):
+			panting_sounds.append(node)
 
 
 func on_whistle() -> void:
@@ -71,6 +86,16 @@ func drop_fetchable() -> void:
 
 	for child in fetchable_container.get_children():
 		fetchable_container.remove_child(child)
+
+
+func play_woof() -> void:
+	if current_sound:
+		current_sound.stop()
+	current_sound = AudioHelper.play_random_from(woof_sounds)
+
+
+func play_panting() -> void:
+	current_sound = AudioHelper.play_random_from(panting_sounds)
 
 
 enum DogState {

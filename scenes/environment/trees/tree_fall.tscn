@@ -28,3 +28,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 shape = SubResource("CylinderShape3D_qwbg8")
 
 [node name="TreeAnimations" parent="." instance=ExtResource("3_7fbc5")]
+blend_times = [&"fall", &"on_hit", 1.0, &"fall", &"fall", 1.0]

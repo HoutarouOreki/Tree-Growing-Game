@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv1ytph26sk2t"]
+
+[ext_resource type="AudioStream" uid="uid://b8kax6jco8hyc" path="res://assets/sounds/ambient/Ambiance_Forest_Birds_Loop_Stereo.wav" id="1_mhpn4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t5r2m"]
+size = Vector3(0.1, 4, 0.1)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_t5r2m")
+
+[node name="BirdSounds" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+stream = ExtResource("1_mhpn4")
+unit_size = 2.0
+autoplay = true

@@ -10,6 +10,7 @@
 
 [node name="TreeSounds" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200005, 0)
+visible = false
 script = ExtResource("1_e0uwd")
 
 [node name="HitSound1" type="AudioStreamPlayer3D" parent="."]

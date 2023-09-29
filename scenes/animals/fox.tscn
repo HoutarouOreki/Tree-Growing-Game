@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdw7bn1j8no1"]
+[gd_scene load_steps=12 format=3 uid="uid://cdw7bn1j8no1"]
 
 [ext_resource type="PackedScene" uid="uid://dxvaupb8ugv5p" path="res://assets/models/animals/Fox.glb" id="1_0i16e"]
 [ext_resource type="Script" path="res://scripts/animals/animal.gd" id="2_fof2c"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/animals/behaviors/animation_action.gd" id="7_iqjee"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="8_gc6m1"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/walk_to_target_action.gd" id="8_ysrrt"]
+[ext_resource type="Script" path="res://scripts/animals/animal_footsteps.gd" id="10_w8tft"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5j1rg"]
 radius = 0.1
@@ -66,7 +67,7 @@ path_max_distance = 3.01
 [node name="BeehaveTree" type="Node" parent="." index="4" node_paths=PackedStringArray("blackboard")]
 script = ExtResource("3_k701p")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@25851")
+blackboard = NodePath("@Node@19353")
 
 [node name="SequenceComposite" type="Node" parent="BeehaveTree" index="0"]
 script = ExtResource("4_r627a")
@@ -92,11 +93,11 @@ script = ExtResource("5_yh2iv")
 script = ExtResource("6_cstul")
 wait_time = 20.0
 
-[node name="WalkAction" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator2/TimeLimiterDecorator" index="0" node_paths=PackedStringArray("animation_node")]
+[node name="WalkAction" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator2/TimeLimiterDecorator" index="0"]
 script = ExtResource("8_ysrrt")
 acceleration = 3.0
+random_target_distance = 10.0
 animations = Array[String](["Walk"])
-animation_node = NodePath("../../../../../../AnimationPlayer")
 
 [node name="AlwaysSucceedDecorator3" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite" index="1"]
 script = ExtResource("5_yh2iv")
@@ -105,10 +106,14 @@ script = ExtResource("5_yh2iv")
 script = ExtResource("6_cstul")
 wait_time = 20.0
 
-[node name="RunAction" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator3/TimeLimiterDecorator" index="0" node_paths=PackedStringArray("animation_node")]
+[node name="RunAction" type="Node" parent="BeehaveTree/SequenceComposite/SelectorRandomComposite/AlwaysSucceedDecorator3/TimeLimiterDecorator" index="0"]
 script = ExtResource("8_ysrrt")
 max_speed = 5.0
 acceleration = 20.0
-new_target_distance = 30.0
+random_target_distance = 10.0
 animations = Array[String](["Gallop"])
-animation_node = NodePath("../../../../../../AnimationPlayer")
+
+[node name="AnimalFootsteps" type="AudioStreamPlayer3D" parent="." index="5"]
+max_db = 1.0
+bus = &"Footsteps"
+script = ExtResource("10_w8tft")

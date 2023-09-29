@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c1qcrto0phpd"]
+[gd_scene load_steps=70 format=3 uid="uid://c1qcrto0phpd"]
 
 [ext_resource type="Script" path="res://scripts/animals/dog.gd" id="1_10d3b"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_sxeej"]
@@ -20,7 +20,18 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_random.gd" id="11_gbxlc"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/dog_state_condition.gd" id="11_ucrj6"]
 [ext_resource type="PackedScene" uid="uid://cxpebucwjn4av" path="res://ui/dog/dog_commands_control.tscn" id="16_ob0tk"]
-[ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="18_usd3w"]
+[ext_resource type="AudioStream" uid="uid://de03jjkcve2sh" path="res://assets/sounds/animals/dog/german_shepherd_woofs_1.mp3" id="22_u5ty2"]
+[ext_resource type="AudioStream" uid="uid://clqq1ckra5hc7" path="res://assets/sounds/animals/dog/german_shepherd_woofs_2.mp3" id="23_5q4xp"]
+[ext_resource type="AudioStream" uid="uid://c27blxmgbsrkn" path="res://assets/sounds/animals/dog/german_shepherd_woof_-01.mp3" id="25_k1mwt"]
+[ext_resource type="AudioStream" uid="uid://cabirhveddewt" path="res://assets/sounds/animals/dog/german_shepherd_woof_-02.mp3" id="26_7qau7"]
+[ext_resource type="AudioStream" uid="uid://c7gpw0pjiwbrx" path="res://assets/sounds/animals/dog/german_shepherd_woof_-03.mp3" id="27_w8du5"]
+[ext_resource type="AudioStream" uid="uid://b5tvmsc0ln6ci" path="res://assets/sounds/animals/dog/german_shepherd_woof_-04.mp3" id="28_1mio4"]
+[ext_resource type="AudioStream" uid="uid://dffavtfobb2r4" path="res://assets/sounds/animals/dog/german_shepherd_woof_-05.mp3" id="29_knytr"]
+[ext_resource type="AudioStream" uid="uid://cjdwdhg4sjmdq" path="res://assets/sounds/animals/dog/german_shepherd_woof_-06.mp3" id="30_51let"]
+[ext_resource type="AudioStream" uid="uid://f8igep74t57c" path="res://assets/sounds/animals/dog/german_shepherd_woof_-07.mp3" id="31_mlghm"]
+[ext_resource type="Script" path="res://scripts/animals/animal_footsteps.gd" id="32_1681x"]
+[ext_resource type="AudioStream" uid="uid://d4e6crdbjsmea" path="res://assets/sounds/animals/dog/german_shepherd_woof_-08.mp3" id="32_uwjkc"]
+[ext_resource type="AudioStream" uid="uid://38sjpurck8ke" path="res://assets/sounds/animals/dog/german_shepherd_woof_-09.mp3" id="33_b3orb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bps46"]
 resource_name = "Material"
@@ -9875,7 +9886,7 @@ path_max_distance = 3.01
 [node name="DogBeehavior" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("2_sxeej")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@24788")
+blackboard = NodePath("@Node@19020")
 
 [node name="SelectorReactiveComposite" type="Node" parent="DogBeehavior"]
 script = ExtResource("3_surdh")
@@ -9916,6 +9927,7 @@ script = ExtResource("3_73csu")
 script = ExtResource("7_eqygs")
 max_speed = 5.0
 acceleration = 30.0
+desired_distance_to_target = 1.0
 target_type = 1
 target = null
 animations = Array[String](["Gallop"])
@@ -9935,6 +9947,10 @@ animations = Array[String](["Gallop"])
 [node name="DropFetchable" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"drop_fetchable"
+
+[node name="WoofAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+script = ExtResource("9_jwybu")
+function_name = &"play_woof"
 
 [node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_5m7r1")
@@ -9983,7 +9999,14 @@ script = ExtResource("4_fv0ks")
 script = ExtResource("5_mwrnl")
 wait_time = 10.0
 
-[node name="AnimationAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/IdleSequence/AlwaysSucceedDecorator/TimeLimiterDecorator2"]
+[node name="SequenceComposite" type="Node" parent="DogBeehavior/SelectorReactiveComposite/IdleSequence/AlwaysSucceedDecorator/TimeLimiterDecorator2"]
+script = ExtResource("3_73csu")
+
+[node name="PlayPantingSoundAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/IdleSequence/AlwaysSucceedDecorator/TimeLimiterDecorator2/SequenceComposite"]
+script = ExtResource("9_jwybu")
+function_name = &"play_panting"
+
+[node name="AnimationAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/IdleSequence/AlwaysSucceedDecorator/TimeLimiterDecorator2/SequenceComposite"]
 script = ExtResource("6_ukrj4")
 animations = Array[String](["Idle", "Idle_2", "Idle_2_HeadLow"])
 
@@ -10022,9 +10045,6 @@ animations = Array[String](["Gallop"])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
 shape = SubResource("CapsuleShape3D_afxtg")
 
-[node name="Blackboard" type="Node" parent="."]
-script = ExtResource("18_usd3w")
-
 [node name="DogCommandsControl" parent="." instance=ExtResource("16_ob0tk")]
 visible = false
 
@@ -10045,3 +10065,143 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FetchableCollectionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.2)
 shape = SubResource("SphereShape3D_lpevd")
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="WoofsSound1" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("22_u5ty2")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofsSound2" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("23_5q4xp")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="PantingSound" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+attenuation_model = 1
+volume_db = -10.24
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound1" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("25_k1mwt")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound2" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("26_7qau7")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound3" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("27_w8du5")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound4" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("28_1mio4")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound5" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("29_knytr")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound6" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("30_51let")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound7" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("31_mlghm")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound8" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("32_uwjkc")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="WoofSound9" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.9081e-15, 0.211936, 0.311542)
+stream = ExtResource("33_b3orb")
+attenuation_model = 1
+unit_size = 3.0
+max_db = -1.08
+bus = &"Environment"
+emission_angle_enabled = true
+emission_angle_degrees = 80.0
+emission_angle_filter_attenuation_db = -6.0
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+unit_size = 4.0
+max_db = 1.0
+bus = &"Footsteps"
+script = ExtResource("32_1681x")

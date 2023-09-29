@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://btxadmfw5i2a2"]
+[gd_scene load_steps=46 format=3 uid="uid://btxadmfw5i2a2"]
 
 [ext_resource type="Script" path="res://scripts/animals/animal.gd" id="2_jfbn4"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_18xjm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="5_awfkh"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/walk_to_target_action.gd" id="5_h4r0g"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/animation_action.gd" id="8_d5f5p"]
+[ext_resource type="Script" path="res://scripts/animals/animal_footsteps.gd" id="8_vlirl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqsyu"]
 resource_name = "Main_Light"
@@ -8904,7 +8905,7 @@ shape = SubResource("CapsuleShape3D_t8fbp")
 libraries = {
 "": SubResource("AnimationLibrary_7klb1")
 }
-blend_times = [&"Idle", &"Walk", 0.2, &"Idle", &"Idle", 0.2, &"Idle", &"Idle_2", 0.2, &"Idle", &"Eating", 0.2, &"Idle", &"Idle_Headlow", 0.2]
+blend_times = [&"Idle", &"Walk", 0.2, &"Idle", &"Idle_Headlow", 0.2, &"Idle", &"Idle", 0.2, &"Idle", &"Idle_2", 0.2, &"Idle", &"Eating", 0.2]
 
 [node name="BeehaveTree" type="Node" parent="."]
 script = ExtResource("3_eu7jc")
@@ -8931,11 +8932,16 @@ script = ExtResource("4_p1et0")
 script = ExtResource("5_awfkh")
 wait_time = 20.0
 
-[node name="WalkAction" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator2/TimeLimiterDecorator" node_paths=PackedStringArray("animation_node")]
+[node name="WalkAction" type="Node" parent="BeehaveTree/SequenceComposite/AlwaysSucceedDecorator2/TimeLimiterDecorator"]
 script = ExtResource("5_h4r0g")
 max_speed = 1.5
+random_target_distance = 10.0
 animations = Array[String](["Walk"])
-animation_node = NodePath("../../../../../AnimationPlayer")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_max_distance = 3.01
+
+[node name="AnimalFootsteps" type="AudioStreamPlayer3D" parent="."]
+max_db = 1.0
+bus = &"Footsteps"
+script = ExtResource("8_vlirl")
