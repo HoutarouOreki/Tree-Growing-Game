@@ -731,6 +731,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61436, 0)
 [node name="Camera3D" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 attributes = SubResource("CameraAttributesPractical_bqnbl")
+fov = 60.0
 script = ExtResource("2_ja644")
 sensitivity = 0.1
 
