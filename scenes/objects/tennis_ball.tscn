@@ -26,7 +26,7 @@ mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_b44n1")
 continuous_cd = true
 linear_damp_mode = 1
-linear_damp = 1.0
+linear_damp = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_ldf3e")

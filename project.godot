@@ -15,7 +15,7 @@ proton_scatter/always_show_gizmos=false
 [application]
 
 config/name="Tree Growing Game"
-run/main_scene="res://scenes/menus/main_menu.tscn"
+run/main_scene="res://scenes/world/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 run/max_fps=120
 boot_splash/bg_color=Color(0, 0.243137, 0.188235, 1)
