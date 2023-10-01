@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dmf4kqps53wio"]
+[gd_scene load_steps=48 format=3 uid="uid://dmf4kqps53wio"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_6ixng"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6r7ho"]
@@ -17,10 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://dnsvmh3ilpv8v" path="res://assets/item_sprites/whistle.png" id="13_142x1"]
 [ext_resource type="Script" path="res://scripts/time_info.gd" id="13_d481f"]
 [ext_resource type="Script" path="res://scripts/player_hotbar_manager.gd" id="14_6vyvk"]
-[ext_resource type="Script" path="res://items/tennis_ball.gd" id="14_g3kep"]
+[ext_resource type="Script" path="res://scripts/items/tennis_ball.gd" id="14_g3kep"]
 [ext_resource type="Script" path="res://scripts/FullscreenControl.gd" id="14_lo4hn"]
 [ext_resource type="PackedScene" uid="uid://dpfeqnr8ysmpu" path="res://scenes/menus/pause_screen.tscn" id="15_s0ws8"]
 [ext_resource type="Texture2D" uid="uid://bj8s0jmlkv3so" path="res://assets/item_sprites/TennisBall.png" id="15_v2ekr"]
+[ext_resource type="Script" path="res://scripts/items/dog_snack.gd" id="16_dkd65"]
+[ext_resource type="Texture2D" uid="uid://inos6cocncaj" path="res://assets/item_sprites/bone.png" id="17_mpnfc"]
 [ext_resource type="PackedScene" uid="uid://b1vrdh287862n" path="res://scenes/menus/player_items_screen.tscn" id="18_7ubt7"]
 [ext_resource type="PackedScene" uid="uid://r0cpmn3uj5li" path="res://ui/new_items_toast.tscn" id="22_xv6pl"]
 
@@ -86,6 +88,14 @@ name = "Ball"
 texture = ExtResource("15_v2ekr")
 count = 0
 actionScript = ExtResource("14_g3kep")
+category = 0
+
+[sub_resource type="Resource" id="Resource_yrxcy"]
+script = ExtResource("5_fyn3y")
+name = "Dog snack"
+texture = ExtResource("17_mpnfc")
+count = 0
+actionScript = ExtResource("16_dkd65")
 category = 0
 
 [sub_resource type="Animation" id="Animation_o7bwb"]
@@ -765,8 +775,8 @@ slot_padding = 2
 
 [node name="Storage" type="Node" parent="."]
 script = ExtResource("3_xwejg")
-storage_size = 5
-starting_items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_d3d8q"), SubResource("Resource_4exrv"), SubResource("Resource_yueuq"), SubResource("Resource_kb6bc"), SubResource("Resource_ltd07")])
+storage_size = 6
+starting_items = Array[ExtResource("5_fyn3y")]([SubResource("Resource_d3d8q"), SubResource("Resource_4exrv"), SubResource("Resource_yueuq"), SubResource("Resource_kb6bc"), SubResource("Resource_ltd07"), SubResource("Resource_yrxcy")])
 
 [node name="MovementScript" type="Node" parent="."]
 script = ExtResource("1_6ixng")

@@ -165,6 +165,7 @@ interact={
 
 [physics]
 
+common/physics_ticks_per_second=200
 3d/solver/contact_max_separation=0.08
 3d/solver/default_contact_bias=1.0
 

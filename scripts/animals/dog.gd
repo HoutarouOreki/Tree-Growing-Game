@@ -16,7 +16,7 @@ var state: DogState = DogState.Idle:
 	get:
 		return state
 	set (value):
-		if value != DogState.Fetching:
+		if value != DogState.Fetching && value != DogState.Snacking:
 			drop_fetchable()
 		state = value
 
@@ -60,11 +60,19 @@ func on_fetchable_thrown(fetchable: Node3D) -> void:
 	state = DogState.Fetching
 
 
+func on_snack_thrown(snack: Node3D) -> void:
+	if targeted_fetchable:
+		return
+	targeted_fetchable = snack
+	state = DogState.Snacking
+
+
 func pick_up_fetchable() -> void:
 	targeted_fetchable.get_parent().remove_child(targeted_fetchable)
 	fetchable_container.add_child(targeted_fetchable)
+	targeted_fetchable.freeze = true
 	targeted_fetchable.position = Vector3.ZERO
-	targeted_fetchable.set_physics_process(false)
+	targeted_fetchable.rotation = Vector3.ZERO
 
 
 func drop_fetchable() -> void:
@@ -81,11 +89,17 @@ func drop_fetchable() -> void:
 	targeted_fetchable.global_position = position
 	targeted_fetchable.linear_velocity = Vector3.ZERO
 	targeted_fetchable.angular_velocity = Vector3.ZERO
-	targeted_fetchable.set_physics_process(true)
+	targeted_fetchable.freeze = false
 	targeted_fetchable = null
 
 	for child in fetchable_container.get_children():
 		fetchable_container.remove_child(child)
+
+
+func eat_target(saturation: float) -> void:
+	fetchable_container.remove_child(targeted_fetchable)
+	targeted_fetchable.queue_free()
+	targeted_fetchable = null
 
 
 func play_woof() -> void:
@@ -104,4 +118,5 @@ enum DogState {
 	Following,
 	BeingRecalled,
 	Fetching,
+	Snacking,
 }

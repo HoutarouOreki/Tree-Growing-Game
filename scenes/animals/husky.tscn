@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://c1qcrto0phpd"]
+[gd_scene load_steps=71 format=3 uid="uid://c1qcrto0phpd"]
 
 [ext_resource type="Script" path="res://scripts/animals/dog.gd" id="1_10d3b"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_sxeej"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scripts/animals/behaviors/execute_function.gd" id="9_jwybu"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_random.gd" id="11_gbxlc"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/dog_state_condition.gd" id="11_ucrj6"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/eat_action.gd" id="12_eeya8"]
 [ext_resource type="PackedScene" uid="uid://cxpebucwjn4av" path="res://ui/dog/dog_commands_control.tscn" id="16_ob0tk"]
 [ext_resource type="AudioStream" uid="uid://de03jjkcve2sh" path="res://assets/sounds/animals/dog/german_shepherd_woofs_1.mp3" id="22_u5ty2"]
 [ext_resource type="AudioStream" uid="uid://clqq1ckra5hc7" path="res://assets/sounds/animals/dog/german_shepherd_woofs_2.mp3" id="23_5q4xp"]
@@ -9886,7 +9887,7 @@ path_max_distance = 3.01
 [node name="DogBeehavior" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("2_sxeej")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@19020")
+blackboard = NodePath("@Node@18131")
 
 [node name="SelectorReactiveComposite" type="Node" parent="DogBeehavior"]
 script = ExtResource("3_surdh")
@@ -9956,6 +9957,47 @@ function_name = &"play_woof"
 script = ExtResource("9_5m7r1")
 
 [node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle"]
+script = ExtResource("9_5m7r1")
+
+[node name="TrySnackSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+script = ExtResource("4_wtkyh")
+
+[node name="IsSnacking" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence"]
+script = ExtResource("11_ucrj6")
+state = 5
+
+[node name="SnackOrMakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence"]
+script = ExtResource("8_lf28i")
+
+[node name="SnackSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle"]
+script = ExtResource("3_73csu")
+
+[node name="GoToTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+script = ExtResource("7_eqygs")
+max_speed = 5.0
+acceleration = 30.0
+desired_distance_to_target = 1.0
+target_type = 1
+target = null
+animations = Array[String](["Gallop"])
+
+[node name="PickUpTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+script = ExtResource("9_jwybu")
+function_name = &"pick_up_fetchable"
+
+[node name="Eating" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+script = ExtResource("12_eeya8")
+animations = Array[String](["Eating"])
+
+[node name="EatUpTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+script = ExtResource("9_jwybu")
+function_name = &"eat_target"
+arguments = [4.0]
+
+[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+script = ExtResource("9_5m7r1")
+
+[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle"]
 script = ExtResource("9_5m7r1")
 
 [node name="FollowSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]

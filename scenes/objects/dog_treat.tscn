@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://tieamqdj3ai7"]
+
+[ext_resource type="PackedScene" uid="uid://bwnljx3xdf12w" path="res://assets/models/dog_treat.glb" id="1_mpywp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ekqs7"]
+bounce = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18inl"]
+albedo_color = Color(0.501961, 0.301961, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4dusr"]
+points = PackedVector3Array(0.043199, -0.000353431, 0.025403, -0.0451227, -0.0197103, -0.0298894, -0.041884, 0.00783984, 0.0268254, 0.0342719, 0.0127014, -0.0217846, 0.047237, -0.0180875, 0.0235835, 0.0456126, -0.0180875, -0.0298894, -0.0451227, -0.0180875, 0.0252045, -0.041884, 0.0110786, -0.0250265, 0.042384, 0.0127014, 0.0170997, -0.0386351, 0.0143208, 0.0219625, 0.0407595, -0.0132259, 0.0316944, -0.0496724, 0.00435208, 0.0180245, 0.049912, -0.00498812, -0.0177528, 0.0342719, 0.00945921, -0.0266475, 0.0342719, 0.0127014, 0.0235835, 0.0407595, 0.0143208, -0.0120589, -0.0402494, -0.0035027, -0.0315103, -0.0402494, 0.0143208, -0.0153008, -0.0497904, -0.0128278, -0.0194528, -0.0386351, -0.000267456, 0.0300673, 0.0439983, -0.0197103, -0.0282684, 0.0501218, -0.00655851, 0.0195711, -0.0481663, 0.00436078, -0.022559, 0.0375106, 0.00297477, 0.0284464, -0.0483614, -0.0164681, 0.0235835, -0.0386351, -0.0164681, 0.0284464, 0.0501872, -0.0128053, -0.0209674, 0.0342747, 0.0143955, 0.00822175, 0.0385369, -0.00647818, -0.0297764, 0.0439983, -0.0180875, 0.0268254, -0.0479233, 0.00899571, 0.0117405, 0.0407595, 0.0110786, -0.0217846)
+
+[node name="dog_treat" instance=ExtResource("1_mpywp")]
+collision_layer = 64
+collision_mask = 5
+mass = 0.6
+physics_material_override = SubResource("PhysicsMaterial_ekqs7")
+continuous_cd = true
+linear_damp_mode = 1
+linear_damp = 0.5
+angular_damp_mode = 1
+angular_damp = 0.2
+
+[node name="Dog Treat" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.000696864, 0.0193675, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_18inl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.000696864, 0.0193675, 0)
+shape = SubResource("ConvexPolygonShape3D_4dusr")
