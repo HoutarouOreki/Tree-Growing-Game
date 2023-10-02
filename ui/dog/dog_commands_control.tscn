@@ -41,9 +41,14 @@ text = "Follow"
 layout_mode = 2
 text = "Free"
 
+[node name="FreeButton2" type="Button" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "Pet"
+
 [node name="VisibilityInputHandler" type="Node" parent="."]
 script = ExtResource("3_w1mpr")
 
 [connection signal="pressed" from="MarginContainer/BoxContainer/SitButton" to="." method="_on_sit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/BoxContainer/FollowButton" to="." method="_on_follow_button_pressed"]
 [connection signal="pressed" from="MarginContainer/BoxContainer/FreeButton" to="." method="_on_free_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/FreeButton2" to="." method="_on_free_button_pressed"]

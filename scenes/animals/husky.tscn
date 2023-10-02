@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://c1qcrto0phpd"]
+[gd_scene load_steps=78 format=3 uid="uid://c1qcrto0phpd"]
 
 [ext_resource type="Script" path="res://scripts/animals/dog.gd" id="1_10d3b"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_sxeej"]
@@ -33,6 +33,8 @@
 [ext_resource type="Script" path="res://scripts/animals/animal_footsteps.gd" id="32_1681x"]
 [ext_resource type="AudioStream" uid="uid://d4e6crdbjsmea" path="res://assets/sounds/animals/dog/german_shepherd_woof_-08.mp3" id="32_uwjkc"]
 [ext_resource type="AudioStream" uid="uid://38sjpurck8ke" path="res://assets/sounds/animals/dog/german_shepherd_woof_-09.mp3" id="33_b3orb"]
+[ext_resource type="ArrayMesh" uid="uid://co1yhfph0ku6o" path="res://assets/meshes/heart_mesh.tres" id="34_u62x5"]
+[ext_resource type="Script" path="res://scripts/animals/love_particles.gd" id="35_1f6xh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bps46"]
 resource_name = "Material"
@@ -9395,6 +9397,38 @@ func interact(player: Player) -> void:
 [sub_resource type="SphereShape3D" id="SphereShape3D_lpevd"]
 radius = 0.7
 
+[sub_resource type="Gradient" id="Gradient_26mxp"]
+offsets = PackedFloat32Array(0, 0.851351, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xvyk2"]
+gradient = SubResource("Gradient_26mxp")
+
+[sub_resource type="Curve" id="Curve_5qsck"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.726471, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hld12"]
+curve = SubResource("Curve_5qsck")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y23qa"]
+lifetime_randomness = 0.36
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.2, 0.4)
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+gravity = Vector3(0, 0.1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_hld12")
+color = Color(0, 0.517647, 1, 1)
+color_ramp = SubResource("GradientTexture1D_xvyk2")
+
 [node name="Husky" type="CharacterBody3D" groups=["dogs"]]
 collision_layer = 2
 collision_mask = 5
@@ -9887,7 +9921,7 @@ path_max_distance = 3.01
 [node name="DogBeehavior" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("2_sxeej")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18131")
+blackboard = NodePath("@Node@24322")
 
 [node name="SelectorReactiveComposite" type="Node" parent="DogBeehavior"]
 script = ExtResource("3_surdh")
@@ -9949,6 +9983,11 @@ animations = Array[String](["Gallop"])
 script = ExtResource("9_jwybu")
 function_name = &"drop_fetchable"
 
+[node name="EmitLove" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+script = ExtResource("9_jwybu")
+function_name = &"emit_love"
+arguments = [Color(0, 0.533333, 1, 1)]
+
 [node name="WoofAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"play_woof"
@@ -9993,6 +10032,11 @@ animations = Array[String](["Eating"])
 script = ExtResource("9_jwybu")
 function_name = &"eat_target"
 arguments = [4.0]
+
+[node name="EmitLove" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+script = ExtResource("9_jwybu")
+function_name = &"emit_love"
+arguments = [Color(0.937255, 0.717647, 0, 1)]
 
 [node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("9_5m7r1")
@@ -10247,3 +10291,28 @@ unit_size = 4.0
 max_db = 1.0
 bus = &"Footsteps"
 script = ExtResource("32_1681x")
+
+[node name="LoveParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.583133, 0.303592)
+emitting = false
+amount = 10
+lifetime = 2.0
+randomness = 0.24
+process_material = SubResource("ParticleProcessMaterial_y23qa")
+draw_pass_1 = ExtResource("34_u62x5")
+script = ExtResource("35_1f6xh")
+
+[node name="Timer" type="Timer" parent="LoveParticles"]
+process_callback = 0
+one_shot = true
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="LoveParticles"]
+strength = -30.0
+attenuation = 4.43827
+radius = 0.216109
+
+[node name="GPUParticlesAttractorSphere3D3" type="GPUParticlesAttractorSphere3D" parent="LoveParticles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129773, 0.116096)
+strength = -30.0
+attenuation = 4.43827
+radius = 0.181328

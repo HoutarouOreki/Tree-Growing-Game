@@ -4,6 +4,7 @@ class_name Dog extends Animal
 @onready var commands_control: DogCommandsControl = $DogCommandsControl as DogCommandsControl
 @onready var fetchable_container: Node3D = $RootNode/AnimalArmature/Skeleton3D/BoneAttachment3D/FetchableContainer as Node3D
 @onready var fetchable_collection_area: Area3D = $FetchableCollectionArea as Area3D
+@onready var love_particles: LoveParticles = $LoveParticles as LoveParticles
 
 @export var dog_owner: Player
 
@@ -21,6 +22,7 @@ var state: DogState = DogState.Idle:
 		state = value
 
 var targeted_fetchable: RigidBody3D
+var love: float
 
 
 func _ready() -> void:
@@ -45,12 +47,17 @@ func on_sit() -> void:
 	state = DogState.Sitting
 
 
+func on_pet() -> void:
+	emit_love(Color.GOLD)
+
+
 func set_idle() -> void:
 	state = DogState.Idle
 
 
 func interact(player: Player) -> void:
-	commands_control.show()
+	var radial_menu: DogRadialMenu = DogRadialMenu.new(self)
+	add_child(radial_menu)
 
 
 func on_fetchable_thrown(fetchable: Node3D) -> void:
@@ -110,6 +117,12 @@ func play_woof() -> void:
 
 func play_panting() -> void:
 	current_sound = AudioHelper.play_random_from(panting_sounds)
+
+
+func emit_love(color: Color) -> void:
+	love_particles.set_color(color)
+	love_particles.emit_for(3)
+	love += 2
 
 
 enum DogState {
