@@ -23,6 +23,11 @@ var state: DogState = DogState.Idle:
 
 var targeted_fetchable: RigidBody3D
 var love: float
+var hunger_saturation: float = 50:
+	get:
+		return hunger_saturation
+	set (value):
+		hunger_saturation = clampf(value, 0, 100)
 
 
 func _ready() -> void:
