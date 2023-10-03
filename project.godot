@@ -157,6 +157,7 @@ interact={
 3d_physics/layer_8="Interactable"
 3d_physics/layer_9="Plants"
 3d_physics/layer_21="Axable"
+3d_physics/layer_22="Itemable"
 
 [navigation]
 

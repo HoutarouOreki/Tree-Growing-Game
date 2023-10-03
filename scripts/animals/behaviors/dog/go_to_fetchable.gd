@@ -15,12 +15,12 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	return super.tick(actor, blackboard)
 
 
-func get_target(actor: Node) -> Node3D:
+func get_target(actor: Node, blackboard: Blackboard) -> Node3D:
 	var dog: Dog = actor as Dog
 	return dog.targeted_fetchable
 
 
-func is_successful(actor: Node) -> bool:
+func is_successful(actor: Node, blackboard: Blackboard) -> bool:
 	var dog: Dog = actor as Dog
 	if !dog.fetchable_collection_area.has_overlapping_bodies():
 		return false

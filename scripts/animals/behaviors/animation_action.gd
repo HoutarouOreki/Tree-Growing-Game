@@ -7,7 +7,7 @@ class_name AnimationAction extends ActionLeaf
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	var animal: Animal = actor
-	if !animal.animations.is_playing():
+	if !animal.animations.is_playing() || !animations.has(animal.animations.current_animation):
 		animal.animations.play(animations.pick_random(), 0.2, animation_speed_multiplier)
 	return RUNNING
 

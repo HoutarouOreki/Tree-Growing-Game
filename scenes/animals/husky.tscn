@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://c1qcrto0phpd"]
+[gd_scene load_steps=85 format=3 uid="uid://c1qcrto0phpd"]
 
 [ext_resource type="Script" path="res://scripts/animals/dog.gd" id="1_10d3b"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_sxeej"]
@@ -9,20 +9,25 @@
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/walk_to_player_action.gd" id="5_d5mvl"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="5_mwrnl"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/is_too_far_from_followed_target.gd" id="6_1fgco"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="6_s25bi"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/animation_action.gd" id="6_ukrj4"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/go_to_fetchable.gd" id="7_eqygs"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="7_inmbk"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/follow_target_action.gd" id="7_j51cj"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/dog/check_and_set_closest_pet_bowl.gd" id="8_74qlj"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/walk_to_target_action.gd" id="8_bn2sp"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/saturation_condition.gd" id="8_cdsx4"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_lf28i"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/set_dog_state.gd" id="9_5m7r1"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/dog/go_to_set_bowl.gd" id="9_6t2rp"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/execute_function.gd" id="9_jwybu"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_random.gd" id="11_gbxlc"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/dog/empty_bowl_action.gd" id="11_i3keb"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/dog/dog_state_condition.gd" id="11_ucrj6"]
 [ext_resource type="Script" path="res://scripts/animals/adjust_saturation.gd" id="12_0lk55"]
 [ext_resource type="Script" path="res://scripts/animals/behaviors/eat_action.gd" id="12_eeya8"]
 [ext_resource type="PackedScene" uid="uid://cxpebucwjn4av" path="res://ui/dog/dog_commands_control.tscn" id="16_ob0tk"]
+[ext_resource type="Script" path="res://scripts/animals/behaviors/saturation_condition_or_set_idle.gd" id="16_xr4du"]
 [ext_resource type="AudioStream" uid="uid://de03jjkcve2sh" path="res://assets/sounds/animals/dog/german_shepherd_woofs_1.mp3" id="22_u5ty2"]
 [ext_resource type="AudioStream" uid="uid://clqq1ckra5hc7" path="res://assets/sounds/animals/dog/german_shepherd_woofs_2.mp3" id="23_5q4xp"]
 [ext_resource type="AudioStream" uid="uid://c27blxmgbsrkn" path="res://assets/sounds/animals/dog/german_shepherd_woof_-01.mp3" id="25_k1mwt"]
@@ -9923,19 +9928,57 @@ path_max_distance = 3.01
 [node name="DogBeehavior" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("2_sxeej")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18131")
+blackboard = NodePath("@Node@27483")
 
 [node name="SelectorReactiveComposite" type="Node" parent="DogBeehavior"]
 script = ExtResource("3_surdh")
 
-[node name="RecallSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+[node name="SeekFoodAndEat while Idle&Hungry" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
 script = ExtResource("4_wtkyh")
 
-[node name="IsBeingRecalled" type="Node" parent="DogBeehavior/SelectorReactiveComposite/RecallSequence"]
+[node name="IsIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry"]
+script = ExtResource("11_ucrj6")
+
+[node name="IsHungry" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry"]
+script = ExtResource("6_s25bi")
+
+[node name="SaturationCondition" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry/IsHungry"]
+script = ExtResource("8_cdsx4")
+required_saturation = 60.0
+
+[node name="FindAndSetClosestBowl" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry"]
+script = ExtResource("8_74qlj")
+
+[node name="GoEatSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry"]
+script = ExtResource("3_73csu")
+
+[node name="GoToBowl" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry/GoEatSequence"]
+script = ExtResource("9_6t2rp")
+max_speed = 5.0
+acceleration = 30.0
+desired_distance_to_target = 1.0
+target_type = 1
+animations = Array[String](["Gallop"])
+
+[node name="Eating" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry/GoEatSequence"]
+script = ExtResource("12_eeya8")
+animations = Array[String](["Eating"])
+
+[node name="EmptyBowl" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry/GoEatSequence"]
+script = ExtResource("11_i3keb")
+
+[node name="AddSaturation" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry/GoEatSequence"]
+script = ExtResource("12_0lk55")
+saturation_change = 40.0
+
+[node name="GoToPlayer while BeingRecalled" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+script = ExtResource("4_wtkyh")
+
+[node name="IsBeingRecalled" type="Node" parent="DogBeehavior/SelectorReactiveComposite/GoToPlayer while BeingRecalled"]
 script = ExtResource("11_ucrj6")
 state = 3
 
-[node name="GoToPlayerAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/RecallSequence"]
+[node name="GoToPlayerAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/GoToPlayer while BeingRecalled"]
 script = ExtResource("5_d5mvl")
 max_speed = 5.0
 acceleration = 30.0
@@ -9944,27 +9987,34 @@ target_type = 1
 target = null
 animations = Array[String](["Gallop"])
 
-[node name="SetDogState" type="Node" parent="DogBeehavior/SelectorReactiveComposite/RecallSequence"]
+[node name="MakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/GoToPlayer while BeingRecalled"]
 script = ExtResource("9_5m7r1")
 
-[node name="TryFetchSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
-script = ExtResource("4_wtkyh")
+[node name="Fetch if Fetching&Satiated" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+script = ExtResource("3_73csu")
 
-[node name="IsFetching" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence"]
+[node name="IsFetching" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated"]
 script = ExtResource("11_ucrj6")
 state = 4
 
-[node name="SaturationCondition" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence"]
-script = ExtResource("8_cdsx4")
+[node name="Satiated or MakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated"]
+script = ExtResource("16_xr4du")
 required_saturation = 30.0
 
-[node name="FetchOrMakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence"]
+[node name="Fetch while Fetching" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated"]
+script = ExtResource("4_wtkyh")
+
+[node name="IsFetching" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching"]
+script = ExtResource("11_ucrj6")
+state = 4
+
+[node name="FetchOrMakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching"]
 script = ExtResource("8_lf28i")
 
-[node name="FetchSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle"]
+[node name="FetchSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle"]
 script = ExtResource("3_73csu")
 
-[node name="GoToFetchable" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="GoToFetchable" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("7_eqygs")
 max_speed = 5.0
 acceleration = 30.0
@@ -9973,15 +10023,15 @@ target_type = 1
 target = null
 animations = Array[String](["Gallop"])
 
-[node name="DepleteSaturation" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="DepleteSaturation" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("12_0lk55")
 saturation_change = -4.0
 
-[node name="PickUpFetchable" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="PickUpFetchable" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"pick_up_fetchable"
 
-[node name="GoToOwner" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="GoToOwner" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("5_d5mvl")
 max_speed = 5.0
 acceleration = 30.0
@@ -9989,43 +10039,43 @@ target_type = 1
 target = null
 animations = Array[String](["Gallop"])
 
-[node name="DepleteSaturation2" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="DepleteSaturation2" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("12_0lk55")
 saturation_change = -4.0
 
-[node name="DropFetchable" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="DropFetchable" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"drop_fetchable"
 
-[node name="EmitLove" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="EmitLove" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"emit_love"
 arguments = [Color(0, 0.533333, 1, 1)]
 
-[node name="WoofAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="WoofAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"play_woof"
 
-[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle/FetchSequence"]
+[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle/FetchSequence"]
 script = ExtResource("9_5m7r1")
 
-[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TryFetchSequence/FetchOrMakeIdle"]
+[node name="MakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Fetch if Fetching&Satiated/Fetch while Fetching/FetchOrMakeIdle"]
 script = ExtResource("9_5m7r1")
 
-[node name="TrySnackSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+[node name="Snack while Snacking" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
 script = ExtResource("4_wtkyh")
 
-[node name="IsSnacking" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence"]
+[node name="IsSnacking" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking"]
 script = ExtResource("11_ucrj6")
 state = 5
 
-[node name="SnackOrMakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence"]
+[node name="SnackOrMakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking"]
 script = ExtResource("8_lf28i")
 
-[node name="SnackSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle"]
+[node name="SnackSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle"]
 script = ExtResource("3_73csu")
 
-[node name="GoToTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="GoToTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("7_eqygs")
 max_speed = 5.0
 acceleration = 30.0
@@ -10034,51 +10084,51 @@ target_type = 1
 target = null
 animations = Array[String](["Gallop"])
 
-[node name="DepleteSaturation" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="DepleteSaturation" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("12_0lk55")
 saturation_change = -2.0
 
-[node name="PickUpTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="PickUpTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"pick_up_fetchable"
 
-[node name="Eating" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="Eating" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("12_eeya8")
 animations = Array[String](["Eating"])
 
-[node name="EatUpTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="EatUpTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"eat_target"
 arguments = [4.0]
 
-[node name="AddSaturation" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="AddSaturation" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("12_0lk55")
 saturation_change = 10.0
 
-[node name="EmitLove" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="EmitLove" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("9_jwybu")
 function_name = &"emit_love"
 arguments = [Color(0.937255, 0.717647, 0, 1)]
 
-[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle/SnackSequence"]
+[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle/SnackSequence"]
 script = ExtResource("9_5m7r1")
 
-[node name="SetIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/TrySnackSequence/SnackOrMakeIdle"]
+[node name="MakeIdle" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Snack while Snacking/SnackOrMakeIdle"]
 script = ExtResource("9_5m7r1")
 
-[node name="FollowSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+[node name="Follow while Following&TooFar" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
 script = ExtResource("4_wtkyh")
 
-[node name="IsFollowing" type="Node" parent="DogBeehavior/SelectorReactiveComposite/FollowSequence"]
+[node name="IsFollowing" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Follow while Following&TooFar"]
 script = ExtResource("11_ucrj6")
 state = 2
 
-[node name="IsTooFarFromFollowedTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/FollowSequence"]
+[node name="IsTooFarFromFollowedTarget" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Follow while Following&TooFar"]
 script = ExtResource("6_1fgco")
 inner_range = 3.0
 outer_range = 12.0
 
-[node name="FollowTargetAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/FollowSequence"]
+[node name="FollowTargetAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Follow while Following&TooFar"]
 script = ExtResource("7_j51cj")
 max_speed = 5.0
 acceleration = 30.0
@@ -10086,14 +10136,14 @@ teleport_to_closest_navigation_point = true
 target_type = 1
 animations = Array[String](["Gallop"])
 
-[node name="SittingSequence" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
+[node name="Sit while Sitting" type="Node" parent="DogBeehavior/SelectorReactiveComposite"]
 script = ExtResource("4_wtkyh")
 
-[node name="IsSitting" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SittingSequence"]
+[node name="IsSitting" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Sit while Sitting"]
 script = ExtResource("11_ucrj6")
 state = 1
 
-[node name="SittingAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SittingSequence"]
+[node name="SittingAction" type="Node" parent="DogBeehavior/SelectorReactiveComposite/Sit while Sitting"]
 script = ExtResource("6_ukrj4")
 animations = Array[String](["Idle_Sit"])
 
