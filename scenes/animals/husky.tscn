@@ -9928,7 +9928,7 @@ path_max_distance = 3.01
 [node name="DogBeehavior" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
 script = ExtResource("2_sxeej")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@27483")
+blackboard = NodePath("@Node@19337")
 
 [node name="SelectorReactiveComposite" type="Node" parent="DogBeehavior"]
 script = ExtResource("3_surdh")
@@ -9958,6 +9958,7 @@ max_speed = 5.0
 acceleration = 30.0
 desired_distance_to_target = 1.0
 target_type = 1
+target = null
 animations = Array[String](["Gallop"])
 
 [node name="Eating" type="Node" parent="DogBeehavior/SelectorReactiveComposite/SeekFoodAndEat while Idle&Hungry/GoEatSequence"]
