@@ -67,12 +67,12 @@ func new_target_attempt() -> bool:
 
 
 func after_run(actor: Node, blackboard: Blackboard) -> void:
-	if self is GoToFetchable:
-		print("after_run")
+	animal.acceleration_direction = Vector2.ZERO
+	animal.acceleration_amount = 0
+
 
 func interrupt(actor: Node, blackboard: Blackboard) -> void:
-	if self is GoToFetchable:
-		print("interrupt")
+	after_run(actor, blackboard)
 
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
@@ -123,7 +123,6 @@ func _physics_process(delta: float) -> void:
 		impossible_to_reach_current += delta
 	else:
 		impossible_to_reach_current = 0
-
 
 
 func is_successful(actor: Node, blackboard: Blackboard) -> bool:
